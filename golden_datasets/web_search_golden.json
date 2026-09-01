@@ -1,0 +1,297 @@
+{
+  "dataset_name": "web_search_contextual_relevancy_v1",
+  "metric": "ContextualRelevancyMetric",
+  "goldens": [
+    {
+      "id": "search_0001",
+      "input": "iPhone 17 Pro price in Pakistan",
+      "max_results": 4,
+      "target_context": [
+        "A Gulf News piece explains that although the iPhone 17 series had not officially launched in Pakistan yet, buyers could estimate local pricing once PTA taxes and exchange rates were factored in: the iPhone 17 Pro's US price of $1,099 was expected to translate to roughly Rs500,000-Rs550,000 once PTA duties and retailer margins were added, based on an exchange rate near Rs284 to the dollar.",
+        "The same article notes that travellers bringing an iPhone 17 into Pakistan from abroad must pay PTA tax to register the device on local SIMs under DIRBS rules, though overseas Pakistanis get a 120-day grace period of usage before full duties are due.",
+        "A regional pricing comparison piece lists the US as the cheapest market for the base iPhone 17 at around $799, with most other countries paying 6-25% more due to VAT, GST, and import duties, giving useful context for how far Pakistani retail prices would likely diverge from the US MSRP."
+      ]
+    },
+    {
+      "id": "search_0002",
+      "input": "who is CEO of OpenAI 2026",
+      "max_results": 2,
+      "target_context": [
+        "A Fortune profile confirms Sam Altman continues to hold the title of CEO and co-founder of OpenAI, describing him as the public face of the AI boom who transformed the company into a brand valued at roughly $300 billion.",
+        "Most of the top search results instead describe the November 2023 saga in which Altman was briefly fired by the OpenAI board and reinstated days later with a new board chaired by Bret Taylor — historical context rather than a direct statement about who holds the role today."
+      ]
+    },
+    {
+      "id": "search_0003",
+      "input": "latest stable version of Next.js",
+      "max_results": 3,
+      "target_context": [
+        "A Wikipedia infobox lists Next.js's current stable release as version 16.2.6, dated May 7, 2026.",
+        "A software-news aggregator confirms that Next.js 16.2 launched in March 2026 with faster rendering and startup, a redesigned error page, and other improvements, following the 16.1 release in December 2025 and the original Next.js 16 launch in October 2025 that introduced Turbopack as the default bundler alongside a new caching model and React 19.2 support."
+      ]
+    },
+    {
+      "id": "search_0004",
+      "input": "PSL 2026 ka schedule kab announce hoga?",
+      "max_results": 3,
+      "target_context": [
+        "ESPN reports that PCB chairman Mohsin Naqvi announced PSL 2026 would run from March 26 to May 3, 2026, following a franchise auction on January 8 in Islamabad for two new teams, expanding the league to eight teams.",
+        "The same report notes PSL 2026 overlaps with the IPL for a second straight year and will be the longest PSL season yet at 39 playing days, roughly a week longer than previous editions.",
+        "A Wikipedia summary of the 2026 Pakistan Super League fills in the eventual outcome: the tournament ran March 26-May 3, 2026 as an eleventh edition branded HBL PSL 11, won by Peshawar Zalmi over Hyderabad Kingsmen."
+      ]
+    },
+    {
+      "id": "search_0005",
+      "input": "best budget noise cancelling headphones under $100 2026",
+      "max_results": 4,
+      "target_context": [
+        "A Tom's Guide review roundup names the JLab JBuds Lux ANC as a standout sub-$100 pick, citing 70-hour battery life and ANC performance well above what the price would suggest, with the main tradeoff being no included hardcase.",
+        "A February 2026 deals roundup lists the JLab JBuds Lux ANC on sale for $51 (down from $79), praising its Dolby Atmos and Spatial Audio support alongside up to 70 hours of battery life, and separately notes the Sennheiser Accentum discounted to $99.",
+        "A TechRadar buying guide states that its 'best under $100' pick scored nearly as well for noise cancellation as headphones costing two to three times as much, calling out the Soundpeats Cove Pro as the newly selected 'best under $50' entry at a typical street price of $49.99."
+      ]
+    },
+    {
+      "id": "search_0006",
+      "input": "compare AWS Lambda vs Google Cloud Functions pricing 2026",
+      "max_results": 6,
+      "target_context": [
+        "AWS's official Lambda pricing page explains that charges are based on the number of requests plus compute duration in GB-seconds, with duration cost depending on the memory allocated to a function (from 128 MB up to 10,240 MB) and Compute Savings Plans offering up to 17% savings for committed usage.",
+        "An AWS announcement describes tiered pricing for Lambda duration: after the first 6 billion GB-seconds per month (x86) or 7.5 billion (arm64), customers get a 10% discount, rising to 20% beyond 15 billion (x86) or 18.75 billion (arm64) GB-seconds.",
+        "A developer walkthrough comparing the two platforms explains a key billing difference: AWS Lambda bills execution time in milliseconds, while Google Cloud rounds every invocation up to the nearest 100 milliseconds, so a 201-300ms request is always billed as 300ms on Google Cloud; it also notes Google Cloud factors in both memory and CPU allocation where AWS only bills for memory.",
+        "Google's own Cloud Run functions pricing-summary page (Cloud Functions has been folded into Cloud Run) directs users to the Cloud Run pricing pages for current rates, rather than listing standalone Cloud Functions pricing."
+      ]
+    },
+    {
+      "id": "search_0007",
+      "input": "SBP ki new remittance policy 2026 mein kya hai",
+      "max_results": 5,
+      "target_context": [
+        "A January 2026 Business Standard/Bloomberg report describes the State Bank of Pakistan moving to let non-resident Pakistanis open digital accounts (in USD or PKR) through eight domestic banks starting the following week, part of an effort to raise foreign-exchange reserves by tapping diaspora savings and letting them invest in government debt and the stock market.",
+        "A Gulf News report from mid-2025 states Pakistan's foreign exchange reserves hit a 39-month high of $20.03 billion in July, driven largely by a surge in remittances from the UAE, with SBP's own holdings rising to $14.5 billion; it adds that banks had been offering premium rates to attract these inflows but the government was considering rolling back those incentives.",
+        "A separate Gulf News piece marking International Day of Family Remittance reports that overseas Pakistanis sent $34.9 billion home in fiscal year 2024-25, a 28.8% year-on-year increase, with Saudi Arabia, the UAE, the US and UK the top four source countries as of December 2024."
+      ]
+    },
+    {
+      "id": "search_0008",
+      "input": "how to install Claude Code CLI",
+      "max_results": 3,
+      "target_context": [
+        "Anthropic's own quickstart documentation gives two installation paths: an NPM install via `npm install -g @anthropic-ai/claude-code` for those with Node.js 18+, or a native install still in beta via `curl -fsSL claude.ai/install.sh | bash` on macOS/Linux/WSL, or `irm https://claude.ai/install.ps1 | iex` on Windows PowerShell.",
+        "The same documentation describes starting a first session by running `claude` from a project directory, and notes that credentials are stored securely on the user's system.",
+        "A university IT support guide adds a troubleshooting detail: on Windows, the `claude` command may not be recognized after installation because the install folder isn't automatically added to PATH, requiring either a `setx PATH` command or a manual edit via the Windows Environment Variables dialog."
+      ]
+    },
+    {
+      "id": "search_0009",
+      "input": "Llama 4 ka recent update kya hai",
+      "max_results": 4,
+      "target_context": [
+        "Business Insider reports that after Llama 4's April 2025 launch (Scout and Maverick) drew a lukewarm response from developers over weak real-world performance in coding, reasoning and instruction-following, a team within Meta Superintelligence Labs began racing to ship a follow-up, internally called Llama 4.X or Llama 4.5, targeting a year-end release.",
+        "The same report notes Meta's larger Llama 4 Behemoth model, previewed as a 288-billion-active-parameter 'teacher' model, was reported by the Wall Street Journal to have been postponed.",
+        "AWS's Bedrock and SageMaker JumpStart announcements describe the originally released models: Llama 4 Scout (17B active/109B total parameters, 10-million-token context) and Llama 4 Maverick (17B active/400B total parameters, 128 experts, 1-million-token context), both natively multimodal with a mixture-of-experts architecture."
+      ]
+    },
+    {
+      "id": "search_0010",
+      "input": "NVIDIA RTX 5090 price specs",
+      "max_results": 3,
+      "target_context": [
+        "TechRadar's CES 2025 coverage states Nvidia's official RTX 5090 MSRP was $1,999 (£1,999/AU$4,039), featuring 92 billion transistors and more than double the AI processing speed of the RTX 4090, going on sale January 30, 2025.",
+        "A later TechRadar report finds retail prices had climbed well past that MSRP: several custom RTX 5090 cards from Asus were listed around or above $3,000, with one model priced as high as $3,490 despite launching at $3,099, and the cards remaining largely out of stock.",
+        "A Notebookcheck report on the last major pre-launch leak pegged Nvidia's rumored 'Blackwell' MSRP for the RTX 5090 in the $1,899-$1,999 range with 32GB of GDDR7 memory on a 512-bit bus, close to what the card ultimately launched at."
+      ]
+    },
+    {
+      "id": "search_0011",
+      "input": "React 19 whats new features",
+      "max_results": 3,
+      "target_context": [
+        "Multiple developer write-ups agree on a core set of genuine React 19 additions: the Actions API for handling async form submissions, new hooks including useActionState, useOptimistic and useFormStatus, a React Compiler for automatic performance optimization, and a unified `use` API for reading async data and context without extra boilerplate.",
+        "Several other listicle-style posts claiming to describe React 19 attribute it features that don't match React's real release notes — such as a 'Concurrent Mode 2.0' and a bundled 'Recoil 1.0' state-management library — indicating that not every search result about 'React 19 features' is a reliable source."
+      ]
+    },
+    {
+      "id": "search_0012",
+      "input": "Pakistan federal budget 2026-27 tax changes",
+      "max_results": 5,
+      "target_context": [
+        "A Wikipedia summary of the prior cycle notes the 2025-26 Pakistan federal budget, covering the fiscal year from July 1, 2025 to June 30, 2026, was presented by Finance Minister Muhammad Aurangzeb on June 10, 2025 with a total outlay of Rs17.573 trillion and passed by the National Assembly on June 26, 2025.",
+        "A KPMG tax alert states the National Assembly approved the Finance Bill 2025 on June 29, 2025, with amendments to income tax, sales tax, federal excise tax and customs law taking effect from July 1, 2025 after presidential assent.",
+        "None of the retrieved results describe an already-presented 2026-27 budget or its specific tax measures — the most recent confirmed federal budget and tax changes on record are those from the 2025-26 cycle, which is the budget still in effect through June 2026."
+      ]
+    },
+    {
+      "id": "search_0013",
+      "input": "who won Nobel Prize in Physics 2025",
+      "max_results": 2,
+      "target_context": [
+        "Multiple sources confirm the 2025 Nobel Prize in Physics was awarded jointly to John Clarke, Michel H. Devoret and John M. Martinis 'for the discovery of macroscopic quantum mechanical tunnelling and energy quantisation in an electric circuit,' announced by the Royal Swedish Academy of Sciences on October 7, 2025.",
+        "A Yale-affiliated report adds that the laureates' experiments, conducted together in the 1980s, demonstrated a superconducting electrical circuit large enough to hold in the hand exhibiting quantum tunnelling and quantized energy absorption, and that the trio shared an 11-million-kronor prize."
+      ]
+    },
+    {
+      "id": "search_0014",
+      "input": "USD to PKR exchange rate today",
+      "max_results": 2,
+      "target_context": [
+        "A Wise currency-converter page lists the live rate as 1 USD = 283.75 PKR, with a 30-day range between roughly 281.88 and 283.75 and a 90-day average near 281.5.",
+        "A second Wise conversion table gives a slightly different live quote of 1 USD = 282.95 PKR, translating to about 28,295 PKR per 100 USD, illustrating typical day-to-day movement in the rate rather than a single fixed figure."
+      ]
+    },
+    {
+      "id": "search_0015",
+      "input": "Flutter 3.30 release notes",
+      "max_results": 4,
+      "target_context": [
+        "Flutter's actual public version history skips straight from 3.29 to 3.32 — a GitHub dependency-update PR lists the sequence as 3.29.3, then 3.32.0 as the 'Initial stable release' and 3.32.1 afterward, with no 3.30 or 3.31 stable release ever shipped.",
+        "A developer write-up on Flutter 3.29 describes its actual contents: refinements to Cupertino and Material widgets, WebAssembly and image-handling improvements for web, and stability/performance gains in the Impeller rendering engine on Android and iOS.",
+        "A later post describes Flutter 3.35.7, released October 23, 2025, as the more recent stable SDK at that point, focused on smoother animations, reduced UI jank and faster frame rendering — useful context that no version numbered '3.30' exists in Flutter's actual release history."
+      ]
+    },
+    {
+      "id": "search_0016",
+      "input": "did openai drop a new model recently",
+      "max_results": 4,
+      "target_context": [
+        "A TipRanks report states OpenAI is preparing to release its first open-weight language model since GPT-2, in response to competitive pressure from rivals like DeepSeek, and had begun soliciting developer feedback with the model expected to have reasoning capabilities comparable to o3-mini.",
+        "A separate TechCrunch snippet confirms OpenAI announced o3 and o3-mini as successors to its o1 reasoning models, initially released for public safety testing rather than general availability, with the company reportedly skipping the name 'o2' to avoid a trademark conflict with the telecom provider O2.",
+        "An AlternativeTo news feed shows OpenAI officially launched GPT-5 for both free and paid ChatGPT users in early August 2025, and a day earlier released two smaller open-weight models runnable on a laptop for free commercial use."
+      ]
+    },
+    {
+      "id": "search_0017",
+      "input": "best laptops for machine learning 2026 under 1500 dollars",
+      "max_results": 5,
+      "target_context": [
+        "The retrieved results are almost entirely generic laptop buying guides — 'best laptops under $500,' 'best laptops under $1,000,' 'best 15-inch laptop 2026' — none of which specifically address machine-learning workloads (GPU/VRAM requirements, CUDA support, RAM for model training) at the $1,500 price point the query asked about.",
+        "One Notebookcheck ranking of laptops for around $1,000 lists the Apple MacBook Air 13 M4 as a top pick, which is only tangentially useful since Apple Silicon's ML-training suitability differs meaningfully from a discrete-GPU Windows laptop and the piece doesn't discuss ML use cases at all."
+      ]
+    },
+    {
+      "id": "search_0018",
+      "input": "nust admissions 2026 last date?",
+      "max_results": 5,
+      "target_context": [
+        "A Wikipedia entry confirms NUST (National University of Sciences and Technology) is a public research university in Islamabad, Pakistan, established in 1991, with over 12,000 full-time students and admissions processed through its own entrance test.",
+        "An older cached document describing NUST's NET (NUST Entry Test) admission cycle explains the university runs multiple NET series across the year — for example Series 1 registration running late October through early December, Series 2 in February-March, and Series 3 in June or July — giving applicants up to three chances to sit the test, with a minimum 60% score in matriculation and HSSC required for eligibility.",
+        "Most other retrieved results are irrelevant near-matches for the acronym 'NUS'/'NUST' — Singapore's National University of Singapore (NUS) 2026/2027 admission windows, India's NIIT University or Netaji Subhas University of Technology (NSUT) 2026 deadlines — none of which pertain to Pakistan's NUST."
+      ]
+    },
+    {
+      "id": "search_0019",
+      "input": "latest iOS version features",
+      "max_results": 3,
+      "target_context": [
+        "A Wikipedia infobox states iOS 26 is Apple's current major release, general availability from September 15, 2025, with the latest point release 26.5 shipped May 11, 2026 and a 26.6 preview in progress; it introduced the 'Liquid Glass' design language along with new Apple Intelligence features such as live translation of voice and text and expanded Genmoji capability.",
+        "A Yahoo/Engadget report confirms iOS 26 (skipping the '19' numbering to align with the calendar year) released September 15, 2025 alongside iPadOS 26, watchOS 26 and macOS 26, with support extending back to the iPhone 11 and second-generation iPhone SE.",
+        "A TechRadar iOS news hub lists the most recent point releases as of early 2026: iOS 26.3 in beta with new weather wallpapers and an easier Android-switching flow, following iOS 26.2's notification-flash feature — most other search hits (iOS 15, iOS 16.4, iOS 17.1, iOS 18.3) describe much older releases that don't answer what the current version is."
+      ]
+    },
+    {
+      "id": "search_0020",
+      "input": "GitHub Copilot vs Claude Code 2026 comparison",
+      "max_results": 6,
+      "target_context": [
+        "A 2026 developer comparison describes GitHub Copilot as the 'safe choice for enterprise teams' thanks to seamless VS Code integration and enterprise features like IP indemnification and audit logging, while characterizing Claude Code as a terminal-based conversational tool that 'takes a fundamentally different approach' and is especially strong for debugging issues that stump inline-suggestion tools, at roughly $20/month.",
+        "Another 2026 dev-focused piece notes Claude Code runs as a CLI tool that maintains awareness of an entire project structure, can pull context from files, web search and MCP servers, and can directly edit files, run shell commands, run tests and commit to git from natural-language instructions, citing a 200K-token context window.",
+        "A March-2025-dated comparison table rates GitHub Copilot's agent mode as still 'Limited (Public Preview)' at that time versus Claude Code's terminal-based, task-focused agent mode, and pegs Claude Code's API-based pricing around $3 per million input tokens versus Copilot's roughly $10/month subscription — useful for showing how the comparison has evolved but not itself a 2026 snapshot."
+      ]
+    },
+    {
+      "id": "search_0021",
+      "input": "whens gta 6 releasing fr fr",
+      "max_results": 3,
+      "target_context": [
+        "ESPN reports Rockstar announced on Thursday that GTA 6 has been delayed a second time, from its previously targeted May 26, 2026 date to November 19, 2026, with the game set in the fictional state of Leonida (including a returning Vice City) and following protagonists Jason Duval and Lucia Caminos.",
+        "An earlier ESPN report describes the first delay: Rockstar pushed GTA VI from its originally planned fall 2025 launch to May 26, 2026, apologizing for the wait and saying it needed the extra time 'to deliver at the level of quality you expect and deserve.'",
+        "A Tom's Guide explainer adds that Take-Two CEO Strauss Zelnick said he feels 'very good' about the November 2026 date after the second delay, and separately recaps that Rockstar suffered a major 2022 data breach that leaked over 90 videos of unfinished GTA 6 gameplay footage."
+      ]
+    },
+    {
+      "id": "search_0022",
+      "input": "current mortgage interest rates USA",
+      "max_results": 2,
+      "target_context": [
+        "Fortune's daily mortgage-rate tracker for April 8, 2026 reports the average 30-year fixed conforming mortgage rate at 6.331%, down about 5 basis points from the prior day, and the 15-year fixed rate at 5.689%, also down slightly.",
+        "The same source's report from a few days earlier (April 3, 2026) put the 30-year rate at 6.343% and the 15-year rate at 5.692%, illustrating the kind of small daily fluctuation these rates see; on a $300,000 30-year loan at the April 8 rate, total interest paid over the life of the loan would be roughly $370,678."
+      ]
+    },
+    {
+      "id": "search_0023",
+      "input": "xAI Grok latest news update",
+      "max_results": 4,
+      "target_context": [
+        "Axios reports Elon Musk unveiled Grok 4 in a livestream, calling it the new top scorer on the Humanity's Last Exam benchmark, and that his team promised a coding-focused model in August, a multimodal agent in September, and a video-generation model in October as next steps.",
+        "CBS News reports the Grok 4 unveiling came one day after Grok posted antisemitic content on X, including praise for Adolf Hitler, prompting xAI to say it was banning hate speech before Grok posts and had taken the offending posts down.",
+        "TipRanks reports xAI paired the Grok 4 launch with a new $300/month 'SuperGrok Heavy' subscription tier, and that Grok 4 scored 25.4% on Humanity's Last Exam (44.4% for the Grok 4 Heavy variant with additional tools), surpassing Google's Gemini 2.5 Pro and OpenAI's o3 on that benchmark."
+      ]
+    },
+    {
+      "id": "search_0024",
+      "input": "ChatGPT subscription pricing plans 2026",
+      "max_results": 4,
+      "target_context": [
+        "A Malay Mail report on OpenAI's October 2025 Malaysia rollout lists three paid ChatGPT tiers: an entry-level 'Go' plan at RM38.99/month with extended GPT-5 access, a 'Plus' tier at RM99.90/month with higher usage limits and advanced research/reasoning tools, and a 'Pro' tier at RM999.90/month for professional and enterprise users, alongside a free plan with limited GPT-5 access.",
+        "A Business Insider piece reports OpenAI's head of ChatGPT, Nick Turley, saying in 2026 that 'unlimited' ChatGPT subscription plans may not survive as AI compute costs rise, describing the original subscription model as something the company 'stumbled into' to manage demand rather than a deliberate pricing strategy.",
+        "Older TechCrunch/Axios coverage for context: ChatGPT Plus launched at $20/month in February 2023, and a $200/month 'ChatGPT Pro' tier with unlimited access to all models (including the full o1 reasoning model) was introduced in December 2024."
+      ]
+    },
+    {
+      "id": "search_0025",
+      "input": "NADRA se passport online renew kaise karen",
+      "max_results": 4,
+      "target_context": [
+        "A Gulf News report on Pakistan's e-passport rollout describes an online portal that lets applicants renew their passports, submit documents, and track application progress without needing multiple in-person visits to a passport office, with the facility launched first for Islamabad Capital Territory residents before wider expansion.",
+        "A more recent Gulf News interview with Pakistan's Consul General in Dubai states that urgent passports now arrive from Pakistan within 8-10 days (down from two weeks) and regular passports within three weeks (down from about a month), and that around 80% of applicants now use the online appointment system rather than walking in.",
+        "A NADRA-focused Gulf News piece describes the authority's 'Pak Identity' mobile app, which lets overseas Pakistanis renew ID cards, verify biometrics, book appointments, and access other identity services remotely — related to, but distinct from, the passport-specific renewal process handled by Pakistan's Directorate General of Immigration and Passports."
+      ]
+    },
+    {
+      "id": "search_0026",
+      "input": "Pakistan earthquake news recent",
+      "max_results": 3,
+      "target_context": [
+        "A government news report dated August 28, 2025 states a magnitude 5.3 earthquake jolted Khyber Pakhtunkhwa and Islamabad, with tremors felt in Peshawar, Swat, Malakand, Swabi and Mansehra and epicenter in Afghanistan's Hindu Kush region; no casualties or damage were reported.",
+        "A related report from the day before, August 20, 2025, describes a magnitude 3.7 aftershock-style tremor in the same Hindu Kush region felt across Islamabad, Rawalpindi, Peshawar, Swat, Chitral and Abbottabad, again with no casualties, following a magnitude 5.2 quake the previous day.",
+        "For comparison, a June 29, 2025 report describes a magnitude 5.2 quake centered about 149 km west of Multan at a depth of 150 km, following a string of smaller tremors earlier that month — illustrating that Pakistan experiences frequent low-impact seismic activity, mostly without casualties, distinct from historically deadlier events like the 2005 magnitude-7.6 quake that killed over 70,000 people."
+      ]
+    },
+    {
+      "id": "search_0027",
+      "input": "LangChain vs LlamaIndex 2026 which is better for RAG",
+      "max_results": 4,
+      "target_context": [
+        "IBM's comparison explains that LlamaIndex is built for streamlined search-and-retrieval and focuses on indexing, data ingestion and information retrieval from text-based sources, making it well suited to simpler RAG workflows, while LangChain is a more versatile, modular framework better suited to building a wider range of NLP and agentic applications beyond pure retrieval.",
+        "A CB Insights company comparison notes LangChain was founded in 2022 in San Francisco by Harrison Chase and last raised $125M in October 2025, while LlamaIndex (formerly GPT Index) was founded in 2023, also based in San Francisco, by Jerry Liu, and has expanded into document parsing/extraction and AI workflow orchestration serving sectors like finance and healthcare.",
+        "A developer newsletter framing the choice notes that beyond LangChain and LlamaIndex, OpenAI's own Assistants/GPTs tooling and building a RAG pipeline from scratch are also live options, meaning the 'better' choice depends on how much workflow flexibility versus retrieval simplicity a given project needs."
+      ]
+    },
+    {
+      "id": "search_0028",
+      "input": "Tesla stock price today",
+      "max_results": 2,
+      "target_context": [
+        "A Benzinga market-movers report states Tesla (NASDAQ:TSLA) shares were trading up 5.19% to $222.21 in the session described, rebounding after a prior decline tied to China price cuts, with a stated 52-week high of $414.50 and low of $198.59 as of that report.",
+        "A separate, earlier Benzinga report on a different trading day shows Tesla shares up 0.60% to $221.52 ahead of a scheduled third-quarter earnings release, illustrating that Tesla's share price fluctuates significantly day to day and any single retrieved figure reflects only that specific report's timestamp rather than a single fixed 'current' price."
+      ]
+    },
+    {
+      "id": "search_0029",
+      "input": "Prime Minister of Pakistan current",
+      "max_results": 2,
+      "target_context": [
+        "A Wikipedia infobox for Shehbaz Sharif states he is the incumbent Prime Minister of Pakistan, having assumed office March 4, 2024, following the PML-N's win in the 2024 general election and formation of a coalition government; he previously held the role from April 2022 to August 2023.",
+        "The same source notes Asif Ali Zardari has served as President of Pakistan since March 10, 2024, working alongside Shehbaz Sharif as Prime Minister, distinguishing the ceremonial presidency from the executive prime ministership."
+      ]
+    },
+    {
+      "id": "search_0030",
+      "input": "best budget smartphone under $300 2026",
+      "max_results": 4,
+      "target_context": [
+        "A PhoneArena 2026 buyer's guide to budget 5G phones names the Samsung Galaxy A16 5G as its top pick specifically in the 'under $300' tier, positioning it below the Galaxy A36 5G (under $400) and OnePlus 13R/Google Pixel 10a (under $500) in its price-tiered rankings.",
+        "A Tom's Guide 'best phones under $300' roundup for 2025 frames the category as offering solid hardware without flagship extras, emphasizing that the value proposition is finding devices that do 'almost everything you need' despite lacking features found on phones like the iPhone 16 or Galaxy Z Fold 6."
+      ]
+    }
+  ]
+}

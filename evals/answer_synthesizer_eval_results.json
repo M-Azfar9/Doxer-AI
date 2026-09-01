@@ -1,0 +1,759 @@
+{
+  "dataset_name": "answer_synthesizer_faithfulness_golden_v1",
+  "component": "answer_synthesizer",
+  "judge_model": "mistral-medium-3-5",
+  "total_test_cases": 20,
+  "metrics": {
+    "Faithfulness": {
+      "average_score": 0.9838,
+      "success_rate": 1.0,
+      "total_evaluated": 20,
+      "threshold": 0.7,
+      "judge_model": "mistral-medium-3-5"
+    }
+  },
+  "question_type_breakdown": {
+    "simple_factual": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "multi_faceted": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "comparative": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0,
+      "average_score": 0.9333
+    },
+    "process_workflow": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "descriptive": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 0.9333
+    },
+    "current_information": {
+      "total": 2,
+      "passed": 2,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "conflicting_sources": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "partial_information_negative_constraint": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "distractor_heavy": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "technical_api_spec": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "numerical_precision": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "constraint_recommendation": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "entity_disambiguation": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "cybersecurity_advisory": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "bilingual_regional_policy": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    },
+    "legal_policy": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 0.875
+    },
+    "engineering_tradeoffs": {
+      "total": 1,
+      "passed": 1,
+      "pass_rate": 1.0,
+      "average_score": 1.0
+    }
+  },
+  "test_results": [
+    {
+      "test_case_id": 1,
+      "golden_id": "synth_0001",
+      "input": "When was Python 3.14 officially released and what was its primary headline feature?",
+      "question_type": "simple_factual",
+      "category": "Software & Programming Languages",
+      "faithfulness_challenge": "Model must strictly cite October 7, 2025 and PEP 703 free-threaded GIL removal, avoiding hallucinating other Python version releases or unmentioned features.",
+      "success": true,
+      "actual_output": "Python 3.14 was officially released on **October 7, 2025**, and its primary headline feature was the first production-grade implementation of free-threaded CPython (PEP 703), enabling the Global Interpreter Lock (GIL) to be disabled for true multi-threaded CPU parallel execution without subinterpreters [1].\n\nSources:\n1. Python 3.14 Release Schedule and Notes - Python Software Foundation\n   https://docs.python.org/release/3.14.0/whatsnew/3.14.html",
+      "expected_output": "Python 3.14 was officially released on October 7, 2025 [1]. Its primary headline feature is the first production-grade implementation of free-threaded CPython under PEP 703, which allows the Global Interpreter Lock (GIL) to be completely disabled for true multi-threaded CPU parallelism without subinterpreters [1]. Additionally, it includes template string syntax (PEP 750) and deferred annotation evaluation (PEP 649) [2].\n\nSources:\n1. Python 3.14 Release Schedule and Notes - Python Software Foundation: https://docs.python.org/release/3.14.0/whatsnew/3.14.html\n2. What's New in Python 3.14 - Real Python Guide: https://realpython.com/python314-features/",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 1.49
+    },
+    {
+      "test_case_id": 2,
+      "golden_id": "synth_0002",
+      "input": "Who is the current CEO of OpenAI in 2026?",
+      "question_type": "simple_factual",
+      "category": "AI Industry & Corporate Leadership",
+      "faithfulness_challenge": "Synthesizer must affirm Sam Altman is the current CEO and distinguish Bret Taylor as board chairman rather than conflating him as CEO.",
+      "success": true,
+      "actual_output": "**Answer:**\nAs of 2026, the current CEO of OpenAI is **Sam Altman** [1].\n\n**Sources:**\n1. OpenAI Leadership & Governance Overview 2026 - Fortune\n   https://fortune.com/2026/01/15/openai-leadership-sam-altman-valuation/",
+      "expected_output": "Sam Altman is the current Chief Executive Officer (CEO) of OpenAI in 2026, leading the organization as it transitions into a public benefit corporation [1]. While he was temporarily ousted during the November 2023 board dispute, he was reinstated shortly thereafter, and Bret Taylor serves as chairman of the board [2].\n\nSources:\n1. OpenAI Leadership & Governance Overview 2026 - Fortune: https://fortune.com/2026/01/15/openai-leadership-sam-altman-valuation/\n2. History of OpenAI Board Governance - TechCrunch Retrospective: https://techcrunch.com/2025/11/17/openai-board-saga-two-years-later/",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 1.33
+    },
+    {
+      "test_case_id": 3,
+      "golden_id": "synth_0003",
+      "input": "What are the major new features, performance upgrades, and breaking changes in Next.js 16?",
+      "question_type": "multi_faceted",
+      "category": "Web Development & Frameworks",
+      "faithfulness_challenge": "Synthesizer must combine facts across all three sources without confusing the new default cache behavior (uncached) or hallucinating Node.js 18 support.",
+      "success": true,
+      "actual_output": "### Major New Features, Performance Upgrades, and Breaking Changes in Next.js 16\n\n#### **Major New Features**\n1. **Turbopack as Default Bundler**\n   Next.js 16 promotes Turbopack to the default bundler for both production and development, delivering significant performance improvements:\n   - Up to **53% faster local server startup**.\n   - **94% faster Fast Refresh** [1].\n\n2. **Official Support for React 19.2**\n   - Includes support for **asynchronous server action streaming** and **optimistic UI hooks** [1].\n\n3. **Caching Architecture Overhaul**\n   - Fetch requests are no longer cached by default (`cache: 'no-store'` is now the standard behavior).\n   - Developers must explicitly use `use cache` directives or `unstable_cache` annotations for persisted caching [2].\n\n---\n\n#### **Breaking Changes**\n1. **Node.js Version Requirement**\n   - Minimum Node.js version is now **Node 20.9.0** [3].\n\n2. **Removed Legacy Image Package**\n   - The `next/legacy/image` package has been **completely removed**; users must migrate to `next/image` [3].\n\n3. **Asynchronous `cookies()` and `headers()` Helpers**\n   - Synchronous versions of `cookies()` and `headers()` in the App Router are now **strictly asynchronous Promises** [3].\n\n---\n\n### Sources\n1. Next.js 16 Announcement - Vercel Engineering Blog. [https://nextjs.org/blog/next-16](https://nextjs.org/blog/next-16)\n2. Next.js 16 Caching Architecture Overhaul - Vercel Docs. [https://nextjs.org/docs/app/building-your-application/caching-v16](https://nextjs.org/docs/app/building-your-application/caching-v16)\n3. Next.js 16 Migration Guide & Deprecations - GitHub Releases. [https://github.com/vercel/next.js/releases/tag/v16.0.0](https://github.com/vercel/next.js/releases/tag/v16.0.0)",
+      "expected_output": "Next.js 16 introduces several key upgrades, caching changes, and breaking updates:\n\n1. **Performance & Bundling**: Turbopack is now the default bundler for both development and production, delivering up to 53% faster local server startup and 94% faster Fast Refresh [1]. It adds official support for React 19.2, including async server action streaming [1].\n2. **Caching Model Overhaul**: `fetch` requests are no longer cached by default (defaulting to `cache: 'no-store'`), requiring explicit `use cache` directives for persistence [2].\n3. **Breaking Changes**: Minimum Node.js version is raised to 20.9.0, `next/legacy/image` is entirely removed, and `cookies()` and `headers()` in App Router are now strictly asynchronous Promises [3].\n\nSources:\n1. Next.js 16 Announcement - Vercel Engineering Blog: https://nextjs.org/blog/next-16\n2. Next.js 16 Caching Architecture Overhaul - Vercel Docs: https://nextjs.org/docs/app/building-your-application/caching-v16\n3. Next.js 16 Migration Guide & Deprecations - GitHub Releases: https://github.com/vercel/next.js/releases/tag/v16.0.0",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2,
+          3
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 2.7
+    },
+    {
+      "test_case_id": 4,
+      "golden_id": "synth_0004",
+      "input": "Compare PostgreSQL pgvector with Pinecone for production vector search workloads.",
+      "question_type": "comparative",
+      "category": "Databases & Vector Search",
+      "faithfulness_challenge": "Synthesizer must preserve specific architectural distinctions (ACID/joins vs serverless S3 decoupling) without claiming pgvector scales natively to billions on S3.",
+      "success": true,
+      "actual_output": "### **Comparison: PostgreSQL pgvector vs. Pinecone for Production Vector Search Workloads**\n\n#### **1. Core Architecture & Use Case Fit**\n- **PostgreSQL pgvector** integrates vector search directly into a **relational database**, allowing you to store both vector embeddings and relational metadata (e.g., tags, timestamps) in the same system with **ACID compliance** and **SQL joins** [1].\n  - Ideal for workloads requiring **strong consistency**, **complex filtering**, or **joins with structured data**.\n  - Uses **HNSW indexing**, which delivers **sub-10ms query latencies** for datasets up to **10M vectors**, but requires **significant RAM** since the HNSW graph must fit entirely in memory for high throughput [1].\n\n- **Pinecone** is a **purpose-built, fully managed serverless vector database** designed specifically for vector search.\n  - Decouples **storage (S3/object storage)** from **compute (in-memory caching)**, enabling **automatic scaling to billions of vectors** with **zero index management overhead** [2].\n  - Optimized for **high scalability** and **low operational burden**, but **metadata filtering is less flexible** compared to a full relational engine [2].\n  - Best for **pure vector search workloads** where relational features are not required.\n\n#### **2. Performance & Scalability**\n| **Metric**               | **PostgreSQL pgvector**                          | **Pinecone**                                  |\n|--------------------------|------------------------------------------------|-----------------------------------------------|\n| **Query Latency**        | Sub-10ms (HNSW, up to 10M vectors) [1]         | Optimized for low latency at scale [2]        |\n| **Scalability**          | Limited by RAM (HNSW must fit in memory) [1]   | Auto-scales to billions of vectors [2]        |\n| **Index Management**     | Manual tuning required (RAM allocation) [1]    | Fully managed (no index management) [2]       |\n| **Metadata Filtering**   | Full SQL filtering (joins, complex queries) [1]| Constrained compared to SQL engines [2]       |\n| **Consistency**          | ACID-compliant (strong consistency) [1]        | Eventual consistency (managed service) [2]    |\n\n#### **3. Operational Considerations**\n- **PostgreSQL pgvector** is better suited for:\n  - Workloads needing **relational data integration** (e.g., filtering by tags, timestamps, or joining with other tables).\n  - Teams already using PostgreSQL who want to **avoid managing a separate vector database**.\n  - Use cases requiring **strong consistency** (e.g., financial, healthcare).\n\n- **Pinecone** is better suited for:\n  - **Pure vector search** at **massive scale** (billions of vectors).\n  - Teams prioritizing **operational simplicity** (no index management, auto-scaling).\n  - Workloads where **metadata filtering is secondary** to vector similarity search.\n\n#### **4. Trade-offs**\n- **pgvector** trades **RAM efficiency** and **scalability** for **relational flexibility** and **strong consistency**.\n- **Pinecone** trades **relational capabilities** for **scalability** and **managed operations**.\n\n---\n\n### **Sources**\n1. **PostgreSQL pgvector Architecture & Benchmarks - Timescale Technical Blog**\n   [https://www.timescale.com/blog/pgvector-production-benchmark-analysis/](https://www.timescale.com/blog/pgvector-production-benchmark-analysis/)\n\n2. **Pinecone Serverless Architecture and Scalability - Pinecone Documentation**\n   [https://docs.pinecone.io/guides/architecture/serverless-scale](https://docs.pinecone.io/guides/architecture/serverless-scale)",
+      "expected_output": "When comparing PostgreSQL pgvector with Pinecone for vector search:\n\n- **PostgreSQL pgvector**: Unifies vector embeddings with relational tables in a single ACID-compliant database, enabling complex SQL joins [1]. With HNSW indexing, it delivers sub-10ms query latency up to ~10 million vectors, but demands substantial RAM as HNSW graphs must remain in memory [1].\n- **Pinecone**: A dedicated serverless vector database that decouples compute from storage, utilizing object storage (S3) with memory caching to scale seamlessly to billions of vectors with zero index tuning [2]. However, metadata filtering is less flexible than full relational SQL [2].\n\nSources:\n1. PostgreSQL pgvector Architecture & Benchmarks - Timescale Technical Blog: https://www.timescale.com/blog/pgvector-production-benchmark-analysis/\n2. Pinecone Serverless Architecture and Scalability - Pinecone Documentation: https://docs.pinecone.io/guides/architecture/serverless-scale",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 0.9333333333333333,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.93 because the actual output incorrectly claims manual tuning for pgvector index management and eventual consistency for Pinecone, neither of which are mentioned in the retrieval context.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 5.71
+    },
+    {
+      "test_case_id": 5,
+      "golden_id": "synth_0005",
+      "input": "How does the pricing and billing granularity compare between AWS Lambda and Google Cloud Functions (Cloud Run functions)?",
+      "question_type": "comparative",
+      "category": "Cloud Infrastructure & Serverless",
+      "faithfulness_challenge": "Crucial numerical and billing granularity accuracy (1ms vs 100ms rounding, $0.20 vs $0.40 per 1M requests).",
+      "success": true,
+      "actual_output": "**Comparison of Pricing and Billing Granularity: AWS Lambda vs. Google Cloud Run Functions**\n\n**AWS Lambda**\n- **Billing Components**:\n  - **Requests**: $0.20 per 1 million requests [1].\n  - **Compute Duration**: Billed in **1-millisecond increments** based on **GB-seconds** (memory allocated multiplied by execution time) [1].\n- **Memory Allocation**: Scalable from 128 MB to 10,240 MB, with CPU power scaling proportionally to memory (no separate CPU charge) [1].\n\n**Google Cloud Run Functions (2nd Gen)**\n- **Billing Components**:\n  - **Requests**: $0.40 per 1 million requests (after free tier) [2].\n  - **Compute Duration**: Rounded **up to the nearest 100 milliseconds** and billed separately for **provisioned vCPU seconds** and **memory GB-seconds** [2].\n\n**Key Differences**\n1. **Granularity**:\n   - AWS Lambda bills compute duration in **1-millisecond increments** [1].\n   - Google Cloud Run Functions rounds duration **up to the nearest 100 milliseconds** [2].\n2. **CPU Billing**:\n   - AWS Lambda includes CPU power in memory allocation (no separate charge) [1].\n   - Google Cloud Run Functions bills **CPU separately** as provisioned vCPU seconds [2].\n3. **Request Pricing**:\n   - AWS Lambda: $0.20 per 1M requests [1].\n   - Google Cloud Run Functions: $0.40 per 1M requests [2].\n\n**Sources**\n1. AWS Lambda Pricing Model - Amazon Web Services. [https://aws.amazon.com/lambda/pricing/](https://aws.amazon.com/lambda/pricing/)\n2. Google Cloud Run Functions Pricing Guide - Google Cloud Docs. [https://cloud.google.com/run/pricing#functions-pricing](https://cloud.google.com/run/pricing#functions-pricing)",
+      "expected_output": "The key pricing and billing granularity differences between AWS Lambda and Google Cloud Run functions are:\n\n1. **Billing Granularity**: AWS Lambda bills duration in precise 1-millisecond increments [1]. In contrast, Google Cloud Run functions round execution duration UP to the nearest 100 milliseconds [2].\n2. **Invocation Costs**: AWS Lambda charges $0.20 per 1 million requests [1], whereas Google Cloud Run functions charge $0.40 per 1 million requests after the free tier [2].\n3. **Compute Metric Breakdown**: AWS Lambda charges for memory GB-seconds (with CPU scaling proportionally without a separate charge) [1], whereas Google Cloud explicitly charges separate line items for vCPU seconds and memory GB-seconds [2].\n\nSources:\n1. AWS Lambda Pricing Model - Amazon Web Services: https://aws.amazon.com/lambda/pricing/\n2. Google Cloud Run Functions Pricing Guide - Google Cloud Docs: https://cloud.google.com/run/pricing#functions-pricing",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 0.9333333333333333,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.93 because the actual output incorrectly attributes separate billing for provisioned vCPU seconds and memory GB-seconds to Google Cloud Run Functions, which is a feature of Google Cloud instead.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 3.99
+    },
+    {
+      "test_case_id": 6,
+      "golden_id": "synth_0007",
+      "input": "What is the procedure for overseas Pakistanis to open an SBP digital Roshan account under the new remittance policy?",
+      "question_type": "process_workflow",
+      "category": "Banking & Financial Policy",
+      "faithfulness_challenge": "Must preserve the exact 4-step workflow, 48-hour timeline, and 8 authorized banks without hallucinating physical signature requirements.",
+      "success": true,
+      "actual_output": "### **Procedure for Overseas Pakistanis to Open an SBP Digital Roshan Account Under the New Remittance Policy**\n\nOverseas Pakistanis (NRPs) can open a **Roshan Digital Account (RDA)** remotely under the State Bank of Pakistan’s (SBP) new remittance policy by following these steps:\n\n1. **Eligibility & Documentation**\n   - NRPs must submit a **digital scan of a valid CNIC/NICOP** (Computerized National Identity Card for Overseas Pakistanis).\n   - Proof of **foreign employment or income** (e.g., employment letter, salary slips, or business documents).\n   - A **foreign resident permit** (e.g., visa, Aqama, or equivalent residency proof) [1].\n\n2. **Account Opening Process**\n   - Choose an **authorized commercial bank** (eight banks are currently approved by the SBP).\n   - Complete **digital KYC (Know Your Customer) verification** remotely.\n   - The verification process is typically completed within **48 hours** [1, 2].\n\n3. **Account Features & Usage**\n   - Accounts can be opened in **USD, EUR, GBP, or PKR** [2].\n   - Once verified, account holders can:\n     - **Receive remittances** directly into the account.\n     - **Invest in government Naya Pakistan Certificates (NPCs)**.\n     - **Trade on the Pakistan Stock Exchange (PSX)**.\n     - **Make domestic bill payments** with **fully repatriable funds** (subject to SBP regulations) [2].\n\n4. **No Physical Branch Visit Required**\n   - The entire process is **digital**, eliminating the need to visit a Pakistani embassy or bank branch [1].\n\n---\n\n### **Sources**\n1. **State Bank of Pakistan Digital Account Onboarding Framework - SBP Official Circular**\n   [https://www.sbp.org.pk/circulars/2026/bprd-digital-accounts.html](https://www.sbp.org.pk/circulars/2026/bprd-digital-accounts.html)\n\n2. **Roshan Digital Account Investment & Currency Channels - Business Recorder**\n   [https://www.brecorder.com/news/2026/01/sbp-remittance-digital-guidelines](https://www.brecorder.com/news/2026/01/sbp-remittance-digital-guidelines)",
+      "expected_output": "The procedure for overseas Pakistanis to open an SBP digital Roshan account comprises the following steps:\n\n1. **Remote Application**: Apply online via any of the eight authorized commercial banks without in-person branch or embassy visits [1].\n2. **Documentation**: Upload digital copies of a valid CNIC/NICOP, proof of foreign employment or income, and foreign residency permit (visa/Aqama) [1].\n3. **Verification & Denomination**: Complete digital KYC verification within 48 hours and select account currency (USD, EUR, GBP, or PKR) [2].\n4. **Remittance & Investment**: Transfer funds to invest in Naya Pakistan Certificates (NPCs), trade on the Pakistan Stock Exchange (PSX), or pay domestic bills with full repatriation capability [2].\n\nSources:\n1. State Bank of Pakistan Digital Account Onboarding Framework - SBP Official Circular: https://www.sbp.org.pk/circulars/2026/bprd-digital-accounts.html\n2. Roshan Digital Account Investment & Currency Channels - Business Recorder: https://www.brecorder.com/news/2026/01/sbp-remittance-digital-guidelines",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 3.44
+    },
+    {
+      "test_case_id": 7,
+      "golden_id": "synth_0006",
+      "input": "Explain the architecture, reinforcement learning methodology, and training stages of DeepSeek-R1.",
+      "question_type": "descriptive",
+      "category": "AI Research & LLM Architecture",
+      "faithfulness_challenge": "Must adhere strictly to GRPO and rule-based rewards, avoiding false claims about PPO or external neural reward models not in text.",
+      "success": true,
+      "actual_output": "### **DeepSeek-R1: Architecture, Reinforcement Learning Methodology, and Training Stages**\n\n#### **1. Architecture: Mixture-of-Experts (MoE)**\nDeepSeek-R1 employs a **Mixture-of-Experts (MoE)** architecture with **671 billion total parameters**, but only **37 billion parameters are activated per token** [1]. This sparse activation improves computational efficiency while maintaining high model capacity. The MoE design allows the model to dynamically route inputs to specialized sub-networks (\"experts\"), optimizing performance for reasoning tasks.\n\n---\n\n#### **2. Reinforcement Learning (RL) Methodology**\nDeepSeek-R1’s RL training is based on **Group Relative Policy Optimization (GRPO)**, a variant of Proximal Policy Optimization (PPO) tailored for large language models (LLMs). Key features of GRPO include:\n\n- **Group-Based Sampling**: For each prompt, multiple responses are generated and evaluated together, rather than relying on a separate critic model [2].\n- **Rule-Based Reward Metrics**: Responses are scored using **compiler execution success** and **mathematical format accuracy**, ensuring alignment with structured reasoning tasks [2].\n- **Stability Without a Critic**: Unlike traditional RL methods that require a value function, GRPO stabilizes training by comparing responses within the same group, reducing variance in reward signals [2].\n\n---\n\n#### **3. Training Stages**\nDeepSeek-R1’s training consists of **three key stages**:\n\n1. **DeepSeek-R1-Zero (Pure RL Stage)**\n   - Begins with the base model and applies **pure RL without supervised fine-tuning (SFT)**.\n   - Spontaneously discovers **chain-of-thought (CoT) reasoning behaviors** through RL alone [1].\n\n2. **Supervised Fine-Tuning (SFT) with Cold-Start Examples**\n   - Thousands of **cold-start SFT examples** are added to refine the model before multi-stage RL [2].\n   - These examples help bootstrap reasoning capabilities before reinforcement learning.\n\n3. **Multi-Stage RL and Distillation**\n   - After SFT, **multi-stage RL (using GRPO)** further refines the model’s reasoning.\n   - The final reasoning outputs are **distilled into open-source checkpoints** (e.g., Qwen and Llama), enabling broader accessibility [2].\n\n---\n\n### **Sources**\n1. **DeepSeek-R1 Technical Paper Summary** – [arXiv:2501.12948](https://arxiv.org/abs/2501.12948)\n2. **Group Relative Policy Optimization in DeepSeek-R1** – [HuggingFace Deep Dive](https://huggingface.co/blog/deepseek-r1-analysis)",
+      "expected_output": "DeepSeek-R1's architecture and training stages consist of the following:\n\n1. **Architecture**: It is a Mixture-of-Experts (MoE) model comprising 671 billion total parameters, with 37 billion parameters active per token [1].\n2. **RL Methodology (GRPO)**: It utilizes Group Relative Policy Optimization (GRPO) instead of a traditional critic model, generating groups of responses evaluated with rule-based rewards (such as compiler output and mathematical correctness) [2].\n3. **Training Stages**: \n   - Initial exploration with *DeepSeek-R1-Zero* used pure RL directly on the base model without SFT [1].\n   - The final *DeepSeek-R1* incorporates cold-start SFT data before multi-stage RL [2].\n   - Reasoning capabilities were distilled into smaller open-source Qwen and Llama models [2].\n\nSources:\n1. DeepSeek-R1 Technical Paper Summary - arXiv:2501.12948: https://arxiv.org/abs/2501.12948\n2. Group Relative Policy Optimization in DeepSeek-R1 - HuggingFace Deep Dive: https://huggingface.co/blog/deepseek-r1-analysis",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 0.9333333333333333,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.93 because the actual output incorrectly describes GRPO as a variant of PPO, while the retrieval context only states it is a method to stabilize RL training.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 4.13
+    },
+    {
+      "test_case_id": 8,
+      "golden_id": "synth_0009",
+      "input": "What are the confirmed dates, venue details, and expansion plans for PSL 2026?",
+      "question_type": "current_information",
+      "category": "Sports & Cricket Tournaments",
+      "faithfulness_challenge": "Must report 8 teams, Sialkot/Faisalabad, and 39 playing days accurately without inventing other team names.",
+      "success": true,
+      "actual_output": "**Confirmed Dates, Venue Details, and Expansion Plans for PSL 2026:**\n\n- **Confirmed Dates:** PSL 2026 will run from **March 26 to May 3, 2026**, spanning **39 playing days** [1].\n- **Venue Details:** The tournament window intentionally overlaps with the IPL window, but specific venues have not been detailed in the provided sources.\n- **Expansion Plans:** The PSL officially expanded from **six to eight teams** following a franchise auction held on **January 8, 2026, in Islamabad**. The new franchises represent **Sialkot and Faisalabad** [2].\n\n**Sources:**\n1. ESPNcricinfo, \"PSL 2026 Schedule Confirmed by PCB\" - [https://www.espncricinfo.com/story/psl-2026-schedule-march-may-window-expansion](https://www.espncricinfo.com/story/psl-2026-schedule-march-may-window-expansion)\n2. Dawn Sports, \"PSL Expansion Auction in Islamabad\" - [https://www.dawn.com/news/psl-expansion-eight-teams-2026-auction](https://www.dawn.com/news/psl-expansion-eight-teams-2026-auction)",
+      "expected_output": "The confirmed details for PSL 2026 (PSL 11) are:\n\n- **Tournament Dates**: Scheduled from March 26 to May 3, 2026, lasting 39 playing days and overlapping with the IPL window [1].\n- **Expansion & Teams**: The league has expanded from six to eight teams following a franchise auction held on January 8, 2026 in Islamabad, introducing two new franchises for Sialkot and Faisalabad [2].\n\nSources:\n1. PSL 2026 Schedule Confirmed by PCB - ESPNcricinfo: https://www.espncricinfo.com/story/psl-2026-schedule-march-may-window-expansion\n2. PSL Expansion Auction in Islamabad - Dawn Sports: https://www.dawn.com/news/psl-expansion-eight-teams-2026-auction",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context—no contradictions found!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 2.01
+    },
+    {
+      "test_case_id": 9,
+      "golden_id": "synth_0008",
+      "input": "What is the expected local price of the iPhone 17 Pro in Pakistan, and what are the PTA tax and DIRBS registration rules?",
+      "question_type": "current_information",
+      "category": "Consumer Electronics & Taxation",
+      "faithfulness_challenge": "Exact numerical fidelity across price ranges, exchange rate (284), and grace period (120 days).",
+      "success": true,
+      "actual_output": "**Expected Local Price of iPhone 17 Pro in Pakistan:**\nThe iPhone 17 Pro is expected to retail between **Rs 500,000 and Rs 550,000** in Pakistan, based on a US baseline price of $1,099 and an exchange rate of approximately Rs 284 per USD. This estimate includes customs duty (around Rs 165,000 to Rs 180,000) and local commercial distributor margins [1].\n\n---\n\n**PTA Tax and DIRBS Registration Rules:**\n1. **PTA Tax:**\n   - Imported iPhones are subject to customs duty, which is included in the expected retail price range mentioned above [1].\n\n2. **DIRBS Registration Rules:**\n   - **For International Travelers:**\n     Travelers bringing an iPhone 17 Pro into Pakistan receive a **120-day temporary registration window** without paying taxes. If the device is used beyond 120 days on local SIM cards, **full customs and PTA registration duties must be paid** to avoid IMEI blocking [2].\n\n---\n\n### Sources:\n1. **iPhone 17 Pro Expected Price in Pakistan & PTA Tax Matrix - Gulf News**\n   [https://gulfnews.com/technology/iphone-17-pro-pakistan-price-pta-tax-estimate](https://gulfnews.com/technology/iphone-17-pro-pakistan-price-pta-tax-estimate)\n\n2. **DIRBS Mobile Registration Guidelines for Travelers - PTA Portal**\n   [https://dirbs.pta.gov.pk/traveler-guidelines-2026](https://dirbs.pta.gov.pk/traveler-guidelines-2026)",
+      "expected_output": "The pricing and PTA registration details for the iPhone 17 Pro in Pakistan are as follows:\n\n- **Expected Price**: The iPhone 17 Pro (US MSRP $1,099) is projected to retail between Rs500,000 and Rs550,000 based on an exchange rate of ~Rs284/USD, which includes PTA customs duties of roughly Rs165,000 to Rs180,000 and distributor margins [1].\n- **DIRBS Rules & Grace Period**: International travelers receive a 120-day tax-free grace period on local cellular networks [2]. After 120 days, full PTA duty must be paid to prevent device IMEI blocking [2].\n\nSources:\n1. iPhone 17 Pro Expected Price in Pakistan & PTA Tax Matrix - Gulf News: https://gulfnews.com/technology/iphone-17-pro-pakistan-price-pta-tax-estimate\n2. DIRBS Mobile Registration Guidelines for Travelers - PTA Portal: https://dirbs.pta.gov.pk/traveler-guidelines-2026",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 3.31
+    },
+    {
+      "test_case_id": 10,
+      "golden_id": "synth_0010",
+      "input": "When will Claude 4.5 Opus be released according to industry reports?",
+      "question_type": "conflicting_sources",
+      "category": "AI Industry & Model Releases",
+      "faithfulness_challenge": "Crucial instruction #4 test: The model must explicitly acknowledge the disagreement between sources rather than hallucinating a single date.",
+      "success": true,
+      "actual_output": "According to industry reports, the release date for **Claude 4.5 Opus** is currently uncertain, with conflicting timelines:\n\n- Some reports suggest a **Q2 2026 release (around May or June)** based on supply chain leaks and developer documentation [1].\n- However, Anthropic leadership has indicated that **extended safety testing has delayed the release to late Q4 2026 or early 2027**, contradicting earlier rumors of a summer rollout [2].\n\nSources:\n1. **Anthropic Roadmap Leak Points to Mid-2026 Claude 4.5 Opus Launch** - *The Verge*\n   [https://www.theverge.com/2026/02/10/anthropic-claude-4-5-opus-release-leak](https://www.theverge.com/2026/02/10/anthropic-claude-4-5-opus-release-leak)\n\n2. **Anthropic Executive Interview: Focus on Safety Delays Opus 4.5** - *Reuters*\n   [https://www.reuters.com/technology/anthropic-safety-testing-pushes-claude-45-late-2026](https://www.reuters.com/technology/anthropic-safety-testing-pushes-claude-45-late-2026)",
+      "expected_output": "Reports disagree on the release timeline for Claude 4.5 Opus:\n\n- According to leaks reported by The Verge, Anthropic is planning a Q2 2026 release (May or June) with 1M context and agentic features [1].\n- Conversely, an executive interview reported by Reuters states that extensive safety evaluations and red-teaming have pushed the expected rollout to late Q4 2026 or early 2027, disputing summer release rumors [2].\n\nSources:\n1. Anthropic Roadmap Leak Points to Mid-2026 Claude 4.5 Opus Launch - The Verge: https://www.theverge.com/2026/02/10/anthropic-claude-4-5-opus-release-leak\n2. Anthropic Executive Interview: Focus on Safety Delays Opus 4.5 - Reuters: https://www.reuters.com/technology/anthropic-safety-testing-pushes-claude-45-late-2026",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 1.95
+    },
+    {
+      "test_case_id": 11,
+      "golden_id": "synth_0011",
+      "input": "What are the confirmed technical specifications, architecture, and official retail MSRP price of the Nvidia GeForce RTX 6090?",
+      "question_type": "partial_information_negative_constraint",
+      "category": "Computer Hardware & GPUs",
+      "faithfulness_challenge": "Negative constraint: The model must state that MSRP price is not yet announced and must NOT hallucinate an invented price (e.g., $1,999 or $2,499).",
+      "success": true,
+      "actual_output": "The Nvidia GeForce RTX 6090 is based on the Blackwell Ultra consumer architecture and features **24,576 CUDA cores**, **32GB of GDDR7 memory on a 512-bit bus**, and an **estimated TDP of 550W** [1]. However, the **official retail MSRP price has not yet been announced** and is slated to be revealed closer to its early 2026 retail launch [2].\n\nSources:\n1. Nvidia Next-Gen Blackwell Ultra Consumer Flagship Preview - AnandTech, https://www.anandtech.com/show/2026-nvidia-rtx-6090-blackwell-preview\n2. Nvidia CEO Keynote Q&A on Next-Gen Gaming GPUs - PC Gamer, https://www.pcgamer.com/hardware/nvidia-rtx-6090-pricing-unannounced-keynote/",
+      "expected_output": "The technical specifications and availability details for the Nvidia GeForce RTX 6090 are:\n\n- **Architecture & Specs**: Built on the Blackwell Ultra consumer architecture, equipped with 24,576 CUDA cores, 32GB of GDDR7 memory on a 512-bit bus, and a 550W TDP [1].\n- **Availability**: Slated for early 2026 [2].\n- **Official MSRP Price**: Nvidia has explicitly stated that the official retail MSRP price has **not yet been announced** and will be disclosed closer to launch [2].\n\nSources:\n1. Nvidia Next-Gen Blackwell Ultra Consumer Flagship Preview - AnandTech: https://www.anandtech.com/show/2026-nvidia-rtx-6090-blackwell-preview\n2. Nvidia CEO Keynote Q&A on Next-Gen Gaming GPUs - PC Gamer: https://www.pcgamer.com/hardware/nvidia-rtx-6090-pricing-unannounced-keynote/",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 1.74
+    },
+    {
+      "test_case_id": 12,
+      "golden_id": "synth_0012",
+      "input": "What is the battery life, driver size, and active noise cancellation capability of the Soundcore Space One Pro headphones?",
+      "question_type": "distractor_heavy",
+      "category": "Audio & Consumer Electronics",
+      "faithfulness_challenge": "Model must extract signal from Source 1 and completely ignore the boilerplate newsletter/shipping noise and unhelpful Amazon comments in Source 2.",
+      "success": true,
+      "actual_output": "The **Soundcore Space One Pro** headphones feature:\n\n- **Battery life**: Up to **40 hours** with Active Noise Cancellation (ANC) enabled, and **60 hours** with ANC turned off [1].\n- **Driver size**: **40mm triple-composite drivers** [1].\n- **Active Noise Cancellation (ANC)**: A **4-stage adaptive ANC system** that dynamically attenuates low-frequency ambient noise by up to **42dB** [1].\n\nSources:\n1. Soundcore Space One Pro Full Review & Lab Testing - SoundGuys\n   [https://www.soundguys.com/soundcore-space-one-pro-review-114220/](https://www.soundguys.com/soundcore-space-one-pro-review-114220/)",
+      "expected_output": "The specifications for the Soundcore Space One Pro are:\n\n- **Driver Size**: 40mm triple-composite drivers [1].\n- **Battery Life**: Up to 40 hours with ANC enabled, and up to 60 hours with ANC turned off [1].\n- **Active Noise Cancellation**: A 4-stage adaptive ANC system that reduces low-frequency noise by up to 42dB [1].\n\nSources:\n1. Soundcore Space One Pro Full Review & Lab Testing - SoundGuys: https://www.soundguys.com/soundcore-space-one-pro-review-114220/",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 1.44
+    },
+    {
+      "test_case_id": 13,
+      "golden_id": "synth_0013",
+      "input": "How do you define a conditional edge with a path mapping in LangGraph and what parameters does `add_conditional_edges` accept?",
+      "question_type": "technical_api_spec",
+      "category": "AI Frameworks & SDKs",
+      "faithfulness_challenge": "Exact API signature fidelity without confusing legacy LangChain or AutoGen routing methods.",
+      "success": true,
+      "actual_output": "A **conditional edge** in LangGraph is a directed edge that dynamically routes the workflow from a source node to one or more destination nodes based on the output of a routing function. The `add_conditional_edges` method allows you to define such edges by specifying a **path** (a callable that determines the next node(s)) and a **path mapping** (a dictionary or list that maps the routing function's output to specific destination nodes).\n\n### Parameters of `add_conditional_edges`:\n1. **`source`** (str):\n   The name of the originating node from which the conditional edge starts.\n\n2. **`path`** (Callable):\n   A function that takes the current state as input and returns a string (or list of strings) representing the node(s) to route to. The return value is used to look up the destination node(s) in the `path_map`.\n\n3. **`path_map`** (Optional[dict] or list):\n   A mapping (dictionary or list) that associates the return values of the `path` function with specific destination node names. If omitted, the return value of `path` must directly match an existing node name in the graph [1], [2].\n\n4. **`then`** (Optional[str]):\n   An optional destination node name to execute after the nodes specified in the `path_map` have completed. This allows chaining conditional edges with subsequent nodes [1].\n\n---\n\n### Example Usage:\n```python\nbuilder.add_conditional_edges(\n    source=\"classify\",\n    path=route_decision,  # A function that returns e.g., \"web_search\" or \"direct\"\n    path_map={\"web_search\": \"search_node\", \"direct\": \"llm_node\"}\n)\n```\nHere, `route_decision` is a callable that returns a string (e.g., `\"web_search\"` or `\"direct\"`), and the `path_map` maps these strings to the actual node names (`\"search_node\"` or `\"llm_node\"`) [2].\n\n---\n\n### Sources:\n1. **LangGraph StateGraph API Reference - LangChain Official Docs**\n   https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.StateGraph.add_conditional_edges\n\n2. **Building Branching Agent Workflows with LangGraph - Dev Community**\n   https://dev.to/langchain/conditional-routing-langgraph-patterns",
+      "expected_output": "In LangGraph, conditional edges are added using `StateGraph.add_conditional_edges`:\n\n- **Method Signature & Parameters** [1]:\n  - `source`: (str) Name of the originating node.\n  - `path`: (Callable) Routing function that inspects state and returns destination keys.\n  - `path_map`: (Optional dict/list) Explicit mapping from `path` return keys to target node names [1]. If omitted, the return value of `path` must directly match a graph node name [2].\n  - `then`: (Optional str) Node to execute after the conditional target finishes [1].\n\nSources:\n1. LangGraph StateGraph API Reference - LangChain Official Docs: https://langchain-ai.github.io/langgraph/reference/graphs/#langgraph.graph.StateGraph.add_conditional_edges\n2. Building Branching Agent Workflows with LangGraph - Dev Community: https://dev.to/langchain/conditional-routing-langgraph-patterns",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 3.58
+    },
+    {
+      "test_case_id": 14,
+      "golden_id": "synth_0014",
+      "input": "What were the official reported real GDP growth rate, headline CPI inflation, and current account deficit for Pakistan in fiscal year 2024-25?",
+      "question_type": "numerical_precision",
+      "category": "Macroeconomics & Statistics",
+      "faithfulness_challenge": "Strict numerical fidelity: 3.24% GDP, 9.6% CPI, $1.42B (0.4% GDP) CAD without rounding errors or mixing up FY24 numbers (29.2%).",
+      "success": true,
+      "actual_output": "**Answer:**\n\nFor fiscal year 2024-25, Pakistan's official reported figures were:\n- **Real GDP growth rate:** 3.24% [1]\n- **Headline CPI inflation:** 9.6% [2]\n- **Current account deficit (CAD):** $1.42 billion (approximately 0.4% of GDP) [2]\n\n**Sources:**\n1. Pakistan Economic Survey FY 2024-25 - Ministry of Finance\n   https://www.finance.gov.pk/survey/chapters_25/01_Growth.pdf\n2. State Bank of Pakistan Annual State of the Economy Report FY25\n   https://www.sbp.org.pk/reports/annual/arFY25/Economy_FY25.pdf",
+      "expected_output": "For fiscal year 2024-25, Pakistan's official economic indicators were reported as follows:\n\n- **Real GDP Growth**: 3.24% (rebounding from 0.29% in the prior year, led by 6.25% growth in agriculture) [1].\n- **Headline CPI Inflation**: Averaged 9.6% (down from 29.2% in FY24) [2].\n- **Current Account Deficit (CAD)**: Narrowed to $1.42 billion, or approximately 0.4% of GDP [2].\n\nSources:\n1. Pakistan Economic Survey FY 2024-25 - Ministry of Finance: https://www.finance.gov.pk/survey/chapters_25/01_Growth.pdf\n2. State Bank of Pakistan Annual State of the Economy Report FY25: https://www.sbp.org.pk/reports/annual/arFY25/Economy_FY25.pdf",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 1.33
+    },
+    {
+      "test_case_id": 15,
+      "golden_id": "synth_0016",
+      "input": "Which over-ear noise-cancelling headphones are recommended under $100 in 2026, and what are their specific trade-offs?",
+      "question_type": "constraint_recommendation",
+      "category": "Consumer Technology & Reviews",
+      "faithfulness_challenge": "Strict attribution of pros, cons, and prices to the correct corresponding headphone model.",
+      "success": true,
+      "actual_output": "**Recommended Over-Ear Noise-Cancelling Headphones Under $100 in 2026:**\n\n1. **JLab JBuds Lux ANC**\n   - **Price:** ~$79.99 (often discounted to $51)\n   - **Key Features:**\n     - Exceptional 70-hour battery life\n     - Solid ANC performance\n     - Bluetooth multipoint support\n   - **Trade-offs:**\n     - Lacks an included protective hard case\n     - Plastic build [1]\n\n2. **Sennheiser Accentum**\n   - **Price:** Discounted to $99 (originally $179)\n   - **Key Features:**\n     - Best sub-$100 option for audiophile sound quality\n     - Supports aptX HD codec\n     - 50-hour battery life\n   - **Trade-offs:**\n     - No 3.5mm analog audio jack [2]\n\n**Sources:**\n1. Tom's Guide, \"Best Budget Noise Cancelling Headphones Under $100\" ([URL](https://www.tomsguide.com/best-picks/best-budget-noise-cancelling-headphones))\n2. TechRadar, \"Sennheiser Accentum Deals Review\" ([URL](https://www.techradar.com/reviews/sennheiser-accentum-wireless))",
+      "expected_output": "The top recommended over-ear ANC headphones under $100 are:\n\n1. **JLab JBuds Lux ANC** ($79.99, on sale for ~$51) [1]:\n   - **Pros**: 70-hour battery life, solid active noise cancellation, and Bluetooth multipoint [1].\n   - **Trade-offs**: Plastic build quality and no included hard travel case [1].\n2. **Sennheiser Accentum** (Discounted to $99) [2]:\n   - **Pros**: Audiophile-grade sound with aptX HD codec support and 50-hour battery life [2].\n   - **Trade-offs**: Does not include a 3.5mm analog headphone jack [2].\n\nSources:\n1. Best Budget Noise Cancelling Headphones Under $100 - Tom's Guide: https://www.tomsguide.com/best-picks/best-budget-noise-cancelling-headphones\n2. Sennheiser Accentum Deals Review - TechRadar: https://www.techradar.com/reviews/sennheiser-accentum-wireless",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 2.05
+    },
+    {
+      "test_case_id": 16,
+      "golden_id": "synth_0015",
+      "input": "What are the parameter sizes, context window capabilities, and optimal use cases for Mistral Small 3 compared to Mistral Large 2?",
+      "question_type": "entity_disambiguation",
+      "category": "AI Foundation Models",
+      "faithfulness_challenge": "Must prevent swapping parameter counts (24B vs 123B) or mixing target use cases between the two models.",
+      "success": true,
+      "actual_output": "### **Mistral Small 3 vs. Mistral Large 2: Parameter Sizes, Context Windows, and Optimal Use Cases**\n\n#### **Parameter Sizes**\n- **Mistral Small 3**: 24 billion parameters [1].\n- **Mistral Large 2**: 123 billion parameters [2].\n\n#### **Context Window Capabilities**\n- Both models support a **128k token context window** [1, 2].\n\n#### **Optimal Use Cases**\n- **Mistral Small 3**:\n  - Optimized for **low-latency reasoning**, **high-throughput agent routing**, **function calling**, and **edge or local deployment** with minimal GPU VRAM [1].\n  - Suitable for lightweight, fast, and efficient tasks where computational resources are limited.\n\n- **Mistral Large 2**:\n  - Designed for **complex multi-step reasoning**, **advanced mathematical proofs**, **enterprise-grade code generation**, and **multilingual translation** (80+ languages) [2].\n  - Ideal for high-stakes, resource-intensive applications requiring deep reasoning and precision.\n\n---\n\n### **Sources**\n1. **Mistral Small 3 Release & Benchmark Specifications** – [Mistral AI](https://mistral.ai/news/mistral-small-3/)\n2. **Mistral Large 2 Architecture and Capabilities** – [Mistral AI Docs](https://mistral.ai/news/mistral-large-2407/)",
+      "expected_output": "Comparing Mistral Small 3 and Mistral Large 2:\n\n- **Mistral Small 3** [1]:\n  - **Parameters**: 24 billion parameters.\n  - **Context Window**: 128k tokens.\n  - **Use Cases**: Low-latency reasoning, high-throughput agent routing, function calling, and lightweight edge/local deployment.\n- **Mistral Large 2** [2]:\n  - **Parameters**: 123 billion parameters.\n  - **Context Window**: 128k tokens.\n  - **Use Cases**: Complex multi-step reasoning, mathematical proofs, enterprise code generation, and multilingual translation across 80+ languages.\n\nSources:\n1. Mistral Small 3 Release & Benchmark Specifications - Mistral AI: https://mistral.ai/news/mistral-small-3/\n2. Mistral Large 2 Architecture and Capabilities - Mistral AI Docs: https://mistral.ai/news/mistral-large-2407/",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 2.25
+    },
+    {
+      "test_case_id": 17,
+      "golden_id": "synth_0018",
+      "input": "What is CVE-2026-11942, what software versions are impacted, and what is the remediation?",
+      "question_type": "cybersecurity_advisory",
+      "category": "Cybersecurity & Vulnerability Advisories",
+      "faithfulness_challenge": "Exact version bounds (2.0.0 to 2.4.0, fixed in 2.4.1), CVSS score (9.1), and root cause mechanism.",
+      "success": true,
+      "actual_output": "**CVE-2026-11942** is a critical authentication bypass vulnerability with a CVSS v3.1 score of 9.1. It affects the `auth-jwt-core` library versions **2.0.0 through 2.4.0**. The flaw allows unauthenticated attackers to forge arbitrary JWT tokens due to improper validation of the `none` algorithm when JWT headers contain mixed-case casing (e.g., `Alg: NoNe`) [1].\n\n### Impacted Software Versions:\n- `auth-jwt-core` versions **2.0.0 to 2.4.0** [1].\n\n### Remediation:\n1. **Upgrade** `auth-jwt-core` to version **2.4.1 or higher** immediately [1, 2].\n2. **Temporary Workaround**: If an immediate upgrade is not feasible, implement an upstream reverse-proxy rule to reject all incoming HTTP `Authorization` headers containing case-insensitive variants of `none` in JWT tokens [2].\n\n---\n**Sources:**\n1. NVD Vulnerability Detail: CVE-2026-11942 - NIST National Vulnerability Database\n   [https://nvd.nist.gov/vuln/detail/CVE-2026-11942](https://nvd.nist.gov/vuln/detail/CVE-2026-11942)\n\n2. Security Advisory & Patch Release for auth-jwt-core - GitHub Security\n   [https://github.com/advisories/GHSA-2026-auth-jwt-bypass](https://github.com/advisories/GHSA-2026-auth-jwt-bypass)",
+      "expected_output": "Details for CVE-2026-11942 are as follows:\n\n- **Vulnerability Description**: A critical authentication bypass flaw (CVSS 9.1) in `auth-jwt-core` caused by improper validation of mixed-case `none` algorithm headers (`Alg: NoNe`), enabling unauthenticated token forgery [1].\n- **Affected Versions**: `auth-jwt-core` versions 2.0.0 through 2.4.0 [1].\n- **Remediation**: Upgrade to version 2.4.1 or above immediately [2]. As an interim workaround, deploy a reverse-proxy filter rejecting authorization headers with case-insensitive `none` algorithm declarations [2].\n\nSources:\n1. NVD Vulnerability Detail: CVE-2026-11942 - NIST National Vulnerability Database: https://nvd.nist.gov/vuln/detail/CVE-2026-11942\n2. Security Advisory & Patch Release for auth-jwt-core - GitHub Security: https://github.com/advisories/GHSA-2026-auth-jwt-bypass",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 2.36
+    },
+    {
+      "test_case_id": 18,
+      "golden_id": "synth_0019",
+      "input": "Pakistan mein solar net metering ki new buyback tariff rate policy 2026 kya hai?",
+      "question_type": "bilingual_regional_policy",
+      "category": "Energy & Regulatory Policy",
+      "faithfulness_challenge": "Faithfully maintaining the distinction between old (Rs 21) and new (Rs 11.50) rates and the 3-year grandfathering cutoff.",
+      "success": true,
+      "actual_output": "**Pakistan mein solar net metering ki new buyback tariff rate policy 2026 ka kya status hai?**\n\n2026 mein, **National Electric Power Regulatory Authority (NEPRA)** ne solar net metering ki buyback rate ko revise kiya hai. **New buyback rate Rs 11.50 per unit (kWh)** hai, jo residential consumers ke liye apply hota hai jo excess solar electricity grid ko export karte hain. Yeh revision national grid par capacity payment ka burden kam karne ke liye kiya gaya hai [1].\n\n**Grandfathering Clause:**\nJo bhi consumers pehle se **1 January 2026 se pehle** approved net metering contracts hain, unke liye **Rs 21 per unit** ki legacy rate **3 saal tak (grandfathering period)** continue rahegi. Lekin **1 January 2026 ke baad register hone wale new rooftop solar connections** ke liye **Rs 11.50 per unit** ki new rate apply hogi, aur inhe future mein gross metering mein transition kiye jaane ki bhi yojana hai [2].\n\n---\n\n**Sources:**\n1. NEPRA Revised Net Metering Regulations 2026 - Dawn News\n   [https://www.dawn.com/news/nepra-solar-buyback-rate-reduction-2026](https://www.dawn.com/news/nepra-solar-buyback-rate-reduction-2026)\n\n2. Gross Metering Transition and Grandfathering Clauses - Profit Pakistan\n   [https://profit.pakistantoday.com.pk/2026/02/solar-gross-metering-rules/](https://profit.pakistantoday.com.pk/2026/02/solar-gross-metering-rules/)",
+      "expected_output": "Under NEPRA's revised 2026 solar net metering regulations in Pakistan:\n\n- **New Buyback Rate**: The compensation rate for exporting excess solar energy back to the grid has been reduced from Rs 21 per unit (kWh) to **Rs 11.50 per unit** [1].\n- **Grandfathering Protection**: Connections approved before January 1, 2026 will retain the legacy Rs 21/unit rate for a 3-year grace period [2].\n- **New Connections**: All new solar net metering connections after January 1, 2026 are subject to the Rs 11.50/unit rate with an eventual shift toward gross metering [2].\n\nSources:\n1. NEPRA Revised Net Metering Regulations 2026 - Dawn News: https://www.dawn.com/news/nepra-solar-buyback-rate-reduction-2026\n2. Gross Metering Transition and Grandfathering Clauses - Profit Pakistan: https://profit.pakistantoday.com.pk/2026/02/solar-gross-metering-rules/",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 3.6
+    },
+    {
+      "test_case_id": 19,
+      "golden_id": "synth_0017",
+      "input": "Can software licensed under Apache 2.0 be combined with GPLv3 code, and what are the directional compatibility rules?",
+      "question_type": "legal_policy",
+      "category": "Open Source & Intellectual Property",
+      "faithfulness_challenge": "Must accurately state the directional asymmetry without falsely claiming two-way compatibility.",
+      "success": true,
+      "actual_output": "**Answer:**\n\nSoftware licensed under Apache 2.0 **can be combined with GPLv3 code**, but only in one direction:\n\n- **Apache 2.0 → GPLv3**: You **can** incorporate Apache 2.0 licensed code into a GPLv3 project. The Free Software Foundation confirms this is allowed because GPLv3’s patent grant aligns with Apache 2.0’s patent termination clauses. The combined work must be licensed under GPLv3 [1].\n\n- **GPLv3 → Apache 2.0**: You **cannot** include GPLv3 code in an Apache 2.0 project if the result is to be distributed under Apache 2.0. The Apache Software Foundation states that GPLv3’s copyleft clause forbids imposing additional restrictions, so GPLv3 components cannot be sublicensed under Apache 2.0 [2].\n\n**Directional compatibility rules:**\n- **One-way compatibility**: Apache 2.0 → GPLv3 is allowed.\n- **Not compatible in reverse**: GPLv3 → Apache 2.0 is not allowed.\n\n---\n\n**Sources:**\n\n[1] Apache 2.0 and GPLv3 Compatibility Analysis - Free Software Foundation\nhttps://www.gnu.org/licenses/license-list.html#apache2\n\n[2] GPLv3 Code in Apache 2.0 Projects Policy - Apache Software Foundation Legal\nhttps://www.apache.org/legal/resolved.html#category-x",
+      "expected_output": "The licensing compatibility between Apache 2.0 and GPLv3 is strictly **one-way compatible**:\n\n- **Apache 2.0 into GPLv3 (Permitted)**: You can include Apache 2.0 source code in a GPLv3 project because GPLv3's patent terms are compatible with Apache 2.0 [1]. The overall distributed project must be released under GPLv3 [1].\n- **GPLv3 into Apache 2.0 (Prohibited)**: You cannot include GPLv3 code in an Apache 2.0 project to be distributed under Apache 2.0, as GPLv3's copyleft requires the entire derivative work to remain under GPLv3 [2].\n\nSources:\n1. Apache 2.0 and GPLv3 Compatibility Analysis - Free Software Foundation: https://www.gnu.org/licenses/license-list.html#apache2\n2. GPLv3 Code in Apache 2.0 Projects Policy - Apache Software Foundation Legal: https://www.apache.org/legal/resolved.html#category-x",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 0.875,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.88 because the actual output incorrectly attributes the statement about GPLv3's copyleft clause and sublicensing restrictions to the Apache Software Foundation, which is not supported by the retrieval context.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 2.36
+    },
+    {
+      "test_case_id": 20,
+      "golden_id": "synth_0020",
+      "input": "Explain the architectural differences, memory footprint, and recall trade-offs between HNSW and IVFFlat vector indexing algorithms.",
+      "question_type": "engineering_tradeoffs",
+      "category": "Data Engineering & Vector Search",
+      "faithfulness_challenge": "Strictly distinguish algorithmic trade-offs (graph memory overhead vs Voronoi cell nprobe recall degradation) without mixing up memory metrics.",
+      "success": true,
+      "actual_output": "### **Architectural Differences, Memory Footprint, and Recall Trade-offs: HNSW vs. IVFFlat**\n\n#### **1. Architectural Differences**\n- **HNSW (Hierarchical Navigable Small World)**\n  - Constructs a **multi-layer graph** where the bottom layer contains all vectors, and higher layers contain progressively sparser \"skip links\" for long-range navigation [1].\n  - Enables **greedy search** by traversing the graph, leveraging small-world properties for efficient navigation [1].\n  - **Dynamic insertion-friendly**: Supports incremental updates, though performance may degrade over time without periodic rebuilds [1].\n\n- **IVFFlat (Inverted File Flat)**\n  - Partitions the vector space into **Voronoi cells** using k-means clustering, where each cell (inverted list) stores vectors assigned to a centroid [2].\n  - **Query-time filtering**: Only searches vectors in the `nprobe` nearest centroids, reducing computation [2].\n  - **Static structure**: Requires rebuilding the index if vectors are added or removed, as clustering is fixed at index creation [2].\n\n---\n\n#### **2. Memory Footprint**\n- **HNSW**\n  - **High memory overhead**: Requires **1.5x to 2x the raw vector size** in RAM due to storing graph pointers (edges) for navigation [1].\n  - All graph layers must reside in memory for fast traversal, making it less suitable for very large datasets where RAM is constrained [1].\n\n- **IVFFlat**\n  - **Minimal overhead**: Only stores raw vectors and centroid assignments; no graph structure is maintained [2].\n  - Memory usage is close to the raw vector size, making it more **RAM-efficient** for large-scale deployments [2].\n\n---\n\n#### **3. Recall Trade-offs**\n- **HNSW**\n  - **High recall**: Achieves **>98% recall** in practice due to exhaustive graph traversal and fine-grained navigation [1].\n  - Recall is **less sensitive to tuning parameters** (e.g., `ef_search`), as the graph structure inherently covers the vector space well [1].\n\n- **IVFFlat**\n  - **Lower peak recall**: Typically achieves **80–92% recall**, depending on `nprobe` (number of centroids searched) [2].\n  - Recall **degrades if `nprobe` is too low** (misses relevant vectors) or **degrades search speed if `nprobe` is too high** (examines too many cells) [2].\n  - Recall is **highly sensitive to clustering quality** (k-means initialization) and `nprobe` settings [2].\n\n---\n\n### **Summary Table**\n| **Aspect**          | **HNSW**                          | **IVFFlat**                      |\n|----------------------|-----------------------------------|----------------------------------|\n| **Structure**        | Multi-layer graph with skip links | Voronoi cells (k-means clusters) |\n| **Memory Overhead**  | 1.5x–2x raw vector size           | Near raw vector size             |\n| **Recall**           | >98%                              | 80–92% (tunable via `nprobe`)    |\n| **Insertions**       | Dynamic (but may degrade over time)| Static (requires rebuild)        |\n| **Query Speed**      | Sub-millisecond (with high recall)| Degrades as `nprobe` increases   |\n\n---\n\n### **Sources**\n1. Pinecone Learning. *Hierarchical Navigable Small World (HNSW) Indexing In-Depth*. [https://www.pinecone.io/learn/series/faiss/hnsw/](https://www.pinecone.io/learn/series/faiss/hnsw/)\n2. Faiss Architecture Wiki. *Inverted File Flat (IVFFlat) Partitioning Trade-offs*. [https://github.com/facebookresearch/faiss/wiki/Indexing-1M-vectors#ivfflat](https://github.com/facebookresearch/faiss/wiki/Indexing-1M-vectors#ivfflat)",
+      "expected_output": "The architectural differences and trade-offs between HNSW and IVFFlat are:\n\n- **HNSW (Hierarchical Navigable Small World)** [1]:\n  - **Structure**: Multi-layer graph with skip links between hierarchical layers.\n  - **Recall & Speed**: Delivers high recall (>98%) and sub-millisecond search speeds.\n  - **Trade-offs**: High memory footprint (1.5x to 2x vector size in RAM for graph pointers) and slow, resource-heavy index build times.\n- **IVFFlat (Inverted File Flat)** [2]:\n  - **Structure**: Inverted file partitioning using k-means clustering into Voronoi cells, queried via `nprobe`.\n  - **Memory & Build**: Minimal RAM overhead (near raw vector size) and very fast index creation.\n  - **Trade-offs**: Lower recall (80-92%) and increased query latency when scanning higher numbers of centroids (`nprobe`).\n\nSources:\n1. Hierarchical Navigable Small World (HNSW) Indexing In-Depth - Pinecone Learning: https://www.pinecone.io/learn/series/faiss/hnsw/\n2. Inverted File Flat (IVFFlat) Partitioning Trade-offs - Faiss Architecture Wiki: https://github.com/facebookresearch/faiss/wiki/Indexing-1M-vectors#ivfflat",
+      "metrics_scores": {
+        "Faithfulness": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the actual output perfectly aligns with the retrieval context with no contradictions!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "citation_analysis": {
+        "has_inline_citations": true,
+        "cited_source_ids": [
+          1,
+          2
+        ],
+        "has_sources_section": true,
+        "invalid_citations": [],
+        "all_citations_valid": true
+      },
+      "elapsed_time_seconds": 6.24
+    }
+  ]
+}

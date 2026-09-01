@@ -1,0 +1,672 @@
+{
+  "dataset_name": "web_search_contextual_relevancy_v1",
+  "judge_model": "mistral-medium-3-5",
+  "total_test_cases": 30,
+  "metrics": {
+    "Contextual Relevancy": {
+      "average_score": 0.9267,
+      "success_rate": 0.9667,
+      "total_evaluated": 30,
+      "threshold": 0.7,
+      "judge_model": "mistral-medium-3-5"
+    }
+  },
+  "test_results": [
+    {
+      "test_case_id": 1,
+      "golden_id": "search_0001",
+      "input": "iPhone 17 Pro price in Pakistan",
+      "num_retrieved": 4,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 0.8,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.80 because while the retrieval context provides relevant pricing details for 'Apple iPhone 17 Pro price in Pakistan' (e.g., 'Rs. 519,499', '512GB Rs. 603,499 PKR'), it also includes irrelevant information about 'iPhone 17 Pro Max'.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Apple iPhone 17 Pro price in Pakistan is Rs. 519,499....",
+        "The official retail price of iPhone 17 Pro Max in Pakistan is Rs. 648,499....",
+        "Apple iPhone 17 Pro 1TB Rs. 686,499 PKR. Apple iPhone 17 Pro 512GB Rs. 603,499 PKR....",
+        "Expected Pakistan Prices: iPhone 17 Pro Max non-PTA 256 GB ₨ 473,000...."
+      ]
+    },
+    {
+      "test_case_id": 2,
+      "golden_id": "search_0002",
+      "input": "who is CEO of OpenAI 2026",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The context clearly states 'Sam Altman is the Chief Executive Officer of OpenAI' and confirms his role as of August 2026.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Sam Altman is the Chief Executive Officer of OpenAI....",
+        "OpenAI's executive team includes 6 tracked leaders as of August 2026, led by Sam Altman (Chief Executive Officer and Co-Founder)...."
+      ]
+    },
+    {
+      "test_case_id": 3,
+      "golden_id": "search_0003",
+      "input": "latest stable version of Next.js",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect! The retrieval context directly answers the input with the latest stable version of Next.js.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "The latest stable version of Next.js as of June 10, 2026 is Next.js 16.2.7....",
+        "Latest Stable 16.3.1 Released 13 Aug 2026...."
+      ]
+    },
+    {
+      "test_case_id": 4,
+      "golden_id": "search_0004",
+      "input": "PSL 2026 ka schedule kab announce hoga?",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect! The context directly answers the query about PSL 2026's schedule announcement with clear details: \"The official schedule of the Pakistan Super League 2026 (PSL 11) has finally been announced\" and \"The tournament will start on 26 March 2026.\"",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "The official schedule of the Pakistan Super League 2026 (PSL 11) has finally been announced. The tournament will start on 26 March 2026....",
+        "The Pakistan Super League 2026 season will start on March 26 and end on May 3, the Pakistan Cricket Board (PCB) announced on Monday...."
+      ]
+    },
+    {
+      "test_case_id": 5,
+      "golden_id": "search_0005",
+      "input": "best budget noise cancelling headphones under $100 2026",
+      "num_retrieved": 4,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The context directly addresses the query with multiple relevant recommendations like \"best wireless noise cancelling headphones under $100 for 2026\" and specific models such as \"Anker Soundcore Life Q30\" and \"Sony WH-CH720N\".",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "My best wireless noise cancelling headphones under $100 for 2026, featuring the CMF Headphone Pro, JBL Tune 770NC, JLab JBuds Lux ANC, Sennheiser Acce...",
+        "The best budget noise-canceling headphones we’ve tested are the Anker Soundcore Life Q30. The best budget noise-cancelling in-ear headphones we’ve tes...",
+        "Anker Soundcore Life Q30 are the best over-ear noise canceling headphones under $100 we’ve tested. EarFun Air Pro 3 are the best ANC in-ear headphones...",
+        "The JBL Tune 770NC has respectable noise cancelling for the budget headphone class. The Sony WH-CH720N is a solid overall package with noise cancellin..."
+      ]
+    },
+    {
+      "test_case_id": 6,
+      "golden_id": "search_0006",
+      "input": "compare AWS Lambda vs Google Cloud Functions pricing 2026",
+      "num_retrieved": 3,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! All retrieved statements directly compare AWS Lambda and Google Cloud Functions pricing models, including granular billing details, free tiers, and additional costs.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "- GCF 1st gen bills per GB-second and GHz-second with 2 million free invocations per month. - GCF 2nd gen uses Cloud Run pricing: $0.000024 per vCPU-s...",
+        "- Lambda@Edge costs $36.00 + $3.75 = $39.75 for 60M invocations (10ms, 128MB); CloudFront Functions cost $5.80 for the same workload. - Function URL c...",
+        "- Lambda request pricing: $0.20 per 1M requests; free tier includes first 1M requests monthly. - Compute pricing (x86): tiered discounts based on mont..."
+      ]
+    },
+    {
+      "test_case_id": 7,
+      "golden_id": "search_0007",
+      "input": "SBP ki new remittance policy 2026 mein kya hai",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect! The retrieval context directly addresses the SBP's new remittance policy for 2026, including details like the discontinuation of the Telegraphic Transfer Charges Incentive Scheme (TTCIS) and Sohni Dharti Remittance Programme from July 1, 2026.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "The State Bank of Pakistan (SBP) has discontinued the Telegraphic Transfer Charges Incentive Scheme (TTCIS) with effect from July 1, 2026....",
+        "Pakistan's State Bank has ended two major bank incentive schemes linked to overseas remittances following scrutiny from the International Monetary Fun..."
+      ]
+    },
+    {
+      "test_case_id": 8,
+      "golden_id": "search_0008",
+      "input": "how to install Claude Code CLI",
+      "num_retrieved": 3,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect! The retrieval context is fully relevant, providing detailed and accurate instructions for installing the Claude Code CLI, including multiple methods like `curl -fsSL | bash` and `npm install -g @anthropic-ai/claude-code`.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Install the CLI with the native installer, `curl -fsSL | bash`. Authenticate via your browser. The recommended install is the native installer – `curl...",
+        "Install the CLI using `npm install -g @anthropic-ai/claude-code`. You can also install with Homebrew `brew install --cask claude-code`. The recommende...",
+        "Native installation (recommended) commands: - Windows PowerShell: `irm | iex` - Ubuntu Terminal: `curl -fsSL | bash` Verify with `claude --version`. n..."
+      ]
+    },
+    {
+      "test_case_id": 9,
+      "golden_id": "search_0009",
+      "input": "Llama 4 ka recent update kya hai",
+      "num_retrieved": 4,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the retrieval context perfectly answers the query about Llama 4's recent updates, including details like 'Meta released Llama 4, the next version of their open-weight language models' and 'It introduces native multimodality, longer context windows, and a more efficient architecture.' Great match!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Llama 4 Scout is a compact model capable of running on a single Nvidia H100 GPU. Meta says it features a 10-million-token context window....",
+        "Meta released Llama 4, the next version of their open-weight language models. It introduces native multimodality, longer context windows, and a more e...",
+        "Llama 4 is Meta’s latest large language model (LLM), bringing better reasoning, longer context, and smarter responses. Different Sizes: Scout (109B to...",
+        "With training on 40+ trillion tokens and hundreds of billions of parameters, Llama 4 has a vast store of knowledge. Its performance on knowledge tests..."
+      ]
+    },
+    {
+      "test_case_id": 10,
+      "golden_id": "search_0010",
+      "input": "NVIDIA RTX 5090 price specs",
+      "num_retrieved": 3,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! All retrieved details directly address the RTX 5090's price and specs, including \"The estimated price range for the RTX 5090 is between $1,599-$1,999.\" and \"The RTX 5090 offers 21,760 CUDA cores and 32GB GDDR7 memory.\"",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "The estimated price range for the RTX 5090 is between $1,599-$1,999....",
+        "The RTX 5090 is expected to be based on Nvidia’s next-generation **Blackwell architecture**. The RTX 5090 is expected to feature **at least 32GB of GD...",
+        "The NVIDIA RTX 5090 launched with an MSRP of $1999 USD. It was announced on January 6, 2025, and the official release date is January 30, 2025. The RT..."
+      ]
+    },
+    {
+      "test_case_id": 11,
+      "golden_id": "search_0011",
+      "input": "React 19 whats new features",
+      "num_retrieved": 3,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The retrieval context directly lists all the new features of React 19, including 'Actions', 'automatic batching', 'concurrent rendering', and more.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "React 19 introduces Actions, a simpler way to handle form submissions, server updates, and mutations....",
+        "React 19 introduces automatic batching, concurrent rendering, and improved server-side rendering....",
+        "React 19 features built-in support for async form actions, React Compiler (Experimental), improved Server Components & Hydration, DevTools improvement..."
+      ]
+    },
+    {
+      "test_case_id": 12,
+      "golden_id": "search_0012",
+      "input": "Pakistan federal budget 2026-27 tax changes",
+      "num_retrieved": 5,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the retrieval context perfectly matches the input, detailing specific tax changes in Pakistan's federal budget 2026-27, such as \"The proposed changes focus on documentation, e-invoicing...\" and \"Tax slabs for PKR 2.2m–3.2m reduced from 23% to 20%...\".",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "The proposed changes focus on documentation, e-invoicing, system integration, bank reporting, automated cross-matching, faceless audits and stronger p...",
+        "Salaried tax slabs expand from 6 to 8 bands. Rates fall for incomes between Rs. 2.2M and Rs. 7M, the 35% top rate now starts above Rs. 7M, and the 9% ...",
+        "A new withholding tax regime is introduced on revenues received by digital content creators and social media influencers. The threshold for income to ...",
+        "Tax slabs for PKR 2.2m–3.2m reduced from 23% to 20%, PKR 3.2m–4.1m from 30% to 25%, PKR 4.1m–5.6m from 35% to 29%, and a new slab for PKR 5.6m–7m intr...",
+        "A 3% reduction in income tax for individuals earning between Rs2.2 million and Rs3.3 million annually. Property transfer tax reduced from 2.5% to 1.25..."
+      ]
+    },
+    {
+      "test_case_id": 13,
+      "golden_id": "search_0013",
+      "input": "who won Nobel Prize in Physics 2025",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The context directly answers the query with the exact winners: \"John Clarke, Michel H. Devoret and John M. Martinis\".",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "The Nobel Prize in Physics 2025 was awarded to John Clarke, Michel H. Devoret and John M. Martinis \"for the discovery of macroscopic quantum mechanica...",
+        "UCSB physics professors John Martinis and Michel Devoret win 2025 Nobel Prize in Physics alongside UC Berkeley physicist and former advisor John Clark..."
+      ]
+    },
+    {
+      "test_case_id": 14,
+      "golden_id": "search_0014",
+      "input": "USD to PKR exchange rate today",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect! The retrieval context directly provides the exact exchange rates for USD to PKR, such as '1 USD = 277.51 PKR'.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "1 USD = 277.51 PKR ; 5 USD = 1,387.56 PKR ; 10 USD = 2,775.13 PKR ; 20 USD = 5,550.26 PKR...",
+        "1 USD = 277.53 PKR ; 5 USD = 1,387.63 PKR ; 10 USD = 2,775.25 PKR ; 20 USD = 5,550.50 PKR..."
+      ]
+    },
+    {
+      "test_case_id": 15,
+      "golden_id": "search_0015",
+      "input": "Flutter 3.30 release notes",
+      "num_retrieved": 2,
+      "success": false,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 0.0,
+          "success": false,
+          "threshold": 0.7,
+          "reason": "The score is 0.00 because the retrieval context only mentions 'Flutter 3.3' and its features (e.g., 'Flutter 3.3 added support for Metal on iOS'), while the input explicitly asks for 'Flutter 3.30 release notes'.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Flutter 3.3 introduces `TextEditingDeltas` and `DeltaTextInputClient` for granular text updates in rich text editing. Material Design 3 updates includ...",
+        "Flutter 3.3 added support for Metal on iOS for faster and more efficient rendering...."
+      ]
+    },
+    {
+      "test_case_id": 16,
+      "golden_id": "search_0016",
+      "input": "did openai drop a new model recently",
+      "num_retrieved": 3,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 0.75,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.75 because while the retrieval context includes relevant statements like 'OpenAI released a new foundation model called GPT-5.5 Instant' and 'the powerful GPT 5.4 model', it also contains irrelevant information such as 'a massive update to Codex, introducing a 'fast' mode that's 1.5x quicker'.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "OpenAI just dropped a massive update to Codex, introducing a 'fast' mode that's 1.5x quicker and the powerful GPT 5.4 model....",
+        "OpenAI released a new foundation model called GPT-5.5 Instant, which will replace GPT-5.3 Instant as the default ChatGPT model....",
+        "OpenAI is delaying the public release of its next generation of AI models, GPT-5.6, at the request of Trump’s White House...."
+      ]
+    },
+    {
+      "test_case_id": 17,
+      "golden_id": "search_0017",
+      "input": "best laptops for machine learning 2026 under 1500 dollars",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 0.8,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.80 because while the retrieval context includes relevant statements like 'M5 MacBook Air (15-inch, 2026) $1,500 at Best Buy' and 'The best laptop under $1500 in 2026 depends on your priorities.', it also contains irrelevant information such as 'For gaming'.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "M5 MacBook Air (15-inch, 2026) $1,500 at Best Buy...",
+        "The best laptop under $1500 in 2026 depends on your priorities. For gaming, the ASUS ROG Strix G16 with the RTX 5060 is our top pick. For value, the A..."
+      ]
+    },
+    {
+      "test_case_id": 18,
+      "golden_id": "search_0018",
+      "input": "nust admissions 2026 last date?",
+      "num_retrieved": 4,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 0.8333333333333334,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.83 because the retrieval context includes multiple relevant statements like 'Last date to apply: May 22, 2026' and 'Last Date to Apply: 13th June 2026', but also contains irrelevant information such as 'Application opens: April 19, 2026'.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Application opens: April 19, 2026 Last date to apply: May 22, 2026...",
+        "Last Date to Apply: 13th June 2026...",
+        "NUST Entry Test (Series-4) Application Form Last Date: 18 Jun 2026 ACT/SAT Basis Application Form Last Date: 25 Jul 2026...",
+        "Last date to apply Online Admission: 05 July 2026..."
+      ]
+    },
+    {
+      "test_case_id": 19,
+      "golden_id": "search_0019",
+      "input": "latest iOS version features",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The context directly lists the latest iOS version (iOS 26.6) and its features like 'Live Translation in Messages/FaceTime/Calls' and 'Visual Intelligence'.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "iOS 26 features Live Translation in Messages/FaceTime/Calls, Visual Intelligence that understands screen content, and Liquid Glass design....",
+        "The latest version of the iPhone operating system is iOS 26.6, released on July 27, 2026, featuring Voice Mail Summaries, Hold Assist, Call Screening,..."
+      ]
+    },
+    {
+      "test_case_id": 20,
+      "golden_id": "search_0020",
+      "input": "GitHub Copilot vs Claude Code 2026 comparison",
+      "num_retrieved": 6,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The retrieval context is fully relevant to the input, providing detailed comparisons, benchmarks, and user insights on GitHub Copilot vs Claude Code in 2026.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Copilot is faster and more ergonomically integrated; Claude Code is more accurate and context-aware on complex tasks. Copilot added multi-file edit pr...",
+        "84% of professional developers now use or plan to use AI coding tools (Stack Overflow 2025). 61% rated Claude Code as more accurate for complex debugg...",
+        "Claude Code produces stronger output for autonomous code generation; Copilot is faster at delivering inline suggestions. Claude Code models ship with ...",
+        "For most professional developers working on complex projects, Claude Code offers stronger reasoning and agentic capabilities than GitHub Copilot. Clau...",
+        "At $10/month, Copilot is the best value for basic AI coding assistance. At $20-200/month, Claude Code offers the highest capability ceiling for develo...",
+        "Copilot fits alongside how you already work; Claude Code changes how you work. Claude Code's rate-limit problems in March 2026 frustrated users. Claud..."
+      ]
+    },
+    {
+      "test_case_id": 21,
+      "golden_id": "search_0021",
+      "input": "whens gta 6 releasing fr fr",
+      "num_retrieved": 3,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the retrieval context perfectly answers the input with clear release dates like 'Grand Theft Auto VI is now set to release on May 26, 2026' and 'GTA 6 is due to be released on November 19, 2026'.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Grand Theft Auto VI is now set to release on May 26, 2026. Grand Theft Auto VI will now release on Thursday, November 19, 2026....",
+        "Grand Theft Auto VI is Now Set to Launch November 19, 2026....",
+        "GTA 6 is due to be released on November 19, 2026...."
+      ]
+    },
+    {
+      "test_case_id": 22,
+      "golden_id": "search_0022",
+      "input": "current mortgage interest rates USA",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the retrieval context perfectly matches the input with up-to-date mortgage interest rates for the USA, including specific figures like '6.72%' for the 30-year fixed rate.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "For today, Wednesday, August 12, 2026, the current average 30-year fixed mortgage interest rate is 6.72%. Today's current average 30-year fixed refina...",
+        "30 Yr. Fixed: 6.77% (Change: +0.01) 15 Yr. Fixed: 6.61% (Change: +0.31) 30 Yr. Jumbo: 6.88% (Change: +0.01) 7/6 SOFR ARM: 6.36% (Change: +0.00) 30 Yr...."
+      ]
+    },
+    {
+      "test_case_id": 23,
+      "golden_id": "search_0023",
+      "input": "xAI Grok latest news update",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 0.8333333333333334,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.83 because the retrieval context contains multiple relevant statements about Grok updates, such as \"Grok 4.6 is xAI’s latest flagship model\" and \"Grok Build 1.0.2 adds reliability improvements\", but the reasons for irrelevancy note \"No statements found in provided context\" which slightly detracts from full relevance.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Grok Build 1.0.2 adds reliability improvements including clearer tool-call streaming, better image session recovery, and fixes for privacy and grouped...",
+        "Introducing Grok 4.6..."
+      ]
+    },
+    {
+      "test_case_id": 24,
+      "golden_id": "search_0024",
+      "input": "ChatGPT subscription pricing plans 2026",
+      "num_retrieved": 4,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The retrieval context directly provides detailed and accurate information about ChatGPT's 2026 subscription pricing plans, including all tiers and their costs.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "ChatGPT pricing spans $0 to $200 per month across six subscription plans: Free, Go, Plus, Pro (offered at $100 and $200 usage tiers), Business, and En...",
+        "ChatGPT offers six paid tiers in 2026: Free ($0), Go ($8/month), Plus ($20/month), Pro ($100/month or $200/month), Business ($20/user/month annual or ...",
+        "ChatGPT pricing tiers in 2026: Free ($0/month), Go ($8/month), Plus ($20/month), Pro ($200/month), Business ($25/user/month), and Enterprise (custom)....",
+        "ChatGPT US pricing as of July 2026: Free ($0), Go ($8), Plus ($20), Pro ($100), Pro ($200), Business ($20–$25 per user with a 2-seat minimum), Enterpr..."
+      ]
+    },
+    {
+      "test_case_id": 25,
+      "golden_id": "search_0025",
+      "input": "NADRA se passport online renew kaise karen",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The context directly addresses passport renewal with clear, relevant statements like \"This guide will show applicant how to apply for Passport Renewal\" and \"Citizens can now conveniently access and process passport renewal services through PakID mobile app.\"",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "This guide will show applicant how to apply for Passport Renewal, using the ......",
+        "Citizens can now conveniently access and process passport renewal services through PakID mobile app...."
+      ]
+    },
+    {
+      "test_case_id": 26,
+      "golden_id": "search_0026",
+      "input": "Pakistan earthquake news recent",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 1.00 because the retrieval context perfectly matches the input with highly relevant details like '6.1 magnitude earthquake occurred on 2026-06-27 at 13:34:52 UTC', 'Residents in the twin cities of Islamabad and Rawalpindi reported the earthquake', and 'Reports indicate that affected countries include Pakistan, Afghanistan and Tajikistan.' Great job!",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "6.1 magnitude earthquake 2026-06-27 13:34:52 at 13:34 June 27, 2026 UTC Location: Epicenter at 36.4730, 70.7640 0.0 km from Jurm (0.0 miles) Depth: 19...",
+        "Residents in the twin cities of Islamabad and Rawalpindi reported the earthquake around 2 am as buildings shook. People in Lahore and Peshawar also re..."
+      ]
+    },
+    {
+      "test_case_id": 27,
+      "golden_id": "search_0027",
+      "input": "LangChain vs LlamaIndex 2026 which is better for RAG",
+      "num_retrieved": 4,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 0.9090909090909091,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.91 because the retrieval context strongly supports LlamaIndex as better for RAG (e.g., 'LlamaIndex is generally better for RAG in 2026', 'LlamaIndex's defaults are production-aware and its surface is narrower but more stable for RAG workflows'), but includes one irrelevant statement about LangChain's strengths in non-RAG areas ('LangChain is better for production agent workflows with tool use, complex reasoning chains, and diverse integrations').",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "LlamaIndex is generally better for RAG in 2026. LlamaIndex's default chunking strategy (1024 tokens, 20-token overlap) and sentence-window retrieval o...",
+        "LlamaIndex is better for RAG-focused projects. LlamaIndex is better for production RAG systems where retrieval quality is the primary concern. LangCha...",
+        "LlamaIndex is the stronger choice for retrieval-focused RAG: document Q&A, knowledge bases, search products, and compliance lookups. LlamaIndex offers...",
+        "LlamaIndex is purpose-built for data-heavy applications with sophisticated indexing needs. Many teams use both: LlamaIndex for data ingestion/indexing..."
+      ]
+    },
+    {
+      "test_case_id": 28,
+      "golden_id": "search_0028",
+      "input": "Tesla stock price today",
+      "num_retrieved": 1,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The context directly provides the Tesla stock price for today: 'As of today, Tesla(TSLA) shares are valued at $347.44'.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "As of today, Tesla(TSLA) shares are valued at $347.44...."
+      ]
+    },
+    {
+      "test_case_id": 29,
+      "golden_id": "search_0029",
+      "input": "Prime Minister of Pakistan current",
+      "num_retrieved": 2,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 1.0,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "Perfect match! The context directly answers the query with \"Incumbent Mian Muhammad Shehbaz Sharif since 4 March 2024\" and \"Mian Muhammad Shehbaz Sharif is currently serving as the 24th prime minister of Pakistan since March 2024\".",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "Incumbent Mian Muhammad Shehbaz Sharif since 4 March 2024....",
+        "Mian Muhammad Shehbaz Sharif is a Pakistani politician and businessman who is currently serving as the 24th prime minister of Pakistan since March 202..."
+      ]
+    },
+    {
+      "test_case_id": 30,
+      "golden_id": "search_0030",
+      "input": "best budget smartphone under $300 2026",
+      "num_retrieved": 4,
+      "success": true,
+      "metrics_scores": {
+        "Contextual Relevancy": {
+          "score": 0.875,
+          "success": true,
+          "threshold": 0.7,
+          "reason": "The score is 0.88 because while most retrieved statements like 'Google Pixel 10a: Top budget phone under $300 in 2026.' and 'Samsung Galaxy A26: Best overall budget phone under $300' are highly relevant, one irrelevant entry ('Motorola Moto G Power 2025: Best for battery life') lacks price and year specificity.",
+          "error": null,
+          "evaluation_model": "mistral-medium-3-5"
+        }
+      },
+      "retrieval_context_preview": [
+        "- Samsung Galaxy A36 5G: 6-year software support, 1900-nit AMOLED display, Sony IMX882 OIS camera, 45W fast charging, 7.4mm profile. - Motorola Moto G...",
+        "- Motorola Moto G Power 2025: Best for battery life. - Google Pixel 10a: Top budget phone under $300 in 2026....",
+        "- Samsung Galaxy A26: Best overall budget phone under $300, 6.7\" 120Hz AMOLED display. - Refurbished Samsung Galaxy S23: Best camera under $300, 6.1\" ...",
+        "- Google Pixel 6a: Best Android phone under $300 in 2025, flagship-level camera, clean Android experience. - Samsung Galaxy A25 5G: Reliable all-round..."
+      ]
+    }
+  ]
+}
