@@ -63,3 +63,19 @@ Total Evaluated:     20
 Average Score:       0.9838
 Pass Rate:           100.0%
 Threshold:           0.7
+
+
+We use jitter technique as well, because if api fails then we try after some random amount of time to request again.
+
+Jitter is simply adding a random amount of variation to timing. In your code, it's the random extra delay added to retry attempts.
+
+A Circuit Breaker is a resilience pattern that prevents cascading failures by catching repeated errors from a component (like LLM structured output validation) and returning a safe fallback value instead of letting exceptions crash the entire system. In agentic systems, it's essential because agents run multi-step workflows where one failing node shouldn't halt the entire graph—if an LLM returns unparseable JSON or an API times out, the circuit breaker "trips" and provides a graceful default (e.g., RouteDecision.DIRECT), allowing the agent to continue processing other tasks. This ensures high availability, self-healing behavior, and better user experience—users get partial results or safe defaults instead of complete failures. Simply put: circuit breakers transform catastrophic crashes into manageable degradations, keeping agents resilient even when individual components fail.
+
+
+
+
+# REMAINING FEATURES
+Actuall AST Needs to be implemented in GIT RAG, We can also use Reranker, 
+
+
+
