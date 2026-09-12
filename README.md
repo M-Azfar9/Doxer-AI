@@ -331,9 +331,9 @@ To measure the reliability and accuracy of each agent component, Doxer AI implem
 | **Intent Router** | Route Accuracy (GEval) | DeepEval / GEval | 0.956 | **0.984** | **98.0%** (was 94.0%) | 0.70 |
 | **Web Search Retrieval** | Contextual Relevancy | Mistral-Medium-3-5 | 0.6388 | **0.9267** | **96.7%** (was 53.3%) | 0.70 |
 | **Answer Synthesizer** | Faithfulness | Mistral-Medium-3-5 | — | **0.9838** | **100.0%** (20/20 passed) | 0.70 |
-| **Code Ingestion / RAG** | Retrieval Recall@5 | Annotated Golden Set | 0.680 | **0.845** | **85.0%** | 0.75 |
-| **SRS Clarification** | Requirements Saturated | Simulated User Agent | — | **0.920** | **95.0%** | 0.80 |
-| **Diagram Generation** | Syntax Validity Rate | Mermaid CLI / Syntax | 0.610 | **0.965** | **96.5%** | 0.90 |
+| **Code Ingestion / RAG** | Retrieval Recall@5 | Annotated Golden Set | TO | BE | EVALUATED | SOON |
+| **SRS Clarification** | Requirements Saturated | Simulated User Agent | TO | BE | EVALUATED | SOON |
+| **Diagram Generation** | Syntax Validity Rate | Mermaid CLI / Syntax | TO | BE | EVALUATED | SOON |
 
 ---
 
