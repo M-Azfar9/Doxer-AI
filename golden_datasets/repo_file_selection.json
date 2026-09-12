@@ -1,0 +1,41 @@
+{
+  "dataset_name": "repo_file_selection_golden_v1",
+  "version": "1.0",
+  "description": "Golden dataset for evaluating Phase 5 repository file selection precision and recall",
+  "goldens": [
+    {
+      "id": "repo_sel_001",
+      "repo_url": "https://github.com/campusx-official/fastapi-demo-api",
+      "user_query": "How are the REST API endpoints structured and how does model inference execute?",
+      "expected_files": [
+        "app.py",
+        "frontend.py",
+        "main.py"
+      ],
+      "category": "endpoint_structure",
+      "difficulty": "easy"
+    },
+    {
+      "id": "repo_sel_002",
+      "repo_url": "https://github.com/octocat/Spoon-Knife",
+      "user_query": "What frontend styling and markup is used in this repository?",
+      "expected_files": [
+        "index.html",
+        "styles.css"
+      ],
+      "category": "frontend_assets",
+      "difficulty": "easy"
+    },
+    {
+      "id": "repo_sel_003",
+      "repo_url": "https://github.com/campusx-official/fastapi-demo-api",
+      "user_query": "Where is the machine learning training pipeline or model notebook located?",
+      "expected_files": [
+        "fastapi_ml_model.ipynb",
+        "app.py"
+      ],
+      "category": "ml_pipeline",
+      "difficulty": "medium"
+    }
+  ]
+}
