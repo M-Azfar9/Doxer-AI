@@ -1,13 +1,6 @@
 # src/__init__.py
 """
-Source package for DevDocs AI
+Source package for DevDocs AI / Sprinter Multi-Agent System
 """
 
-# Try to import main components
-try:
-    from .simple_search_agent import *
-except ImportError as e:
-    print(f"Warning: Could not import simple_search_agent: {e}")
-
-# Export commonly used functions and classes
-__all__ = ["QAAgent", "QAAgentEvaluator", "Config", "IntentRouterResult"]
+__version__ = "0.2.0"

@@ -1,0 +1,50 @@
+{
+  "version": "v1",
+  "timestamp": "2026-09-20 23:37:40",
+  "total_test_cases": 3,
+  "avg_completeness": 0.9167,
+  "avg_structure": 1.0,
+  "avg_grounding": 0.9,
+  "avg_overall_quality": 0.9367,
+  "detailed_results": [
+    {
+      "id": "doc-01",
+      "query": "Document how the GitHubMCPClient handles repo tree fetching and REST fallbacks in src/github_mcp_client.py",
+      "latency_seconds": 38.08,
+      "word_count": 1748,
+      "citations_count": 7,
+      "evidence_files_read": 1,
+      "web_snippets_fetched": 6,
+      "completeness_score": 1.0,
+      "structure_score": 1.0,
+      "grounding_score": 0.9,
+      "overall_quality_score": 0.97
+    },
+    {
+      "id": "doc-02",
+      "query": "Create an architectural explainer documenting the Top-Level Supervisor and 3-way routing mechanism",
+      "latency_seconds": 41.6,
+      "word_count": 1279,
+      "citations_count": 9,
+      "evidence_files_read": 3,
+      "web_snippets_fetched": 6,
+      "completeness_score": 0.75,
+      "structure_score": 1.0,
+      "grounding_score": 0.9,
+      "overall_quality_score": 0.87
+    },
+    {
+      "id": "doc-03",
+      "query": "Write a developer quickstart guide for running the QA subagent with Chroma vector store and web search",
+      "latency_seconds": 42.93,
+      "word_count": 1627,
+      "citations_count": 9,
+      "evidence_files_read": 3,
+      "web_snippets_fetched": 6,
+      "completeness_score": 1.0,
+      "structure_score": 1.0,
+      "grounding_score": 0.9,
+      "overall_quality_score": 0.97
+    }
+  ]
+}

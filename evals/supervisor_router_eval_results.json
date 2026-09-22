@@ -1,0 +1,230 @@
+{
+  "timestamp": "2026-09-20 23:29:42",
+  "total_samples": 20,
+  "correct_predictions": 19,
+  "overall_accuracy": 0.95,
+  "total_latency_seconds": 125.04,
+  "avg_latency_seconds": 6.252,
+  "per_class_metrics": {
+    "qa": {
+      "precision": 0.8889,
+      "recall": 1.0,
+      "f1_score": 0.9412,
+      "support": 8
+    },
+    "doc_gen": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1_score": 1.0,
+      "support": 7
+    },
+    "srs": {
+      "precision": 1.0,
+      "recall": 0.8,
+      "f1_score": 0.8889,
+      "support": 5
+    }
+  },
+  "results": [
+    {
+      "id": "sup-001",
+      "query": "What is dependency injection and how does it reduce coupling in Python?",
+      "expected_route": "qa",
+      "predicted_route": "qa",
+      "category": "programming_concept",
+      "is_correct": true,
+      "reasoning": "The user is asking a direct question about a programming concept ('dependency injection') and its benefits ('how does it reduce coupling'). This is a classic question-answering task, fitting the 'qa' subagent's purpose of explaining programming languages, algorithms, and technical concepts.",
+      "latency_s": 4.115
+    },
+    {
+      "id": "sup-002",
+      "query": "Explain the difference between a list and a tuple in Python.",
+      "expected_route": "qa",
+      "predicted_route": "qa",
+      "category": "programming_concept",
+      "is_correct": true,
+      "reasoning": "The user is asking a direct question about a programming language concept (Python data structures), which is a classic question answering task.",
+      "latency_s": 1.213
+    },
+    {
+      "id": "sup-003",
+      "query": "What is the latest stable version of LangGraph and what are its core changes?",
+      "expected_route": "qa",
+      "predicted_route": "qa",
+      "category": "realtime_web",
+      "is_correct": true,
+      "reasoning": "The user is asking a direct question about the latest stable version and core changes of a specific library (LangGraph), which is a typical question-answering and technical lookup task.",
+      "latency_s": 1.303
+    },
+    {
+      "id": "sup-004",
+      "query": "What are the latest release notes for Python 3.13?",
+      "expected_route": "qa",
+      "predicted_route": "qa",
+      "category": "realtime_web",
+      "is_correct": true,
+      "reasoning": "The user is asking a factual question about release notes for a specific programming language version, which is a direct match for the 'qa' agent's capability to answer questions and search for documentation facts.",
+      "latency_s": 1.333
+    },
+    {
+      "id": "sup-005",
+      "query": "Where is the VectorStoreClient defined in this repository and how does it retrieve chunks?",
+      "expected_route": "qa",
+      "predicted_route": "qa",
+      "category": "code_lookup",
+      "is_correct": true,
+      "reasoning": "The user is asking to locate a specific class ('VectorStoreClient') within the current repository and to explain its functionality ('how does it retrieve chunks'). This directly aligns with the 'qa' subagent's purpose of finding and explaining code snippets or classes within the local codebase.",
+      "latency_s": 1.885
+    },
+    {
+      "id": "sup-006",
+      "query": "Show me the implementation of the IntentRouter retry logic in this codebase.",
+      "expected_route": "qa",
+      "predicted_route": "qa",
+      "category": "code_lookup",
+      "is_correct": true,
+      "reasoning": "The user is asking to find a specific implementation ('IntentRouter retry logic') within the current codebase, which is a direct query for code lookup and explanation, aligning with the 'qa' subagent's function.",
+      "latency_s": 1.31
+    },
+    {
+      "id": "sup-007",
+      "query": "Document how authentication and session management work in this repo.",
+      "expected_route": "doc_gen",
+      "predicted_route": "doc_gen",
+      "category": "architecture_doc",
+      "is_correct": true,
+      "reasoning": "The user explicitly asks to 'Document how authentication and session management work in this repo', which is a clear request to generate technical documentation about a specific aspect of the codebase. This aligns directly with the 'doc_gen' subagent's purpose.",
+      "latency_s": 38.492
+    },
+    {
+      "id": "sup-008",
+      "query": "Generate comprehensive architectural documentation for the search agent module.",
+      "expected_route": "doc_gen",
+      "predicted_route": "doc_gen",
+      "category": "architecture_doc",
+      "is_correct": true,
+      "reasoning": "The user explicitly requested to 'Generate comprehensive architectural documentation', which is a core function of the 'doc_gen' subagent.",
+      "latency_s": 20.171
+    },
+    {
+      "id": "sup-009",
+      "query": "Create an API reference document detailing all classes and methods in src/simple_search_agent.py.",
+      "expected_route": "doc_gen",
+      "predicted_route": "doc_gen",
+      "category": "api_reference",
+      "is_correct": true,
+      "reasoning": "The user explicitly requested to 'Create an API reference document', which is a core function of the 'doc_gen' subagent. The request specifies documenting classes and methods within a local file.",
+      "latency_s": 1.331
+    },
+    {
+      "id": "sup-010",
+      "query": "Write an API reference for our VectorStoreClient and TavilySearchClient interfaces.",
+      "expected_route": "doc_gen",
+      "predicted_route": "doc_gen",
+      "category": "api_reference",
+      "is_correct": true,
+      "reasoning": "The user explicitly requested to 'Write an API reference', which is a core function of the 'doc_gen' subagent responsible for generating technical documentation.",
+      "latency_s": 1.225
+    },
+    {
+      "id": "sup-011",
+      "query": "Create a developer tutorial and quickstart guide for getting started with DevDocs AI.",
+      "expected_route": "doc_gen",
+      "predicted_route": "doc_gen",
+      "category": "tutorial_quickstart",
+      "is_correct": true,
+      "reasoning": "The user explicitly requested to 'Create a developer tutorial and quickstart guide', which directly aligns with the 'doc_gen' subagent's capability to generate technical documentation, tutorials, and onboarding guides.",
+      "latency_s": 1.423
+    },
+    {
+      "id": "sup-012",
+      "query": "Write developer setup instructions and onboarding guide for new engineers in this repo.",
+      "expected_route": "doc_gen",
+      "predicted_route": "doc_gen",
+      "category": "tutorial_quickstart",
+      "is_correct": true,
+      "reasoning": "The user is asking to 'Write developer setup instructions and onboarding guide for new engineers in this repo.' This is a clear request to generate technical documentation, specifically an onboarding guide, which aligns with the 'doc_gen' subagent's purpose.",
+      "latency_s": 1.485
+    },
+    {
+      "id": "sup-013",
+      "query": "I need an SRS document for a food delivery platform like UberEats.",
+      "expected_route": "srs",
+      "predicted_route": "srs",
+      "category": "software_requirements",
+      "is_correct": true,
+      "reasoning": "The user explicitly requested an 'SRS document' for a 'food delivery platform', which directly aligns with the 'srs' subagent's purpose of generating Software Requirements Specifications.",
+      "latency_s": 1.44
+    },
+    {
+      "id": "sup-014",
+      "query": "Generate an IEEE 830 Software Requirements Specification for a telemedicine appointment app.",
+      "expected_route": "srs",
+      "predicted_route": "srs",
+      "category": "software_requirements",
+      "is_correct": true,
+      "reasoning": "Heuristic fallback due to routing exception.",
+      "latency_s": 40.225
+    },
+    {
+      "id": "sup-015",
+      "query": "Help me define the functional requirements and architectural diagrams for an e-commerce inventory system.",
+      "expected_route": "srs",
+      "predicted_route": "qa",
+      "category": "software_requirements",
+      "is_correct": false,
+      "reasoning": "Heuristic fallback due to routing exception.",
+      "latency_s": 1.481
+    },
+    {
+      "id": "sup-016",
+      "query": "Draft the software requirements and actor models for an automated crypto trading bot.",
+      "expected_route": "srs",
+      "predicted_route": "srs",
+      "category": "software_requirements",
+      "is_correct": true,
+      "reasoning": "Heuristic fallback due to routing exception.",
+      "latency_s": 1.193
+    },
+    {
+      "id": "sup-017",
+      "query": "How does the quicksort algorithm work and what is its average-case time complexity?",
+      "expected_route": "qa",
+      "predicted_route": "qa",
+      "category": "programming_concept",
+      "is_correct": true,
+      "reasoning": "Heuristic fallback due to routing exception.",
+      "latency_s": 1.459
+    },
+    {
+      "id": "sup-018",
+      "query": "Document the end-to-end execution flow of the Top-Level Supervisor in this codebase.",
+      "expected_route": "doc_gen",
+      "predicted_route": "doc_gen",
+      "category": "architecture_doc",
+      "is_correct": true,
+      "reasoning": "Heuristic fallback due to routing exception.",
+      "latency_s": 1.203
+    },
+    {
+      "id": "sup-019",
+      "query": "Create an IEEE 830 specification for a banking mobile application with biometric login.",
+      "expected_route": "srs",
+      "predicted_route": "srs",
+      "category": "software_requirements",
+      "is_correct": true,
+      "reasoning": "Heuristic fallback due to routing exception.",
+      "latency_s": 1.521
+    },
+    {
+      "id": "sup-020",
+      "query": "What is the difference between synchronous and asynchronous execution in LangGraph?",
+      "expected_route": "qa",
+      "predicted_route": "qa",
+      "category": "programming_concept",
+      "is_correct": true,
+      "reasoning": "Heuristic fallback due to routing exception.",
+      "latency_s": 1.229
+    }
+  ]
+}

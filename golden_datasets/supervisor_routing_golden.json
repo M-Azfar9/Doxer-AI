@@ -1,0 +1,122 @@
+[
+  {
+    "id": "sup-001",
+    "query": "What is dependency injection and how does it reduce coupling in Python?",
+    "expected_route": "qa",
+    "category": "programming_concept"
+  },
+  {
+    "id": "sup-002",
+    "query": "Explain the difference between a list and a tuple in Python.",
+    "expected_route": "qa",
+    "category": "programming_concept"
+  },
+  {
+    "id": "sup-003",
+    "query": "What is the latest stable version of LangGraph and what are its core changes?",
+    "expected_route": "qa",
+    "category": "realtime_web"
+  },
+  {
+    "id": "sup-004",
+    "query": "What are the latest release notes for Python 3.13?",
+    "expected_route": "qa",
+    "category": "realtime_web"
+  },
+  {
+    "id": "sup-005",
+    "query": "Where is the VectorStoreClient defined in this repository and how does it retrieve chunks?",
+    "expected_route": "qa",
+    "category": "code_lookup"
+  },
+  {
+    "id": "sup-006",
+    "query": "Show me the implementation of the IntentRouter retry logic in this codebase.",
+    "expected_route": "qa",
+    "category": "code_lookup"
+  },
+  {
+    "id": "sup-007",
+    "query": "Document how authentication and session management work in this repo.",
+    "expected_route": "doc_gen",
+    "category": "architecture_doc"
+  },
+  {
+    "id": "sup-008",
+    "query": "Generate comprehensive architectural documentation for the search agent module.",
+    "expected_route": "doc_gen",
+    "category": "architecture_doc"
+  },
+  {
+    "id": "sup-009",
+    "query": "Create an API reference document detailing all classes and methods in src/simple_search_agent.py.",
+    "expected_route": "doc_gen",
+    "category": "api_reference"
+  },
+  {
+    "id": "sup-010",
+    "query": "Write an API reference for our VectorStoreClient and TavilySearchClient interfaces.",
+    "expected_route": "doc_gen",
+    "category": "api_reference"
+  },
+  {
+    "id": "sup-011",
+    "query": "Create a developer tutorial and quickstart guide for getting started with DevDocs AI.",
+    "expected_route": "doc_gen",
+    "category": "tutorial_quickstart"
+  },
+  {
+    "id": "sup-012",
+    "query": "Write developer setup instructions and onboarding guide for new engineers in this repo.",
+    "expected_route": "doc_gen",
+    "category": "tutorial_quickstart"
+  },
+  {
+    "id": "sup-013",
+    "query": "I need an SRS document for a food delivery platform like UberEats.",
+    "expected_route": "srs",
+    "category": "software_requirements"
+  },
+  {
+    "id": "sup-014",
+    "query": "Generate an IEEE 830 Software Requirements Specification for a telemedicine appointment app.",
+    "expected_route": "srs",
+    "category": "software_requirements"
+  },
+  {
+    "id": "sup-015",
+    "query": "Help me define the functional requirements and architectural diagrams for an e-commerce inventory system.",
+    "expected_route": "srs",
+    "category": "software_requirements"
+  },
+  {
+    "id": "sup-016",
+    "query": "Draft the software requirements and actor models for an automated crypto trading bot.",
+    "expected_route": "srs",
+    "category": "software_requirements"
+  },
+  {
+    "id": "sup-017",
+    "query": "How does the quicksort algorithm work and what is its average-case time complexity?",
+    "expected_route": "qa",
+    "category": "programming_concept"
+  },
+  {
+    "id": "sup-018",
+    "query": "Document the end-to-end execution flow of the Top-Level Supervisor in this codebase.",
+    "expected_route": "doc_gen",
+    "category": "architecture_doc"
+  },
+  {
+    "id": "sup-019",
+    "query": "Create an IEEE 830 specification for a banking mobile application with biometric login.",
+    "expected_route": "srs",
+    "category": "software_requirements"
+  },
+  {
+    "id": "sup-020",
+    "query": "What is the difference between synchronous and asynchronous execution in LangGraph?",
+    "expected_route": "qa",
+    "category": "programming_concept"
+  }
+]
