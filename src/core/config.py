@@ -38,15 +38,17 @@ class Config:
             self._env_vals = {}
 
         # Google Gemini API keys (Key failover rotation)
-        self.google_api_keys: List[str] = []
+        raw_keys: List[str] = []
         for i in range(1, 9):
             k = (self._env_vals.get(f"GOOGLE_API_KEY_{i}") or os.getenv(f"GOOGLE_API_KEY_{i}") or "").strip().strip('"').strip("'")
-            if k and k not in self.google_api_keys:
-                self.google_api_keys.append(k)
+            if k and k not in raw_keys:
+                raw_keys.append(k)
         
         base_key = (self._env_vals.get("GOOGLE_API_KEY") or os.getenv("GOOGLE_API_KEY") or "").strip().strip('"').strip("'")
-        if base_key and base_key not in self.google_api_keys:
-            self.google_api_keys.append(base_key)
+        if base_key and base_key not in raw_keys:
+            raw_keys.append(base_key)
+
+        self.google_api_keys: List[str] = raw_keys
 
         # Other providers
         self.mistral_api_key: str = (self._env_vals.get("MISTRAL_API_KEY") or os.getenv("MISTRAL_API_KEY") or "").strip().strip('"').strip("'")
@@ -61,15 +63,23 @@ class Config:
         self.langsmith_endpoint: str = os.getenv("LANGSMITH_ENDPOINT", "https://api.smith.langchain.com")
         self.langsmith_api_key: str = os.getenv("LANGSMITH_API_KEY", "")
 
+        # Amazon Bedrock
+        self.bedrock_model_id: str = (self._env_vals.get("BEDROCK_MODEL_ID") or os.getenv("BEDROCK_MODEL_ID") or "nvidia.nemotron-super-3-120b").strip().strip('"').strip("'")
+        self.bedrock_region: str = (self._env_vals.get("AWS_REGION") or os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or "us-east-1").strip().strip('"').strip("'")
+        self.bedrock_profile: Optional[str] = (self._env_vals.get("AWS_PROFILE") or os.getenv("AWS_PROFILE") or None)
+        if self.bedrock_profile:
+            self.bedrock_profile = self.bedrock_profile.strip().strip('"').strip("'")
+
         # Default paths
         self.workspace_root = Path(__file__).resolve().parent.parent.parent
         self.chroma_db_dir = str(self.workspace_root / "chroma_code_db")
         self.artifacts_dir = str(self.workspace_root / "artifacts")
 
         # Default Model Names
-        self.default_gemini_model = "gemini-2.5-flash"
+        self.default_bedrock_model = self.bedrock_model_id
+        self.default_gemini_model = "gemini-3.5-flash-lite"
         self.default_mistral_model = "mistral-small-latest"
-        self.default_openrouter_model = "deepseek/deepseek-v4-flash-0731:free"
+        self.default_openrouter_model = "nvidia/nemotron-3.5-lightning:free"
 
 
 # Global singleton config

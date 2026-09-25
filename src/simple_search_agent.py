@@ -36,6 +36,7 @@ from dotenv import load_dotenv
 from pydantic import BaseModel, Field, ValidationError
 
 from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_aws import ChatBedrockConverse
 from langchain_mistralai import ChatMistralAI
 
 from langgraph.graph import StateGraph, START, END
@@ -58,6 +59,8 @@ class Config:
         
         self.MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
         self.TAVILY_API_KEY = os.getenv("TAVILY_API_KEY")
+        self.BEDROCK_MODEL_ID = os.getenv("BEDROCK_MODEL_ID", "nvidia.nemotron-super-3-120b")
+        self.AWS_REGION = os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or "us-east-1"
         
         self.LANGSMITH_PROJECT = os.getenv(
             "LANGSMITH_PROJECT",
@@ -89,9 +92,6 @@ class Config:
     
     def _validate_environment(self):
         """Validate that all required environment variables are present."""
-        if not self.MISTRAL_API_KEY:
-            raise ValueError("MISTRAL_API_KEY is missing.")
-        
         if not self.TAVILY_API_KEY:
             raise ValueError("TAVILY_API_KEY is missing.")
 
@@ -248,42 +248,41 @@ class IntentClassification(BaseModel):
 # ============================================================
 
 class LLMClient:
-    """Wrapper for LLM interactions with structured output support."""
+    """Wrapper for LLM interactions with structured output support using Amazon Bedrock Nemotron."""
     
     def __init__(
         self,
-        model: str = "mistral-small-latest",
+        model: Optional[str] = None,
+        region_name: Optional[str] = None,
         temperature: float = 0.1,
         max_retries: int = 3,
         timeout: int = 60,
         api_key: Optional[str] = None
     ):
         """
-        Initialize LLM client.
+        Initialize LLM client with Amazon Bedrock ChatBedrockConverse.
         
         Args:
-            model: Model name to use
+            model: Bedrock model name (defaults to nvidia.nemotron-super-3-120b)
+            region_name: AWS region name (defaults to us-east-1)
             temperature: Sampling temperature
             max_retries: Maximum retry attempts
             timeout: Request timeout in seconds
-            api_key: Mistral API key (defaults to environment variable)
+            api_key: Optional API key override
         """
-        self.model = model
+        self.model = model or os.getenv("BEDROCK_MODEL_ID", "nvidia.nemotron-super-3-120b")
+        self.region_name = region_name or os.getenv("AWS_REGION") or os.getenv("AWS_DEFAULT_REGION") or "us-east-1"
         self.temperature = temperature
         self.max_retries = max_retries
+        self.timeout = timeout
         
-        # Get API key from parameter or environment
-        self.api_key = api_key or os.getenv("MISTRAL_API_KEY")
-        
-        if not self.api_key:
-            raise ValueError("MISTRAL_API_KEY is not configured.")
-        
-        self.llm = ChatMistralAI(
-            model=model,
+        self.llm = ChatBedrockConverse(
+            model_id=self.model,
+            region_name=self.region_name,
             temperature=temperature,
             max_retries=max_retries,
             timeout=timeout,
-            api_key=self.api_key,
+            disable_streaming=True
         )
     
     @traceable(name="LLMClient.invoke")
@@ -808,7 +807,7 @@ class QAAgent:
     
     def __init__(
         self,
-        model: str = "mistral-small-latest",
+        model: Optional[str] = None,
         temperature: float = 0.1,
         config: Optional[Config] = None,
     ):
@@ -816,7 +815,7 @@ class QAAgent:
         Initialize QA Agent.
         
         Args:
-            model: LLM model name
+            model: LLM model name (defaults to nvidia.nemotron-super-3-120b)
             temperature: LLM temperature
             config: Configuration instance (optional)
         """
@@ -824,7 +823,8 @@ class QAAgent:
         
         # Initialize LLM client
         self.llm_client = LLMClient(
-            model=model,
+            model=model or self.config.BEDROCK_MODEL_ID,
+            region_name=self.config.AWS_REGION,
             temperature=temperature,
         )
         

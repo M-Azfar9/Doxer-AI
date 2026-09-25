@@ -1,0 +1,72 @@
+{
+  "timestamp": "2026-09-25 21:03:13",
+  "total_test_cases": 2,
+  "overall_pass_rate": 1.0,
+  "url_parsing_accuracy": 1.0,
+  "url_parsing_target": "100%",
+  "tree_completeness_rate": 1.0,
+  "tree_completeness_target": "100%",
+  "repo_size_guardrail_rate": 1.0,
+  "repo_size_target": "100%",
+  "api_token_masking_rate": 1.0,
+  "api_token_masking_target": "100%",
+  "geval_reliability_security_avg": 1.0,
+  "geval_target": ">= 0.90",
+  "passed_all_quality_gates": true,
+  "total_latency_seconds": 6.24,
+  "avg_latency_per_case_seconds": 3.12,
+  "results": [
+    {
+      "id": "TC-GH-01",
+      "category": "url_parsing",
+      "name": "Standard HTTPS Repository URL Parsing",
+      "test_type": "quality",
+      "subsystem_function": "parse_github_url",
+      "input_params": {
+        "url": "https://github.com/langchain-ai/langgraph"
+      },
+      "expected_verdict": "VALID",
+      "expected_output": {
+        "owner": "langchain-ai",
+        "repo": "langgraph",
+        "branch": null
+      },
+      "actual_output": {
+        "owner": "langchain-ai",
+        "repo": "langgraph",
+        "branch": null
+      },
+      "test_passed": true,
+      "geval_score": 1.0,
+      "geval_reason": "The response correctly parsed the standard HTTPS GitHub URL, extracting the owner 'langchain-ai' and repo 'langgraph' with branch set to null as expected, and no exception was encountered, indicating accurate and safe URL parsing without memory issues or token exposure.",
+      "exception": null,
+      "latency_seconds": 0.0
+    },
+    {
+      "id": "TC-GH-02",
+      "category": "url_parsing",
+      "name": "Short Identifier Syntax Parsing",
+      "test_type": "quality",
+      "subsystem_function": "parse_github_url",
+      "input_params": {
+        "url": "M-Azfar9/Doxer-AI"
+      },
+      "expected_verdict": "VALID",
+      "expected_output": {
+        "owner": "M-Azfar9",
+        "repo": "Doxer-AI",
+        "branch": null
+      },
+      "actual_output": {
+        "owner": "M-Azfar9",
+        "repo": "Doxer-AI",
+        "branch": null
+      },
+      "test_passed": true,
+      "geval_score": 1.0,
+      "geval_reason": "The response correctly parsed the shorthand 'owner/repo' format, extracting owner 'M-Azfar9' and repo 'Doxer-AI' with branch set to null, which aligns with the expected behavior for valid short identifier syntax. No exceptions were encountered, and the output matches the expected verdict of VALID, indicating accurate URL parsing for this subsystem function.",
+      "exception": null,
+      "latency_seconds": 0.0
+    }
+  ]
+}

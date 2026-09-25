@@ -9,7 +9,7 @@ from typing import Optional, List, Dict, Any
 from langgraph.checkpoint.memory import MemorySaver
 
 from src.core.config import config
-from src.core.llm_manager import get_default_llm, MultiKeyGeminiLLM
+from src.core.llm_manager import get_default_llm, MultiKeyGeminiLLM, ResilientBedrockLLM
 from src.github_mcp_client import GitHubMCPClient
 
 

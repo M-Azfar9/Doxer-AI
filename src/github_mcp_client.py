@@ -178,6 +178,10 @@ class GitHubMCPClient:
         await _traverse("", depth=0)
         return sorted(collected)
 
+    def __repr__(self) -> str:
+        masked_token = f"{self.token[:4]}...***" if len(self.token) > 4 else ("***" if self.token else "None")
+        return f"GitHubMCPClient(token='{masked_token}', max_file_size={self.max_file_size})"
+
     async def fetch_file_content(
         self,
         owner: str,
@@ -189,9 +193,14 @@ class GitHubMCPClient:
         try:
             data = await self.fetch_file_or_dir(owner, repo, file_path)
             content = data.get("content", "") if isinstance(data, dict) else str(data)
+            if self.token and self.token in content:
+                content = content.replace(self.token, "***REDACTED_GITHUB_TOKEN***")
             truncated = len(content) > self.max_file_size
             if truncated:
                 content = content[:self.max_file_size] + "\n\n... [Truncated due to size limit] ..."
             return {"file_path": file_path, "content": content, "truncated": truncated}
         except Exception as e:
-            return {"file_path": file_path, "content": f"[Error reading file: {e}]", "truncated": False}
+            err_msg = str(e)
+            if self.token and self.token in err_msg:
+                err_msg = err_msg.replace(self.token, "***REDACTED_GITHUB_TOKEN***")
+            return {"file_path": file_path, "content": f"[Error reading file: {err_msg}]", "truncated": False}

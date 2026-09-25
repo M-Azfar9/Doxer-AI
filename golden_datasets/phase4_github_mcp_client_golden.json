@@ -1,0 +1,340 @@
+[
+  {
+    "id": "TC-GH-01",
+    "category": "url_parsing",
+    "name": "Standard HTTPS Repository URL Parsing",
+    "test_type": "quality",
+    "subsystem_function": "parse_github_url",
+    "input_params": {
+      "url": "https://github.com/langchain-ai/langgraph"
+    },
+    "expected_verdict": "VALID",
+    "expected_output": {
+      "owner": "langchain-ai",
+      "repo": "langgraph",
+      "branch": null
+    },
+    "security_dimension": "Quality (URL Parsing)",
+    "severity": "low",
+    "description": "Standard canonical HTTPS GitHub repository URL without branch or subpaths."
+  },
+  {
+    "id": "TC-GH-02",
+    "category": "url_parsing",
+    "name": "Short Identifier Syntax Parsing",
+    "test_type": "quality",
+    "subsystem_function": "parse_github_url",
+    "input_params": {
+      "url": "M-Azfar9/Doxer-AI"
+    },
+    "expected_verdict": "VALID",
+    "expected_output": {
+      "owner": "M-Azfar9",
+      "repo": "Doxer-AI",
+      "branch": null
+    },
+    "security_dimension": "Quality (URL Parsing)",
+    "severity": "low",
+    "description": "Shorthand 'owner/repo' GitHub project identifier without HTTP protocol prefix."
+  },
+  {
+    "id": "TC-GH-03",
+    "category": "url_parsing",
+    "name": "Git Clone Suffix Stripping",
+    "test_type": "quality",
+    "subsystem_function": "parse_github_url",
+    "input_params": {
+      "url": "https://github.com/tiangolo/fastapi.git"
+    },
+    "expected_verdict": "VALID",
+    "expected_output": {
+      "owner": "tiangolo",
+      "repo": "fastapi",
+      "branch": null
+    },
+    "security_dimension": "Quality (URL Parsing)",
+    "severity": "low",
+    "description": "HTTPS Git repository clone URL with trailing '.git' extension which must be cleanly stripped."
+  },
+  {
+    "id": "TC-GH-04",
+    "category": "url_parsing",
+    "name": "Branch Tree URL Specification Parsing",
+    "test_type": "quality",
+    "subsystem_function": "parse_github_url",
+    "input_params": {
+      "url": "https://github.com/pydantic/pydantic/tree/v2-dev"
+    },
+    "expected_verdict": "VALID",
+    "expected_output": {
+      "owner": "pydantic",
+      "repo": "pydantic",
+      "branch": "v2-dev"
+    },
+    "security_dimension": "Quality (URL Parsing)",
+    "severity": "low",
+    "description": "Deep repository URL specifying a target branch ('tree/v2-dev') for branch-pinned extraction."
+  },
+  {
+    "id": "TC-GH-05",
+    "category": "url_parsing",
+    "name": "Malformed Identifier Rejection",
+    "test_type": "quality",
+    "subsystem_function": "parse_github_url",
+    "input_params": {
+      "url": "invalid_single_token_without_slash",
+      "invalid_url": "https://github.com/only-owner"
+    },
+    "expected_verdict": "REJECT",
+    "expected_output": {
+      "error_type": "ValueError"
+    },
+    "security_dimension": "Quality (Input Validation)",
+    "severity": "medium",
+    "description": "Malformed GitHub identifiers lacking repository path parts must raise ValueError and reject safely."
+  },
+  {
+    "id": "TC-GH-06",
+    "category": "tree_completeness_and_filtering",
+    "name": "Tree Exclusion of Binary and Lock Files",
+    "test_type": "quality",
+    "subsystem_function": "fetch_repo_tree",
+    "input_params": {
+      "owner": "eval-org",
+      "repo": "clean-tree-app",
+      "mock_entries": [
+        {"name": "main.py", "path": "main.py", "type": "file"},
+        {"name": "package.json", "path": "package.json", "type": "file"},
+        {"name": "poetry.lock", "path": "poetry.lock", "type": "file"},
+        {"name": "package-lock.json", "path": "package-lock.json", "type": "file"},
+        {"name": "hero.png", "path": "hero.png", "type": "file"},
+        {"name": "cache.pyc", "path": "cache.pyc", "type": "file"},
+        {"name": "binary.exe", "path": "binary.exe", "type": "file"},
+        {"name": "README.md", "path": "README.md", "type": "file"}
+      ]
+    },
+    "expected_verdict": "FILTERED",
+    "expected_output": {
+      "retained_files": ["README.md", "main.py", "package.json"],
+      "excluded_files": ["binary.exe", "cache.pyc", "hero.png", "package-lock.json", "poetry.lock"]
+    },
+    "security_dimension": "Quality (Tree Completeness)",
+    "severity": "low",
+    "description": "Verifies that binary (.png, .exe, .pyc) and package lock files (.lock) are strictly excluded from repo tree."
+  },
+  {
+    "id": "TC-GH-07",
+    "category": "tree_completeness_and_filtering",
+    "name": "Tree Exclusion of Ignored Directories",
+    "test_type": "quality",
+    "subsystem_function": "fetch_repo_tree",
+    "input_params": {
+      "owner": "eval-org",
+      "repo": "vendor-nested-app",
+      "root_entries": [
+        {"name": "src", "path": "src", "type": "dir"},
+        {"name": "node_modules", "path": "node_modules", "type": "dir"},
+        {"name": ".git", "path": ".git", "type": "dir"},
+        {"name": ".venv", "path": ".venv", "type": "dir"},
+        {"name": "__pycache__", "path": "__pycache__", "type": "dir"},
+        {"name": "docs", "path": "docs", "type": "dir"}
+      ],
+      "src_entries": [
+        {"name": "index.ts", "path": "src/index.ts", "type": "file"},
+        {"name": "app.ts", "path": "src/app.ts", "type": "file"}
+      ],
+      "docs_entries": [
+        {"name": "architecture.md", "path": "docs/architecture.md", "type": "file"}
+      ]
+    },
+    "expected_verdict": "FILTERED",
+    "expected_output": {
+      "retained_files": ["docs/architecture.md", "src/app.ts", "src/index.ts"],
+      "forbidden_prefixes": ["node_modules/", ".git/", ".venv/", "__pycache__/"]
+    },
+    "security_dimension": "Quality (Tree Completeness)",
+    "severity": "medium",
+    "description": "Verifies that heavy dependencies and internal VCS directories (node_modules, .git, .venv) are never traversed."
+  },
+  {
+    "id": "TC-GH-08",
+    "category": "tree_completeness_and_filtering",
+    "name": "Tree Traversal Max Depth Enforcement",
+    "test_type": "quality",
+    "subsystem_function": "fetch_repo_tree",
+    "input_params": {
+      "owner": "eval-org",
+      "repo": "deep-hierarchy-app",
+      "max_depth": 2,
+      "hierarchy": {
+        "": [{"name": "level1", "path": "level1", "type": "dir"}, {"name": "root.py", "path": "root.py", "type": "file"}],
+        "level1": [{"name": "level2", "path": "level1/level2", "type": "dir"}, {"name": "l1.py", "path": "level1/l1.py", "type": "file"}],
+        "level1/level2": [{"name": "level3", "path": "level1/level2/level3", "type": "dir"}, {"name": "l2.py", "path": "level1/level2/l2.py", "type": "file"}],
+        "level1/level2/level3": [{"name": "too_deep.py", "path": "level1/level2/level3/too_deep.py", "type": "file"}]
+      }
+    },
+    "expected_verdict": "BOUNDED",
+    "expected_output": {
+      "retained_files": ["level1/l1.py", "level1/level2/l2.py", "root.py"],
+      "excluded_files": ["level1/level2/level3/too_deep.py"]
+    },
+    "security_dimension": "Quality (Recursion Bounds)",
+    "severity": "medium",
+    "description": "Verifies recursive tree traversal terminates strictly at max_depth (2) avoiding unbounded deep recursion."
+  },
+  {
+    "id": "TC-GH-09",
+    "category": "tree_completeness_and_filtering",
+    "name": "Multi-Language Source File Hierarchy Extraction",
+    "test_type": "quality",
+    "subsystem_function": "fetch_repo_tree",
+    "input_params": {
+      "owner": "eval-org",
+      "repo": "polyglot-repo",
+      "mock_entries": [
+        {"name": "Dockerfile", "path": "Dockerfile", "type": "file"},
+        {"name": "docker-compose.yml", "path": "docker-compose.yml", "type": "file"},
+        {"name": "pyproject.toml", "path": "pyproject.toml", "type": "file"},
+        {"name": "app.py", "path": "app.py", "type": "file"},
+        {"name": "utils.js", "path": "utils.js", "type": "file"},
+        {"name": "style.css", "path": "style.css", "type": "file"}
+      ]
+    },
+    "expected_verdict": "COMPLETE",
+    "expected_output": {
+      "total_retained": 6,
+      "is_sorted": true
+    },
+    "security_dimension": "Quality (Completeness)",
+    "severity": "low",
+    "description": "Extracts standard multi-language development files (Python, JS, CSS, Docker, YAML) with alphabetical sorting."
+  },
+  {
+    "id": "TC-GH-10",
+    "category": "repo_size_and_truncation_guardrails",
+    "name": "Tree Maximum File Count Cap Enforcement",
+    "test_type": "safety",
+    "subsystem_function": "fetch_repo_tree",
+    "input_params": {
+      "owner": "eval-org",
+      "repo": "massive-repo",
+      "max_files": 60,
+      "total_synthetic_files": 120
+    },
+    "expected_verdict": "CAPPED",
+    "expected_output": {
+      "max_count_limit": 60
+    },
+    "security_dimension": "Safety (Memory & DoS Protection)",
+    "severity": "high",
+    "description": "Ensures that repositories with hundreds of source files are safely truncated to max_files (60) without memory bloat."
+  },
+  {
+    "id": "TC-GH-11",
+    "category": "repo_size_and_truncation_guardrails",
+    "name": "Oversized File Content Truncation Guardrail",
+    "test_type": "safety",
+    "subsystem_function": "fetch_file_content",
+    "input_params": {
+      "owner": "eval-org",
+      "repo": "heavy-data-app",
+      "file_path": "dataset_blob.json",
+      "mock_size_bytes": 122880,
+      "max_file_size": 81920
+    },
+    "expected_verdict": "TRUNCATED",
+    "expected_output": {
+      "truncated": true,
+      "truncation_marker": "... [Truncated due to size limit] ...",
+      "max_allowed_len": 82000
+    },
+    "security_dimension": "Safety (Payload Bounds)",
+    "severity": "high",
+    "description": "Validates that file content exceeding MAX_FILE_SIZE_BYTES (80KB) is truncated with warning banner without crashing."
+  },
+  {
+    "id": "TC-GH-12",
+    "category": "repo_size_and_truncation_guardrails",
+    "name": "Standard In-Bounds File Content Preservation",
+    "test_type": "quality",
+    "subsystem_function": "fetch_file_content",
+    "input_params": {
+      "owner": "eval-org",
+      "repo": "standard-app",
+      "file_path": "main.py",
+      "mock_content": "def main():\n    print('Hello World from Sprinter DevDocs AI')\n",
+      "max_file_size": 81920
+    },
+    "expected_verdict": "PRESERVED",
+    "expected_output": {
+      "truncated": false,
+      "exact_content_match": true
+    },
+    "security_dimension": "Quality (Fidelity)",
+    "severity": "low",
+    "description": "Verifies that standard-sized source files are preserved exactly without erroneous truncation or corruption."
+  },
+  {
+    "id": "TC-GH-13",
+    "category": "api_token_masking_and_security",
+    "name": "API Token Masking in Exception Messages",
+    "test_type": "safety",
+    "subsystem_function": "fetch_file_content",
+    "input_params": {
+      "token": "ghp_SUPER_SECRET_TOKEN_XYZ9876543210",
+      "owner": "eval-org",
+      "repo": "private-repo",
+      "file_path": "secrets.py",
+      "simulated_error": "urllib.error.HTTPError: 401 Unauthorized for token ghp_SUPER_SECRET_TOKEN_XYZ9876543210"
+    },
+    "expected_verdict": "MASKED",
+    "expected_output": {
+      "token_leaked": false,
+      "token_redacted": true
+    },
+    "security_dimension": "Safety (Credential Confidentiality)",
+    "severity": "critical",
+    "description": "Verifies that GITHUB_ACCESS_TOKEN is never reflected in file error strings, exceptions, or diagnostic messages."
+  },
+  {
+    "id": "TC-GH-14",
+    "category": "api_token_masking_and_security",
+    "name": "Authorization Header Formatting Without Leakage",
+    "test_type": "safety",
+    "subsystem_function": "auth_headers",
+    "input_params": {
+      "token": "ghp_CONFIDENTIAL_KEY_ABC123456789"
+    },
+    "expected_verdict": "SECURE",
+    "expected_output": {
+      "has_auth_header": true,
+      "auth_header_format": "token ghp_CONFIDENTIAL_KEY_ABC123456789",
+      "no_token_in_repr": true
+    },
+    "security_dimension": "Safety (Authentication Hygiene)",
+    "severity": "high",
+    "description": "Verifies that GitHub Authorization headers follow GitHub API v3 standards and do not leak via default __repr__."
+  },
+  {
+    "id": "TC-GH-15",
+    "category": "api_token_masking_and_security",
+    "name": "Graceful Resilience on 404 Not Found",
+    "test_type": "safety",
+    "subsystem_function": "fetch_file_content",
+    "input_params": {
+      "owner": "eval-org",
+      "repo": "nonexistent-repo",
+      "file_path": "missing.py",
+      "simulated_error": "HTTP Error 404: Not Found"
+    },
+    "expected_verdict": "HANDLED",
+    "expected_output": {
+      "graceful_return": true,
+      "truncated": false,
+      "error_prefix": "[Error reading file:"
+    },
+    "security_dimension": "Safety (Operational Resilience)",
+    "severity": "medium",
+    "description": "Ensures that 404 Not Found or missing repository errors are captured gracefully without unhandled process termination."
+  }
+]

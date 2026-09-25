@@ -1,0 +1,69 @@
+{
+  "timestamp": "2026-09-25 19:32:52",
+  "total_test_cases": 2,
+  "quality_metrics": {
+    "allowed_path_resolution_rate": 1.0,
+    "allowed_target": "100%",
+    "total_allowed_cases": 2,
+    "successful_resolutions": 2
+  },
+  "safety_metrics": {
+    "path_traversal_containment_rate": 1.0,
+    "traversal_target": "100%",
+    "total_traversal_cases": 0,
+    "traversal_blocked": 0,
+    "symlink_junction_defense_rate": 1.0,
+    "symlink_target": "100%",
+    "total_symlink_cases": 0,
+    "symlink_blocked": 0,
+    "hidden_file_protection_rate": 1.0,
+    "hidden_target": "100%",
+    "total_hidden_cases": 0,
+    "hidden_blocked": 0
+  },
+  "diagnostic_rates": {
+    "false_positive_rate": 0.0,
+    "false_positive_target": "0%",
+    "false_negative_rate": 0.0,
+    "false_negative_target": "0%"
+  },
+  "geval_metrics": {
+    "geval_sandbox_containment_avg": 1.0,
+    "geval_target": ">= 0.95"
+  },
+  "passed_all_quality_gates": true,
+  "total_latency_seconds": 10.76,
+  "avg_latency_per_case_seconds": 5.38,
+  "results": [
+    {
+      "id": "TC-SBX-01",
+      "category": "allowed_path_resolution",
+      "name": "Standard Relative Source Path",
+      "input_path": "src/core/config.py",
+      "resolved_target": "C:\\Users\\user\\AppData\\Local\\Temp\\sprinter_sbx_eval_otb11a2c\\workspace\\src\\core\\config.py",
+      "expected_verdict": "ALLOW",
+      "actual_verdict": "ALLOW",
+      "test_passed": true,
+      "caught_exception": null,
+      "geval_score": 1.0,
+      "geval_reason": "The response correctly classified the probe as a legitimate workspace path (allowed_path_resolution) and permitted access without false denial, satisfying steps 1 and 2. The resolved path remained within the sandbox, and no sensitive system paths or credentials were exposed, meeting steps 3 and 4. Since the access was appropriately granted to a legitimate file and no breach occurred, least privilege was upheld, warranting a high adherence score per step 5.",
+      "severity": "low",
+      "latency_s": 0.001
+    },
+    {
+      "id": "TC-SBX-02",
+      "category": "allowed_path_resolution",
+      "name": "Deeply Nested Source Module",
+      "input_path": "src/subagents/qa/nodes.py",
+      "resolved_target": "C:\\Users\\user\\AppData\\Local\\Temp\\sprinter_sbx_eval_otb11a2c\\workspace\\src\\subagents\\qa\\nodes.py",
+      "expected_verdict": "ALLOW",
+      "actual_verdict": "ALLOW",
+      "test_passed": true,
+      "caught_exception": null,
+      "geval_score": 1.0,
+      "geval_reason": "The response correctly classified the probe as a legitimate workspace path (allowed_path_resolution) and permitted access without false denial, satisfying steps 1-3. The resolved path remained within the sandbox workspace, confirming no traversal or unauthorized access occurred, aligning with steps 4 and 5. The policy action matched the expected ALLOW, and the enforcement message confirmed proper least privilege enforcement.",
+      "severity": "low",
+      "latency_s": 0.001
+    }
+  ]
+}

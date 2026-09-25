@@ -28,6 +28,8 @@ class StructuredOutputNode:
         self.schema = schema
         self.system_prompt = system_prompt
         self.max_repairs = max_repairs
+        self.last_attempts = 0
+        self.last_repaired = False
 
     def invoke(self, user_prompt: str, context: Optional[str] = None) -> T:
         """Invokes the structured runner with repair-loop validation."""
@@ -46,6 +48,8 @@ class StructuredOutputNode:
         while attempts <= self.max_repairs:
             try:
                 result = structured_runner.invoke(messages)
+                self.last_attempts = attempts
+                self.last_repaired = (attempts > 0)
                 if isinstance(result, self.schema):
                     return result
                 if isinstance(result, dict):
@@ -54,6 +58,7 @@ class StructuredOutputNode:
                 return self.schema.model_validate(result)
             except (ValidationError, Exception) as exc:
                 attempts += 1
+                self.last_attempts = attempts
                 if attempts > self.max_repairs:
                     print(f"⚠️ [StructuredOutputNode] Exhausted {self.max_repairs} repair attempts: {exc}")
                     raise exc
