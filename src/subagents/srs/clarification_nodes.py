@@ -23,7 +23,7 @@ Guidelines:
 1. Extract all explicit functional and non-functional requirements.
 2. Identify user roles and external system actors.
 3. Identify known system constraints (tech stack, regulatory, database preferences) and assumptions.
-4. DO NOT hallucinate or invent specific architectural decisions if the user has not mentioned them. Leave ambiguous areas empty or general so the completeness auditor can clarify them with the user.
+4. DO NOT hallucinate or invent specific architectural decisions (such as concrete database engines, cache tools, or hosting platforms) if the user has not mentioned them. Keep system_constraints focused only on what the user stated so the completeness auditor can clarify them with the user.
 5. Provide clear, professional requirement descriptions with testable acceptance criteria where applicable.
 """
 
@@ -37,15 +37,14 @@ IEEE 830 Core Dimensions to Check:
 4. Technical Constraints: Are tech stacks, data storage mechanisms, or regulatory requirements specified?
 
 Operational Rules:
-- If ANY core dimension above is missing or fundamentally ambiguous:
+- If ANY core dimension above is missing, ambiguous, unverified, or if specific technical choices (e.g. database, authentication protocol, cloud infrastructure, or quantifiable latency/throughput metrics) remain unspecified or unconfirmed:
   * List the specific gaps in `missing_areas`.
   * Set `is_complete = False`.
   * In `next_question`, ask exactly ONE crisp, prioritized, highly actionable question targeting the most critical missing area (next_question must NOT be null).
-- If all four core dimensions are already adequately defined and sufficient to build the system as scoped:
+- Only when all four core dimensions are rigorously detailed with concrete technologies, measurable metrics, and clear actor roles should you set:
   * Set `is_complete = True`.
   * Set `missing_areas = []`.
   * Set `next_question = None`.
-  * DO NOT fabricate trivial gaps (such as accessibility standards for a simple CLI or enterprise compliance for a local script) when the stated requirements are already functionally complete and sound.
 """
 
 DELTA_UPDATE_SYSTEM_PROMPT = """You are a Requirements Engineering Lead updating an IEEE 830 RequirementsModel based on a developer's latest clarification answer.
