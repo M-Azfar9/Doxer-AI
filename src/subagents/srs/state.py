@@ -2,9 +2,24 @@
 State schemas and data models for the SRS Subagent (Feature 3).
 """
 
+import json
 import operator
 from typing import TypedDict, Annotated, List, Dict, Any, Optional, Literal
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
+
+
+def _parse_dict_stringified_lists(data: Any) -> Any:
+    """Safely converts stringified JSON arrays into lists if an LLM returns them as strings."""
+    if isinstance(data, dict):
+        for k, v in list(data.items()):
+            if isinstance(v, str):
+                v_clean = v.strip()
+                if v_clean.startswith("[") and v_clean.endswith("]"):
+                    try:
+                        data[k] = json.loads(v_clean)
+                    except Exception:
+                        pass
+    return data
 
 
 # ---------------------------------------------------------------------------
@@ -27,6 +42,11 @@ class FunctionalRequirement(BaseModel):
         default_factory=list,
         description="Testable conditions that satisfy the requirement"
     )
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_lists(cls, data: Any) -> Any:
+        return _parse_dict_stringified_lists(data)
 
 
 class NonFunctionalRequirement(BaseModel):
@@ -55,6 +75,11 @@ class RequirementsModel(BaseModel):
         description="Underlying assumptions and third-party dependencies"
     )
 
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_lists(cls, data: Any) -> Any:
+        return _parse_dict_stringified_lists(data)
+
 
 # ---------------------------------------------------------------------------
 # Completeness Auditor Schema
@@ -73,6 +98,11 @@ class CompletenessCheck(BaseModel):
         default=None, 
         description="A targeted, clear question focusing on the highest-priority missing area. None if is_complete is True."
     )
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_lists(cls, data: Any) -> Any:
+        return _parse_dict_stringified_lists(data)
 
 
 # ---------------------------------------------------------------------------
@@ -104,12 +134,22 @@ class OutlineSection(BaseModel):
         description="Architecture diagram archetype if needs_diagram is True"
     )
 
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_lists(cls, data: Any) -> Any:
+        return _parse_dict_stringified_lists(data)
+
 
 class DocOutline(BaseModel):
     document_title: str
     target_standard: str = "IEEE 830-1998"
     version: str = "1.0.0"
     sections: List[OutlineSection]
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_lists(cls, data: Any) -> Any:
+        return _parse_dict_stringified_lists(data)
 
 
 class SectionDraft(BaseModel):
@@ -140,6 +180,11 @@ class ValidatedDiagram(BaseModel):
 
 class PlannedDiagrams(BaseModel):
     diagrams: List[DiagramSpec]
+
+    @model_validator(mode="before")
+    @classmethod
+    def _coerce_lists(cls, data: Any) -> Any:
+        return _parse_dict_stringified_lists(data)
 
 
 class GenerationState(TypedDict):
