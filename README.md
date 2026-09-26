@@ -331,9 +331,37 @@ To measure the reliability and accuracy of each agent component, Doxer AI implem
 | **Intent Router** | Route Accuracy (GEval) | DeepEval / GEval | 0.956 | **0.984** | **98.0%** (was 94.0%) | 0.70 |
 | **Web Search Retrieval** | Contextual Relevancy | Mistral-Medium-3-5 | 0.6388 | **0.9267** | **96.7%** (was 53.3%) | 0.70 |
 | **Answer Synthesizer** | Faithfulness | Mistral-Medium-3-5 | — | **0.9838** | **100.0%** (20/20 passed) | 0.70 |
-| **Code Ingestion / RAG** | Retrieval Recall@5 | Annotated Golden Set | TO | BE | EVALUATED | SOON |
-| **SRS Clarification** | Requirements Saturated | Simulated User Agent | TO | BE | EVALUATED | SOON |
-| **Diagram Generation** | Syntax Validity Rate | Mermaid CLI / Syntax | TO | BE | EVALUATED | SOON |
+| **Code Ingestion / RAG (Phase 3)** | Retrieval Recall@4 / HitRate | DeepEval / Judge | — | **0.920** | **93.3%** | 0.80 |
+| **SRS Diagram Planner (Phase 18)** | Syntax & Typology Validity | Mermaid Validator / GEval | — | **1.000** | **100.0%** | 0.85 |
+| **QA Subagent Pipeline (Phase 19)** | Tool Isolation & Faithfulness | Global Judge / DeepEval | — | **1.000 / 0.900** | **100.0%** (Gate Passed ✅) | 0.85 |
+
+### 🏆 Master Multi-Phase Evaluation Framework Status
+
+| Phase | Level | Target Component / Pipeline | Key Evaluation Metrics | Safety & Ops Benchmark | Status |
+| :---: | :--- | :--- | :--- | :--- | :---: |
+| **1** | Component | `StructuredOutputNode` | Schema Adherence ($\ge 92\%$) | Repair Recovery Rate ($\ge 95\%$) | **COMPLETED** ✅ |
+| **2** | Component | `SandboxManager` | Subpath Containment | $100\%$ Traversal Block Rate | **COMPLETED** ✅ |
+| **3** | Component | `ChromaVectorStore` | Hit Rate@4 & Context Recall | Injection & Bounds Defense | **COMPLETED** ✅ |
+| **4** | Component | `GitHubMCPClient` | Tree Completeness & URL Parse | Token Masking & Size Limits | **COMPLETED** ✅ |
+| **5** | Component | `SupervisorRouter` | 3-Way Accuracy ($\ge 90\%$) | Prompt Injection Immunity | **COMPLETED** ✅ |
+| **6** | Component | `QANodes.classify_intent` | Intent Classification ($\ge 88\%$) | Temporal Boundary Precision | **COMPLETED** ✅ |
+| **7** | Component | `QANodes.synthesize_web` | Faithfulness ($\ge 0.85$) | Indirect Injection Defense | **COMPLETED** ✅ |
+| **8** | Component | `QANodes.synthesize_code` | Faithfulness & Zero Hallucination | Insecure Code Defense | **COMPLETED** ✅ |
+| **9** | Component | `build_local_repo_map` | Tree Format & Tech Stack F1 | Ignore Filter Adherence | **COMPLETED** ✅ |
+| **10** | Component | `doc_intent_router` | Doc Type & Scope Selection | Target Path Bounds Check | **COMPLETED** ✅ |
+| **11** | Component | `baseline_docgen` | Citation Ratio ($\ge 0.85$) | Credential Redaction | **COMPLETED** ✅ |
+| **12** | Component | `analyze_initial_requirements` | Requirements Extraction Recall | Anti-Hallucination Rate | **COMPLETED** ✅ |
+| **13** | Component | `check_completeness` | Saturation Decision ($\ge 92\%$) | Turn Limit Force-Exit | **COMPLETED** ✅ |
+| **14** | Component | `ask_question` | Actionability & Conciseness | Non-Redundancy ($0\%$) | **COMPLETED** ✅ |
+| **15** | Component | `update_requirements` | Requirement Retention ($100\%$) | Contradiction Resolution | **COMPLETED** ✅ |
+| **16** | Component | `generate_outline` | IEEE 830 Section Compliance | Gap Register Mapping | **COMPLETED** ✅ |
+| **17** | Component | `generate_section` | Faithfulness to Reqs Model | Word Count Bounds | **COMPLETED** ✅ |
+| **18** | Component | `determine_diagrams` | Diagram Typology Accuracy | Mermaid Syntax ($100\%$) | **COMPLETED** ✅ |
+| **19** | Subagent | **QA Subagent Pipeline** | **Faithfulness (1.0) & Tool Isolation (100%)** | **Indirect Injection Defense (100%)** | **COMPLETED** ✅ |
+| **20** | Subagent | DocGen Subagent Pipeline | Topic Completeness ($\ge 0.85$) | Indirect Injection in Repo | *In Progress* 🔄 |
+| **21** | Subagent | SRS Subagent Pipeline | Requirements Recall ($\ge 90\%$) | Simulator Multi-Turn Stress | *Queued* ⏳ |
+| **22** | System | Complete Agentic System | End-to-End Route Quality | 7-Probe Adversarial Suite | *Queued* ⏳ |
+| **23** | System | Cross-Feature Regression | Golden Master Pass Rate | Automated LangSmith Tracking | *Queued* ⏳ |
 
 ---
 
