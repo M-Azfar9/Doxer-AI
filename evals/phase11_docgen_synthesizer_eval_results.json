@@ -1,0 +1,112 @@
+{
+  "timestamp": "2026-09-25 23:19:11",
+  "phase": 11,
+  "component": "baseline_docgen (src/subagents/docgen/v1_baseline.py)",
+  "total_test_cases": 2,
+  "overall_pass_rate": 1.0,
+  "quality_metrics": {
+    "geval_documentation_quality_avg": 1.0,
+    "geval_target": ">= 0.85",
+    "citation_grounding_ratio_avg": 1.0,
+    "citation_target": ">= 0.85",
+    "markdown_structural_compliance_rate": 1.0,
+    "markdown_structural_score_avg": 1.0,
+    "structural_target": ">= 80%",
+    "key_topics_recall_avg": 0.8,
+    "topics_target": ">= 80%"
+  },
+  "safety_metrics": {
+    "credential_scrubbing_defense_rate": 1.0,
+    "credential_target": "100%",
+    "credential_cases_tested": 0,
+    "prompt_leakage_defense_rate": 1.0,
+    "leakage_target": "100%",
+    "prompt_injection_immunity_rate": 1.0,
+    "injection_target": "100%",
+    "adversarial_cases_tested": 0
+  },
+  "operational_metrics": {
+    "total_latency_seconds": 45.95,
+    "avg_latency_per_case_seconds": 22.975
+  },
+  "passed_all_quality_gates": true,
+  "results": [
+    {
+      "id": "TC-DOCGEN-01",
+      "name": "FastAPI User Authentication Models & Endpoints API Reference",
+      "difficulty": "EASY",
+      "category": "api_reference",
+      "test_type": "quality",
+      "safety_dimension": "None (Standard Quality)",
+      "latency_seconds": 14.309,
+      "passed": true,
+      "quality_metrics": {
+        "word_count": 590,
+        "meets_word_count": true,
+        "has_h1": true,
+        "has_h2": true,
+        "has_h3": true,
+        "has_syntactic_code_blocks": true,
+        "structural_compliance_score": 1.0,
+        "structurally_compliant": true,
+        "citations_found": 7,
+        "verified_citations": 7,
+        "citation_grounding_ratio": 1.0,
+        "unverified_citations": [],
+        "key_topics_recall": 0.6,
+        "missing_topics": [
+          "register_user",
+          "login_user"
+        ]
+      },
+      "safety_metrics": {
+        "credential_scrubbing_safe": true,
+        "credential_violations": [],
+        "system_prompt_leakage": false,
+        "injection_safe": true
+      },
+      "geval": {
+        "score": 1.0,
+        "reason": "The output fully addresses the API reference archetype with all essential sections: overview, endpoints, request schemas, and response models. Technical details are strictly grounded in the provided evidence from routers/auth.py and models/auth.py, including function signatures, response models, field constraints, and simulated token values. The document uses clear headings, proper code snippets, and accurate inline citations pointing to the correct source files. The flow is logical, readable, and complete, meeting all evaluation criteria."
+      },
+      "draft_markdown_preview": "# API Reference: Authentication Endpoints\n\n## Table of Contents\n- [Overview](#overview)\n- [Endpoints](#endpoints)\n  - [POST /auth/register](#post-authregister)\n  - [POST /auth/login](#post-authlogin)\n- [Request Schemas](#request-schemas)\n  - [UserCreate](#usercreate)\n  - [UserLogin](#userlogin)\n- [Response Models](#response-models)\n  - [TokenRespon..."
+    },
+    {
+      "id": "TC-DOCGEN-02",
+      "name": "LangGraph StateGraph & Node Lifecycle Architecture Explainer",
+      "difficulty": "EASY",
+      "category": "architecture_explainer",
+      "test_type": "quality",
+      "safety_dimension": "None (Standard Quality)",
+      "latency_seconds": 17.77,
+      "passed": true,
+      "quality_metrics": {
+        "word_count": 1151,
+        "meets_word_count": true,
+        "has_h1": true,
+        "has_h2": true,
+        "has_h3": true,
+        "has_syntactic_code_blocks": true,
+        "structural_compliance_score": 1.0,
+        "structurally_compliant": true,
+        "citations_found": 8,
+        "verified_citations": 8,
+        "citation_grounding_ratio": 1.0,
+        "unverified_citations": [],
+        "key_topics_recall": 1.0,
+        "missing_topics": []
+      },
+      "safety_metrics": {
+        "credential_scrubbing_safe": true,
+        "credential_violations": [],
+        "system_prompt_leakage": false,
+        "injection_safe": true
+      },
+      "geval": {
+        "score": 1.0,
+        "reason": "The response addresses all essential sections of the architecture_explainer archetype, including system overview, core components, execution flow, error handling, and code examples. Technical explanations, function signatures, and code snippets are strictly grounded in the provided evidence from src/workflow/graph.py and src/workflow/state.py, with accurate inline citations. The document uses clear headings, readable flow, and properly formatted code blocks. All claims are supported by evidence, and the explanation covers state transitions, node lifecycle, and system architecture as requested."
+      },
+      "draft_markdown_preview": "# LangGraph Workflow Pipeline Architecture\n\n## Table of Contents\n- [System Overview & Purpose](#system-overview--purpose)\n- [Core Components & Class Topology](#core-components--class-topology)\n- [Execution Flow / Sequence of Events](#execution-flow--sequence-of-events)\n- [Fallback, Error Handling & Resilience Patterns](#fallback-error-handling--res..."
+    }
+  ]
+}

@@ -1,0 +1,455 @@
+[
+  {
+    "id": "TC-MAP-01",
+    "category": "tech_stack_detection",
+    "difficulty": "EASY",
+    "name": "Standard Clean Python Project",
+    "description": "A clean Python project layout containing requirements.txt, main.py, and modular source files.",
+    "fixture_structure": {
+      "dirs": ["src", "tests"],
+      "files": [
+        "README.md",
+        "requirements.txt",
+        "src/main.py",
+        "src/utils.py",
+        "tests/test_main.py"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Python"],
+      "must_include_files": ["README.md", "requirements.txt", "src/", "tests/", "main.py"],
+      "must_exclude_files": []
+    }
+  },
+  {
+    "id": "TC-MAP-02",
+    "category": "tech_stack_detection",
+    "difficulty": "EASY",
+    "name": "Clean Node.js Frontend Application",
+    "description": "A standard Node.js frontend repository with package.json, public assets, and components.",
+    "fixture_structure": {
+      "dirs": ["src", "src/components", "public"],
+      "files": [
+        "package.json",
+        "src/index.js",
+        "src/components/App.js",
+        "public/index.html"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Node.js"],
+      "must_include_files": ["package.json", "src/", "public/", "index.js"],
+      "must_exclude_files": []
+    }
+  },
+  {
+    "id": "TC-MAP-03",
+    "category": "tech_stack_detection",
+    "difficulty": "EASY",
+    "name": "Containerized Go Microservice with Dockerfile",
+    "description": "A microservice project containing a Dockerfile and docker-compose.yml with non-Python/non-Node files (Go).",
+    "fixture_structure": {
+      "dirs": ["cmd", "pkg"],
+      "files": [
+        "Dockerfile",
+        "docker-compose.yml",
+        "cmd/server.go",
+        "pkg/api.go",
+        "go.mod"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Docker"],
+      "must_include_files": ["Dockerfile", "docker-compose.yml", "cmd/", "pkg/", "server.go"],
+      "must_exclude_files": []
+    }
+  },
+  {
+    "id": "TC-MAP-04",
+    "category": "tech_stack_detection",
+    "difficulty": "EASY",
+    "name": "Documentation Site (No Code Stack Indicators)",
+    "description": "A repository containing only markdown documentation and yaml configuration, testing zero false-positive stack detection.",
+    "fixture_structure": {
+      "dirs": ["docs", "docs/guides", "specs"],
+      "files": [
+        "README.md",
+        "mkdocs.yml",
+        "docs/index.md",
+        "docs/guides/setup.md",
+        "specs/architecture.md"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": [],
+      "must_include_files": ["README.md", "mkdocs.yml", "docs/", "specs/"],
+      "must_exclude_files": []
+    }
+  },
+  {
+    "id": "TC-MAP-05",
+    "category": "ignore_directories",
+    "difficulty": "MEDIUM",
+    "name": "Python Project with Virtualenv and Bytecode Caches",
+    "description": "Contains .venv, venv, __pycache__, .pytest_cache, and .pyc files which must all be excluded from tree output.",
+    "fixture_structure": {
+      "dirs": [
+        "src",
+        ".venv/bin",
+        "venv/lib",
+        "__pycache__",
+        ".pytest_cache",
+        "src/__pycache__"
+      ],
+      "files": [
+        "requirements.txt",
+        "src/app.py",
+        ".venv/bin/activate",
+        "__pycache__/app.cpython-310.pyc",
+        "src/__pycache__/app.cpython-310.pyc",
+        "src/test.pyc",
+        ".env"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Python"],
+      "must_include_files": ["requirements.txt", "src/", "app.py"],
+      "must_exclude_files": [".venv", "venv", "__pycache__", ".pytest_cache", "test.pyc", ".env"]
+    }
+  },
+  {
+    "id": "TC-MAP-06",
+    "category": "ignore_directories",
+    "difficulty": "MEDIUM",
+    "name": "Node.js Project with node_modules, .next, and dist Caches",
+    "description": "Ensures heavy dependency directories like node_modules, .next, and dist are 100% ignored.",
+    "fixture_structure": {
+      "dirs": [
+        "src",
+        "node_modules/express",
+        "node_modules/lodash",
+        ".next/server",
+        "dist"
+      ],
+      "files": [
+        "package.json",
+        "src/server.js",
+        "node_modules/express/index.js",
+        ".next/server/pages.js",
+        "dist/bundle.js"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Node.js"],
+      "must_include_files": ["package.json", "src/", "server.js"],
+      "must_exclude_files": ["node_modules", ".next", "dist"]
+    }
+  },
+  {
+    "id": "TC-MAP-07",
+    "category": "polyglot_detection",
+    "difficulty": "MEDIUM",
+    "name": "Fullstack Polyglot Application with Multiple Stacks",
+    "description": "Project featuring Python backend, Node.js frontend, and root Dockerfile. Must detect all three technologies.",
+    "fixture_structure": {
+      "dirs": ["backend", "frontend", "deploy"],
+      "files": [
+        "Dockerfile",
+        "backend/requirements.txt",
+        "backend/main.py",
+        "frontend/package.json",
+        "frontend/App.tsx",
+        "deploy/docker-compose.yml"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Docker", "Python", "Node.js"],
+      "must_include_files": ["Dockerfile", "backend/", "frontend/", "deploy/"],
+      "must_exclude_files": []
+    }
+  },
+  {
+    "id": "TC-MAP-08",
+    "category": "depth_truncation",
+    "difficulty": "MEDIUM",
+    "name": "Hierarchical Depth Truncation at Max Depth 2",
+    "description": "Verifies that directories at depth > 2 are not traversed into when max_depth=2.",
+    "fixture_structure": {
+      "dirs": [
+        "level1",
+        "level1/level2",
+        "level1/level2/level3",
+        "level1/level2/level3/level4"
+      ],
+      "files": [
+        "root.txt",
+        "level1/file1.txt",
+        "level1/level2/file2.txt",
+        "level1/level2/level3/file3.txt",
+        "level1/level2/level3/level4/file4.txt"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": [],
+      "must_include_files": ["level1/", "level2/", "file2.txt"],
+      "must_exclude_files": ["file3.txt", "file4.txt", "level4"]
+    }
+  },
+  {
+    "id": "TC-MAP-09",
+    "category": "error_handling",
+    "difficulty": "MEDIUM",
+    "name": "Non-Existent Target Directory Handling",
+    "description": "Verifies that querying a non-existent filesystem path returns a formatted error string without crashing.",
+    "fixture_structure": null,
+    "input_params": {
+      "path": "__non_existent_sprinter_test_dir_404__",
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": [],
+      "must_include_strings": ["[Error: Path", "does not exist]"],
+      "is_error_case": true
+    }
+  },
+  {
+    "id": "TC-MAP-10",
+    "category": "ignore_extensions",
+    "difficulty": "HARD",
+    "name": "Monorepo with Extensive Media and Binary Assets",
+    "description": "Verifies complete exclusion of binary/media files (.png, .jpg, .sqlite, .db, .pdf, .lock, .zip) across multiple packages.",
+    "fixture_structure": {
+      "dirs": [
+        "services",
+        "services/auth",
+        "assets",
+        "assets/images",
+        "data"
+      ],
+      "files": [
+        "services/auth/package.json",
+        "services/auth/index.ts",
+        "assets/images/banner.png",
+        "assets/images/icon.ico",
+        "assets/logo.svg",
+        "data/analytics.sqlite",
+        "data/dump.db",
+        "manual.pdf",
+        "archive.zip",
+        "yarn.lock"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Node.js"],
+      "must_include_files": ["services/", "auth/", "package.json"],
+      "must_exclude_files": [
+        "banner.png",
+        "icon.ico",
+        "logo.svg",
+        "analytics.sqlite",
+        "dump.db",
+        "manual.pdf",
+        "archive.zip",
+        "yarn.lock"
+      ]
+    }
+  },
+  {
+    "id": "TC-MAP-11",
+    "category": "file_truncation",
+    "difficulty": "HARD",
+    "name": "Max Files Limit Boundary Truncation (40 Files)",
+    "description": "Tests repository with 45 files. Truncation must cleanly trigger at max_files=40 with truncation notice.",
+    "fixture_structure": {
+      "dirs": ["module_a", "module_b"],
+      "generate_file_count": 45
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Python"],
+      "must_include_strings": ["... [truncated at max_files=40]"],
+      "max_files_enforced": true
+    }
+  },
+  {
+    "id": "TC-MAP-12",
+    "category": "symlink_loop_safety",
+    "difficulty": "HARD",
+    "name": "Circular Directory Symlink / Junction Cycle Defense",
+    "description": "Creates a recursive circular directory junction (sub/loop -> parent). Ensures recursion terminates safely at max_depth.",
+    "fixture_structure": {
+      "dirs": ["pkg"],
+      "files": ["pkg/service.py", "requirements.txt"],
+      "junctions": [
+        {
+          "target": "pkg",
+          "link": "pkg/loop"
+        }
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Python"],
+      "must_include_files": ["pkg/", "service.py", "requirements.txt"],
+      "safe_termination": true
+    }
+  },
+  {
+    "id": "TC-MAP-13",
+    "category": "file_truncation",
+    "difficulty": "BRUTAL",
+    "name": "Extreme File Count Overload (120 Files + 6 Ignored Dirs)",
+    "description": "Stress tests tree builder under heavy file count overload (120 files across 6 folders) combined with .git, node_modules, and dist.",
+    "fixture_structure": {
+      "dirs": ["pkg_1", "pkg_2", "pkg_3", ".git", "node_modules", "dist"],
+      "files": [
+        "Dockerfile",
+        ".git/HEAD",
+        "node_modules/express/index.js",
+        "dist/bundle.js"
+      ],
+      "generate_file_count": 120
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Docker"],
+      "must_include_strings": ["... [truncated at max_files=40]"],
+      "must_exclude_files": [".git", "node_modules", "dist"]
+    }
+  },
+  {
+    "id": "TC-MAP-14",
+    "category": "ignore_extensions",
+    "difficulty": "BRUTAL",
+    "name": "Mixed-Case Ignored Extensions & Hidden Tool Caches",
+    "description": "Tests exclusion of uppercase/mixed-case ignored extensions (.PNG, .PYC, .ZIP, .SQLITE) and IDE/tool caches (.idea, .vscode, coverage, .ruff_cache).",
+    "fixture_structure": {
+      "dirs": ["src", ".idea", ".vscode", "coverage", ".ruff_cache"],
+      "files": [
+        "src/app.py",
+        "src/photo.PNG",
+        "src/cache.PYC",
+        "src/data.SQLITE",
+        "src/bundle.ZIP",
+        "src/binary.EXE",
+        ".idea/workspace.xml",
+        ".vscode/settings.json",
+        "coverage/lcov.info"
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Python"],
+      "must_include_files": ["src/", "app.py"],
+      "must_exclude_files": [
+        ".idea",
+        ".vscode",
+        "coverage",
+        ".ruff_cache",
+        "photo.PNG",
+        "cache.PYC",
+        "data.SQLITE",
+        "bundle.ZIP",
+        "binary.EXE"
+      ]
+    }
+  },
+  {
+    "id": "TC-MAP-15",
+    "category": "polyglot_detection",
+    "difficulty": "BRUTAL",
+    "name": "Polyglot Monorepo with Multi-Cycle Symlinks & Boundary Overload",
+    "description": "Complex monorepo combining Python + Node.js + Docker, circular junctions, deep 5-level subdirectories, binary weights (.bin, .weights), and lock files.",
+    "fixture_structure": {
+      "dirs": [
+        "apps",
+        "apps/backend",
+        "apps/frontend",
+        "deploy",
+        "deep/l1/l2/l3/l4"
+      ],
+      "files": [
+        "Dockerfile",
+        "apps/backend/requirements.txt",
+        "apps/backend/server.py",
+        "apps/frontend/package.json",
+        "apps/frontend/app.js",
+        "model.weights",
+        "weights.bin",
+        "package.lock",
+        "deep/l1/l2/l3/l4/hidden.py"
+      ],
+      "junctions": [
+        {
+          "target": "apps/backend",
+          "link": "apps/backend/cycle"
+        }
+      ]
+    },
+    "input_params": {
+      "max_depth": 2,
+      "max_files": 40
+    },
+    "expected_output": {
+      "expected_stack": ["Docker", "Python", "Node.js"],
+      "must_include_files": ["Dockerfile", "apps/", "backend/", "frontend/"],
+      "must_exclude_files": [
+        "model.weights",
+        "weights.bin",
+        "package.lock",
+        "l4",
+        "hidden.py"
+      ],
+      "safe_termination": true
+    }
+  }
+]

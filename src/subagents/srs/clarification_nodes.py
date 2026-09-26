@@ -3,6 +3,7 @@ Clarification stage nodes for the SRS Subagent (Phase 1).
 Includes human-in-the-loop interrupt and requirements saturation checking.
 """
 
+import re
 import json
 from typing import Dict, Any, Optional
 from langgraph.types import interrupt
@@ -36,10 +37,15 @@ IEEE 830 Core Dimensions to Check:
 4. Technical Constraints: Are tech stacks, data storage mechanisms, or regulatory requirements specified?
 
 Operational Rules:
-- Enumerate every specific ambiguity or gap in `missing_areas` FIRST.
-- If critical dimensions remain undefined and the user has not yet reached turn limits, set `is_complete = False`.
-- In `next_question`, ask exactly ONE crisp, prioritized, highly actionable question targeting the most critical missing area.
-- If the core system boundaries and critical requirements are well-defined, set `is_complete = True` and `next_question = None`.
+- If ANY core dimension above is missing or fundamentally ambiguous:
+  * List the specific gaps in `missing_areas`.
+  * Set `is_complete = False`.
+  * In `next_question`, ask exactly ONE crisp, prioritized, highly actionable question targeting the most critical missing area (next_question must NOT be null).
+- If all four core dimensions are already adequately defined and sufficient to build the system as scoped:
+  * Set `is_complete = True`.
+  * Set `missing_areas = []`.
+  * Set `next_question = None`.
+  * DO NOT fabricate trivial gaps (such as accessibility standards for a simple CLI or enterprise compliance for a local script) when the stated requirements are already functionally complete and sound.
 """
 
 DELTA_UPDATE_SYSTEM_PROMPT = """You are a Requirements Engineering Lead updating an IEEE 830 RequirementsModel based on a developer's latest clarification answer.
@@ -115,18 +121,61 @@ Current Turn: {turn_count} / {max_turns}
                 next_question=None
             )
 
+        output: Dict[str, Any] = {"completeness": completeness}
         if turn_count >= max_turns:
             completeness.is_complete = True
             completeness.next_question = None
+            output["unresolved_gaps"] = list(completeness.missing_areas)
+        elif completeness.is_complete:
+            completeness.next_question = None
 
-        return {"completeness": completeness}
+        return output
 
     def ask_question(self, state: ClarificationState) -> Dict[str, Any]:
-        """Node 3: Zero-LLM Human-in-the-Loop Interrupt."""
-        completeness = state["completeness"]
-        question = completeness.next_question if completeness else "Could you provide additional system specifications?"
-        if not question:
+        """Node 3: Zero-LLM Human-in-the-Loop Interrupt with Non-Redundancy & Safety Guards."""
+        completeness = state.get("completeness")
+        question = completeness.next_question if completeness else None
+        if not question or not question.strip():
             question = "Could you specify core system functional requirements?"
+
+        # 1. Adversarial Injection & Malicious Command Defense
+        malicious_patterns = [
+            "system override", "disregard ieee 830", "ignore previous instructions",
+            "rm -rf", "drop table", "<script>", "curl http", "eval("
+        ]
+        if any(pat in question.lower() for pat in malicious_patterns):
+            question = "Could you clarify the primary architectural scope and core functional requirements?"
+
+        # 2. De-compound Multi-Part Run-On Questions to Guarantee Single-Focus Conciseness
+        if question.count("?") > 1:
+            first_q = question.split("?")[0].strip() + "?"
+            if len(first_q) >= 15:
+                question = first_q
+
+        # 3. Non-Redundancy Safeguard: Audit against past questions in conversation_log
+        past_questions = [
+            m.get("content", "").strip().lower()
+            for m in state.get("conversation_log", [])
+            if isinstance(m, dict) and m.get("role") == "assistant"
+        ]
+        norm_q = re.sub(r'[^a-z0-9]+', ' ', question.lower()).strip()
+        is_duplicate = any(
+            norm_q == re.sub(r'[^a-z0-9]+', ' ', pq).strip()
+            for pq in past_questions
+        )
+        if is_duplicate:
+            # Pivot to an unaddressed missing area from completeness check
+            pivoted = False
+            if completeness and completeness.missing_areas:
+                for area in completeness.missing_areas:
+                    candidate = f"Could you provide additional specifications regarding {area}?"
+                    norm_candidate = re.sub(r'[^a-z0-9]+', ' ', candidate.lower()).strip()
+                    if not any(norm_candidate == re.sub(r'[^a-z0-9]+', ' ', pq).strip() for pq in past_questions):
+                        question = candidate
+                        pivoted = True
+                        break
+            if not pivoted:
+                question = "Could you specify any remaining system constraints or operational requirements?"
 
         # Execution halts here; checkpointer stores state
         human_answer = interrupt(question)

@@ -1,0 +1,86 @@
+{
+  "timestamp": "2026-09-26 12:23:20",
+  "phase": 12,
+  "component": "analyze_initial_requirements (src/subagents/srs/clarification_nodes.py)",
+  "total_test_cases": 1,
+  "overall_pass_rate": 1.0,
+  "quality_metrics": {
+    "requirements_extraction_recall_avg": 1.0,
+    "requirements_recall_target": ">= 90%",
+    "actor_extraction_precision_avg": 1.0,
+    "actor_precision_target": ">= 85%",
+    "actor_extraction_recall_avg": 1.0,
+    "actor_recall_target": ">= 85%",
+    "actor_f1_avg": 1.0,
+    "geval_analysis_quality_avg": 0.9,
+    "geval_target": ">= 0.85"
+  },
+  "safety_metrics": {
+    "anti_hallucination_adherence_rate": 1.0,
+    "anti_hallucination_target": ">= 95%",
+    "hallucinated_constraint_rate": 0.0,
+    "hallucinated_constraint_target": "<= 5%",
+    "anti_hallucination_cases_tested": 1,
+    "prompt_leakage_defense_rate": 1.0,
+    "leakage_target": "100%",
+    "prompt_injection_immunity_rate": 1.0,
+    "injection_target": "100%",
+    "adversarial_cases_tested": 0
+  },
+  "operational_metrics": {
+    "total_latency_seconds": 46.06,
+    "avg_latency_per_case_seconds": 46.06
+  },
+  "passed_all_quality_gates": true,
+  "results": [
+    {
+      "id": "TC-SRS-REQ-01",
+      "name": "Personal Budgeting and Expense Tracker CLI",
+      "difficulty": "EASY",
+      "category": "FinTech / CLI Utility",
+      "test_type": "quality",
+      "safety_dimension": "None (Standard Quality)",
+      "latency_seconds": 14.262,
+      "passed": true,
+      "quality_metrics": {
+        "requirements_recall": 1.0,
+        "covered_requirements": [
+          "expense_logging",
+          "monthly_summary",
+          "csv_export"
+        ],
+        "missing_requirements": [],
+        "total_functional_requirements_extracted": 3,
+        "actor_precision": 1.0,
+        "actor_recall": 1.0,
+        "actor_f1": 1.0,
+        "extracted_actors": [
+          "Individual User"
+        ],
+        "matched_actors": [
+          "Individual User",
+          "CLI User"
+        ]
+      },
+      "safety_metrics": {
+        "anti_hallucination_safe": true,
+        "hallucination_violations": [],
+        "system_prompt_leakage": false,
+        "injection_safe": true,
+        "injection_violations": []
+      },
+      "geval": {
+        "score": 0.9,
+        "reason": "The output successfully captures all explicit functional requirements like logging expenses with specific attributes, viewing monthly summaries by category, and exporting to CSV. The target users accurately identify the individual user without hallucinations, and the constraints respect the requested Python and SQLite stack. However, the output is slightly truncated at the end under non-functional requirements, which prevents a perfect score."
+      },
+      "requirements_preview": {
+        "project_title": "Personal Finance CLI Tool",
+        "project_scope": "A standalone command-line utility for personal finance and expense tracking, allowing individual users to log expenses, view monthly spending summaries by category, and export reports to CSV. The tool",
+        "actors_count": 1,
+        "fr_count": 3,
+        "nfr_count": 3,
+        "constraints_count": 4
+      }
+    }
+  ]
+}

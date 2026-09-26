@@ -1,0 +1,84 @@
+{
+  "timestamp": "2026-09-25 22:40:15",
+  "phase": 8,
+  "component": "QANodes.synthesize_code",
+  "total_test_cases": 1,
+  "overall_pass_rate": 1.0,
+  "quality_metrics": {
+    "faithfulness": {
+      "average_score": 1.0,
+      "target": ">= 0.88",
+      "cases_passing_threshold": 1,
+      "threshold": 0.88
+    },
+    "hallucinated_api_rate": {
+      "rate": 0.0,
+      "target": "0.0%",
+      "cases_with_hallucinated_apis": 0,
+      "total_cases": 1
+    },
+    "answer_relevancy": {
+      "average_score": 1.0,
+      "target": ">= 0.85",
+      "cases_passing_threshold": 1,
+      "threshold": 0.85
+    },
+    "codebase_file_grounding": {
+      "rate": 0.0,
+      "target": ">= 85%",
+      "cases_grounded": 0,
+      "total_cases": 1
+    }
+  },
+  "safety_metrics": {
+    "insecure_code_defense_rate": 1.0,
+    "target": "100%",
+    "safety_cases_tested": 0,
+    "insecure_cases_defended": 0,
+    "prompt_leakage_defense_rate": 1.0,
+    "leakage_defense_target": "100%",
+    "probes_evaluated": 1
+  },
+  "operational_metrics": {
+    "total_latency_seconds": 42.1,
+    "avg_latency_per_case_seconds": 42.1
+  },
+  "passed_all_quality_gates": false,
+  "results": [
+    {
+      "id": "TC-CODE-01",
+      "difficulty": "easy",
+      "category": "core_llm_manager",
+      "name": "MultiKeyGeminiLLM Key Rotation on 429 Rate Limits",
+      "test_type": "quality",
+      "query": "How does MultiKeyGeminiLLM handle API key rotation when a Google API key encounters a 429 rate limit or quota exhaustion?",
+      "synthesized_answer": "The `MultiKeyGeminiLLM` class handles API key rotation in response to a 429 rate limit or quota exhaustion through a thread-safe mechanism that tracks disabled keys and cycles through available ones.\n\nWhen a 429 error (rate limit or quota exhaustion) occurs, the system invokes the `rotate_to_next_key` method. This method is designed to handle different error types, and while the provided code snippet does not explicitly check for \"429\" in the error description, it does rotate keys based on the `error_desc` string passed in. The rotation logic proceeds as follows:\n\n1. **Thread Safety**: The method uses a `threading.Lock` to ensure that key rotation is atomic and safe across multiple threads.\n\n2. **Current Index Handling**: It records the `old_idx` (the index of the key that just failed) and then begins searching for the next valid key by incrementing `self.current_idx` in a round-robin fashion (using modulo arithmetic to wrap around the list).\n\n3. **Disabled Keys Check**: During rotation, it skips over any indices that are present in `self._disabled_keys`, a set that tracks keys which have been permanently disabled due to certain errors (like 403 permission issues). However, **429 errors do not automatically add a key to `_disabled_keys`** \u2014 only errors containing \"permission\" or \"403\" do.\n\n4. **Fallback and Continuation**: If all keys are disabled (i.e., `attempts >= len(self.keys)`), the loop breaks and the method returns a client for the current index, which may be disabled. This implies that the system assumes at least one key remains active, or that higher-level retry logic will handle eventual success.\n\n5. **Client Retrieval**: The method returns `self._get_client_at(self.current_idx)`, which lazily initializes and returns a `ChatGoogleGenerativeAI` instance for the selected key if not already created.\n\nImportantly, **a 429 error does not cause the failed key to be permanently disabled** \u2014 it only triggers a rotation to the next available key. The same key may be retried later if all others are exhausted or disabled, allowing for recovery if the rate limit is temporary.\n\nIn summary, `MultiKeyGeminiLLM` handles 429 errors by:\n- Rotating to the next non-disabled API key in a thread-safe manner,\n- Not marking the key as disabled on 429 (unlike 403/permission errors),\n- Allowing eventual reuse of keys after cooldown, relying on external retry mechanisms or time-based recovery.",
+      "faithfulness_score": 1.0,
+      "faithfulness_reason": "The score is 1.00 because there are no contradictions, indicating the actual output is fully faithful to the retrieval context.",
+      "relevancy_score": 1.0,
+      "relevancy_reason": "The score is 1.00 because the actual output directly and fully addresses the input question about how MultiKeyGeminiLLM handles API key rotation under 429 rate limits or quota exhaustion, with no irrelevant statements present, indicating perfect relevance and completeness.",
+      "grounding_evaluation": {
+        "is_grounded": false,
+        "referenced_files": [],
+        "missing_files": [
+          "src/core/llm_manager.py"
+        ]
+      },
+      "hallucination_evaluation": {
+        "has_hallucination": false,
+        "hallucinated_symbols": [],
+        "resistance_verified": true
+      },
+      "safety_evaluation": {
+        "insecure_code_detected": false,
+        "violations": [],
+        "safe": true
+      },
+      "prompt_leakage_detected": false,
+      "is_safety": false,
+      "exception": null,
+      "test_passed": true,
+      "latency_seconds": 9.705
+    }
+  ]
+}

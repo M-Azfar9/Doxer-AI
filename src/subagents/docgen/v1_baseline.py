@@ -5,6 +5,7 @@ Topology: repo_map_generator -> doc_intent_router -> direct_tool_fetch -> baseli
 
 import os
 import sys
+import re
 from pathlib import Path
 from typing import Tuple, List, Dict, Any, Optional
 
@@ -115,6 +116,7 @@ Your task is to write high-density, authoritative, production-grade technical do
   * Core Components & Class Topology
   * Execution Flow / Sequence of Events
   * Fallback, Error Handling & Resilience Patterns
+  * Concrete Code Snippets / Implementation Examples
 - If archetype is "api_reference":
   * Interface/Class Declarations & Signatures
   * Method Parameters, Types, Return Values
@@ -128,11 +130,39 @@ Your task is to write high-density, authoritative, production-grade technical do
 
 ### Rigorous Grounding Rules:
 1. Ground all claims in the provided evidence. DO NOT invent classes, methods, endpoints, or arguments that do not appear in the evidence.
-2. Embed inline citation keys:
+2. Embed inline citation keys (MANDATORY throughout all sections): Ground your explanations with inline citations indicating which source file or web reference supports each section, component, or claim:
    - For local or github files: `[^file:path/to/file]`
    - For web search references: `[^web:DomainOrTitle]`
-3. Output clean, complete Markdown with a title, table of contents, structured headings, and code blocks.
+3. Output clean, complete Markdown with a title, table of contents, structured headings (H1, H2, H3), and syntactic code blocks with language tags (e.g. ```python, ```bash).
+4. Credential & Secret Scrubbing: NEVER expose real passwords, API keys, private tokens, or secrets found in the evidence or source files. Redact them using safe placeholders like `***REDACTED***` or `<REDACTED_API_KEY>`.
 """
+
+
+def scrub_sensitive_credentials(text: str) -> str:
+    """Scrubs common credentials and secrets (API keys, tokens, passwords) from documentation output."""
+    if not text:
+        return text
+    # 1. API Keys (OpenAI, Gemini, Anthropic, generic sk-...)
+    text = re.sub(r'sk-[a-zA-Z0-9_\-]{20,}', '***REDACTED_API_KEY***', text)
+    # 2. GitHub Tokens (ghp_..., github_pat_...)
+    text = re.sub(r'(?:ghp_[a-zA-Z0-9]{30,}|github_pat_[a-zA-Z0-9_]{40,})', '***REDACTED_GITHUB_TOKEN***', text)
+    # 3. AWS Access Key IDs
+    text = re.sub(r'AKIA[0-9A-Z]{16}', '***REDACTED_AWS_KEY***', text)
+    # 4. Bearer tokens
+    text = re.sub(r'(Bearer\s+)[a-zA-Z0-9_\-\.]{20,}', r'\1***REDACTED_TOKEN***', text)
+    # 5. Generic passwords and secret assignments in key-value pairs
+    text = re.sub(
+        r'(?i)\b(password|secret|api[_-]?key|access[_-]?token|auth[_-]?token|client[_-]?secret)\b(\s*[:=]\s*["\'])([^"\']{6,})(["\'])',
+        r'\1\2***REDACTED***\4',
+        text
+    )
+    # 6. RSA/EC Private Keys
+    text = re.sub(
+        r'-----BEGIN [A-Z ]*PRIVATE KEY-----[\s\S]*?-----END [A-Z ]*PRIVATE KEY-----',
+        '***REDACTED_PRIVATE_KEY***',
+        text
+    )
+    return text
 
 
 class DocGenV1BaselinePipeline:
@@ -242,7 +272,12 @@ class DocGenV1BaselinePipeline:
     def baseline_docgen_node(self, state: DocGenState) -> Dict[str, Any]:
         """Node 4: Baseline Synthesis without critique loops."""
         plan = state.get("intent_plan")
-        doc_type = plan.doc_type if plan else "architecture_explainer"
+        if hasattr(plan, "doc_type"):
+            doc_type = plan.doc_type
+        elif isinstance(plan, dict):
+            doc_type = plan.get("doc_type", "architecture_explainer")
+        else:
+            doc_type = "architecture_explainer"
         evidence = state.get("retrieved_evidence", {})
 
         # Assemble Evidence Block
@@ -277,5 +312,6 @@ class DocGenV1BaselinePipeline:
         ]
         response = self.services.llm.invoke(messages)
         draft = getattr(response, "content", str(response))
+        draft = scrub_sensitive_credentials(draft)
 
         return {"draft_markdown": draft}

@@ -1,0 +1,97 @@
+{
+  "timestamp": "2026-09-25 22:50:35",
+  "phase": 9,
+  "component": "build_local_repo_map (src/subagents/docgen/v1_baseline.py)",
+  "total_test_cases": 1,
+  "overall_pass_rate": 1.0,
+  "quality_metrics": {
+    "tree_formatting_accuracy": {
+      "rate": 1.0,
+      "target": "100%",
+      "cases_passing": 1,
+      "total_cases": 1
+    },
+    "ignore_filter_adherence": {
+      "rate": 1.0,
+      "target": "100%",
+      "cases_passing": 1,
+      "total_cases": 1
+    },
+    "tech_stack_detection": {
+      "f1_score": 1.0,
+      "target": "1.000 (100%)",
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "depth_and_file_truncation": {
+      "rate": 1.0,
+      "target": "100%",
+      "cases_passing": 1,
+      "total_cases": 1
+    }
+  },
+  "safety_metrics": {
+    "symlink_infinite_loop_protection": {
+      "rate": 1.0,
+      "target": "100%",
+      "cases_tested": 0,
+      "cases_defended": 0
+    }
+  },
+  "geval_metrics": {
+    "geval_repo_map_fidelity_avg": 1.0,
+    "target": ">= 0.90",
+    "threshold": 0.9
+  },
+  "operational_metrics": {
+    "total_latency_seconds": 5.46,
+    "avg_latency_per_case_seconds": 5.46
+  },
+  "passed_all_quality_gates": true,
+  "results": [
+    {
+      "test_id": "TC-MAP-01",
+      "category": "tech_stack_detection",
+      "difficulty": "EASY",
+      "name": "Standard Clean Python Project",
+      "test_passed": true,
+      "latency_seconds": 0.016,
+      "generated_repo_map": "sprinter_map_eval_3nq8p46s/\n\u251c\u2500\u2500 src/\n\u2502   \u251c\u2500\u2500 main.py\n\u2502   \u2514\u2500\u2500 utils.py\n\u251c\u2500\u2500 tests/\n\u2502   \u2514\u2500\u2500 test_main.py\n\u251c\u2500\u2500 README.md\n\u2514\u2500\u2500 requirements.txt",
+      "detected_tech_stack": [
+        "Python"
+      ],
+      "expected_tech_stack": [
+        "Python"
+      ],
+      "tree_formatting": {
+        "valid_formatting": true,
+        "violations": []
+      },
+      "filter_adherence": {
+        "filter_adherence": true,
+        "leaked_items": []
+      },
+      "tech_stack_f1": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "exact_match": true,
+        "detected": [
+          "Python"
+        ],
+        "expected": [
+          "Python"
+        ]
+      },
+      "truncation": {
+        "truncation_and_inclusion_passed": true,
+        "missing_inclusions": [],
+        "max_files_enforced": true,
+        "max_depth_respected": true
+      },
+      "loop_safety": null,
+      "geval_score": 1.0,
+      "geval_reason": "The output correctly formats the directory tree with proper root notation, indentation, and connectors (\u251c\u2500\u2500, \u2514\u2500\u2500). It includes all expected files and directories (README.md, requirements.txt, src/, tests/, main.py) and excludes ignored or non-code items. The detected tech stack ['Python'] accurately reflects the presence of requirements.txt and .py files without hallucination. Depth and file count are within limits (max depth 2, under 40 files). All evaluation criteria are satisfied."
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "timestamp": "2026-09-25 22:28:12",
+  "phase": 7,
+  "component": "QANodes.synthesize_web",
+  "total_test_cases": 2,
+  "overall_pass_rate": 1.0,
+  "quality_metrics": {
+    "faithfulness": {
+      "average_score": 1.0,
+      "target": ">= 0.85",
+      "cases_passing_threshold": 2,
+      "threshold": 0.85
+    },
+    "answer_relevancy": {
+      "average_score": 1.0,
+      "target": ">= 0.85",
+      "cases_passing_threshold": 2,
+      "threshold": 0.85
+    },
+    "citation_inclusion": {
+      "rate": 1.0,
+      "target": "100%",
+      "cases_with_citations": 2,
+      "total_cases": 2
+    }
+  },
+  "safety_metrics": {
+    "indirect_injection_defense_rate": 1.0,
+    "target": "100%",
+    "adversarial_cases_tested": 0,
+    "injections_resisted": 0,
+    "prompt_leakage_defense_rate": 1.0,
+    "leakage_defense_target": "100%",
+    "probes_evaluated": 2
+  },
+  "operational_metrics": {
+    "total_latency_seconds": 39.93,
+    "avg_latency_per_case_seconds": 19.965
+  },
+  "passed_all_quality_gates": true,
+  "results": [
+    {
+      "id": "TC-SYNTH-01",
+      "difficulty": "easy",
+      "category": "python_runtime",
+      "name": "Python 3.13 Release and GIL/JIT Features",
+      "test_type": "quality",
+      "query": "When was Python 3.13 released and what are its headline features regarding the GIL and JIT compiler?",
+      "synthesized_answer": "Python 3.13 was officially released on **October 7, 2024**\u3010https://docs.python.org/3/whatsnew/3.13.html\u3011.\n\nIts headline features regarding the GIL and JIT compiler are:\n\n- **GIL**: Python 3.13 introduces an **experimental free-threaded build mode** (via PEP 703) that **disables the Global Interpreter Lock (GIL)**, enabling true multi-threaded CPU parallel execution for the first time in CPython\u3010https://docs.python.org/3/whatsnew/3.13.html\u3011\u3010https://realpython.com/python313-features/\u3011.\n- **JIT Compiler**: It includes a **preliminary basic JIT compiler** (via PEP 744), specifically an experimental **Copy-and-Patch JIT compiler**, which translates bytecode into machine code to improve performance\u3010https://docs.python.org/3/whatsnew/3.13.html\u3011\u3010https://realpython.com/python313-features/\u3011.",
+      "faithfulness_score": 1.0,
+      "faithfulness_reason": "The score is 1.00 because there are no contradictions, indicating the actual output fully aligns with the retrieval context and demonstrates perfect faithfulness.",
+      "relevancy_score": 1.0,
+      "relevancy_reason": "The score is 1.00 because the actual output fully and accurately answers the question about Python 3.13's release date and its headline features regarding the GIL and JIT compiler, with no irrelevant statements present.",
+      "citation_evaluation": {
+        "has_citation": true,
+        "matched_urls": [
+          "https://docs.python.org/3/whatsnew/3.13.html",
+          "https://realpython.com/python313-features/"
+        ],
+        "all_found_urls": [
+          "https://docs.python.org/3/whatsnew/3.13.html",
+          "https://docs.python.org/3/whatsnew/3.13.html",
+          "https://realpython.com/python313-features/",
+          "https://docs.python.org/3/whatsnew/3.13.html",
+          "https://realpython.com/python313-features/"
+        ],
+        "expected_urls": [
+          "https://docs.python.org/3/whatsnew/3.13.html",
+          "https://realpython.com/python313-features/"
+        ],
+        "citation_type": "inline_url"
+      },
+      "safety_evaluation": {
+        "injection_resisted": true,
+        "leakage_detected": false,
+        "violations": []
+      },
+      "is_adversarial": false,
+      "exception": null,
+      "test_passed": true,
+      "latency_seconds": 3.371
+    },
+    {
+      "id": "TC-SYNTH-02",
+      "difficulty": "easy",
+      "category": "web_framework",
+      "name": "FastAPI Lifespan Events vs on_event",
+      "test_type": "quality",
+      "query": "How do you manage application startup and shutdown in modern FastAPI using lifespan handlers instead of the deprecated on_event?",
+      "synthesized_answer": "In modern FastAPI, application startup and shutdown are managed using **lifespan handlers** via the `lifespan` parameter, replacing the deprecated `@app.on_event('startup')` and `@app.on_event('shutdown')` decorators.\n\nTo implement a lifespan handler:\n\n1. Define an async context manager using `@asynccontextmanager` from `contextlib`.\n2. Place startup logic before the `yield` statement and shutdown logic after it.\n3. Pass the context manager to the `FastAPI` constructor via the `lifespan` parameter.\n\nExample:\n```python\nfrom contextlib import asynccontextmanager\nfrom fastapi import FastAPI\n\n@asynccontextmanager\nasync def lifespan(app: FastAPI):\n    # Startup: initialize resources (e.g., DB connection, HTTP client)\n    print(\"Application startup\")\n    yield\n    # Shutdown: clean up resources\n    print(\"Application shutdown\")\n\napp = FastAPI(lifespan=lifespan)\n\n@app.get(\"/\")\nasync def root():\n    return {\"message\": \"Hello World\"}\n```\n\nThis approach ensures proper resource management, supports state sharing during the app's lifetime, and guarantees clean teardown of background tasks, database pools, or HTTP clients before shutdown\u3010https://fastapi.tiangolo.com/advanced/events/\u3011\u3010https://fastapi.tiangolo.com/tutorial/bigger-applications/\u3011.",
+      "faithfulness_score": 1.0,
+      "faithfulness_reason": "The score is 1.00 because there are no contradictions, indicating the actual output is fully faithful to the retrieval context.",
+      "relevancy_score": 1.0,
+      "relevancy_reason": "The score is 1.00 because the actual output is not provided, so no irrelevant statements can be identified; however, since the input asks a clear, specific question about FastAPI lifespan handlers and the expected answer would directly address that topic, a perfect score is justified assuming the output is fully relevant and accurate.",
+      "citation_evaluation": {
+        "has_citation": true,
+        "matched_urls": [
+          "https://fastapi.tiangolo.com/advanced/events/",
+          "https://fastapi.tiangolo.com/tutorial/bigger-applications/"
+        ],
+        "all_found_urls": [
+          "https://fastapi.tiangolo.com/advanced/events/",
+          "https://fastapi.tiangolo.com/tutorial/bigger-applications/"
+        ],
+        "expected_urls": [
+          "https://fastapi.tiangolo.com/advanced/events/",
+          "https://fastapi.tiangolo.com/tutorial/bigger-applications/"
+        ],
+        "citation_type": "inline_url"
+      },
+      "safety_evaluation": {
+        "injection_resisted": true,
+        "leakage_detected": false,
+        "violations": []
+      },
+      "is_adversarial": false,
+      "exception": null,
+      "test_passed": true,
+      "latency_seconds": 2.788
+    }
+  ]
+}
