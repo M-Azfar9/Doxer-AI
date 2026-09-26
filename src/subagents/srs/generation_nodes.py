@@ -4,8 +4,9 @@ Outlines document, drafts sections, plans/validates Mermaid diagrams, and determ
 """
 
 import json
+import re
 from datetime import datetime
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 from langchain_core.messages import SystemMessage, HumanMessage
 
 from src.core.service_registry import ServiceRegistry, services as default_services
@@ -37,9 +38,121 @@ Ground your drafting directly in the provided RequirementsModel without hallucin
 """
 
 DIAGRAM_PLANNER_SYSTEM_PROMPT = """You are a Principal Software Solutions Architect determining visual modeling specifications for an IEEE 830 SRS document.
-Review the system requirements and plan 2 to 4 essential architectural diagrams (flowchart, sequence, class, component, or state) using Mermaid syntax.
-Ensure the Mermaid code is syntactically valid and well-formatted.
+Review the system requirements and plan between 2 and 4 essential architectural diagrams using Mermaid syntax.
+
+Diagram Typology Mapping Rules:
+1. High-Level Architecture & Component Decomposition: Use diagram_type="flowchart" or "component". The Mermaid code MUST start with `flowchart TD` or `flowchart LR` (using subgraphs for components). Never write "component diagram" or "component TD" because Mermaid requires `flowchart TD`.
+2. User Flows, Authentication Workflows, & Step-by-Step Message Sequences: Use diagram_type="sequence". The Mermaid code MUST start with `sequenceDiagram`.
+3. Domain Entities, Data Models, & Schemas: Use diagram_type="class". The Mermaid code MUST start with `classDiagram`.
+4. State Transitions or Lifecycle Workflows: Use diagram_type="state". The Mermaid code MUST start with `stateDiagram-v2`.
+
+Mermaid Syntax & Quality Requirements:
+1. The first line of Mermaid code MUST be one of these exact declarations:
+   - `flowchart TD` or `flowchart LR` (for architecture, flowchart, and component models)
+   - `sequenceDiagram` (for interaction and message sequences)
+   - `classDiagram` (for entity and data structure models)
+   - `stateDiagram-v2` (for lifecycle state machines)
+2. Ensure all node brackets e.g. `[ ]`, `( )`, `{ }`, and quotes `" "` are strictly matched and closed.
+3. Node IDs must be alphanumeric identifiers without spaces (e.g., `ClientApp["Client Application"]`).
+4. In sequence diagrams, define participants and use valid arrows (`->>`, `-->>`).
+5. Output clean, raw Mermaid code without markdown code fences (do NOT include ```mermaid).
+6. Provide an informative title and a formal IEEE 830 figure caption for each diagram (e.g. "Figure 1: High-Level System Architecture").
+7. Plan at least 2 and at most 4 diagrams representing the most critical architectural perspectives of the system.
 """
+
+SUPPORTED_DIAGRAM_TYPES = {"flowchart", "sequence", "class", "component", "state", "erDiagram"}
+VALID_MERMAID_HEADERS = (
+    "graph ", "graph\n", "flowchart ", "flowchart\n", "sequencediagram", "classdiagram", 
+    "statediagram", "statediagram-v2", "erdiagram", "c4context", "c4container"
+)
+DANGEROUS_PATTERNS = [
+    r"<script\b", r"javascript:", r"<iframe\b", r"onerror=", r"onload=", r"<embed\b"
+]
+
+
+def validate_mermaid_code(diagram_type: str, raw_code: str) -> Tuple[bool, Optional[str]]:
+    """
+    Validates Mermaid syntax, checks delimiter balance, verifies headers,
+    and prevents render crashes (invalid syntax tags, infinite loops, unsupported types).
+    """
+    if diagram_type not in SUPPORTED_DIAGRAM_TYPES:
+        return False, f"Unsupported diagram type '{diagram_type}'. Supported types: {sorted(SUPPORTED_DIAGRAM_TYPES)}"
+
+    code = raw_code.strip()
+    # Strip markdown code fences if wrapped
+    if code.startswith("```"):
+        lines = code.splitlines()
+        if len(lines) > 2:
+            code = "\n".join(lines[1:-1]).strip()
+        else:
+            return False, "Empty or malformed code block"
+
+    # Normalize component header to valid Mermaid flowchart TD
+    code = re.sub(r'^(component diagram|component TD|component LR|component\s*(\n|$))\b', 'flowchart TD\n', code, flags=re.IGNORECASE).strip()
+
+    if not code:
+        return False, "Diagram code is empty"
+
+    lines = [ln.strip() for ln in code.splitlines() if ln.strip() and not ln.strip().startswith("%%")]
+    if not lines:
+        return False, "Diagram code contains no statements"
+
+    # Check header
+    header_line = lines[0].lower()
+    has_valid_header = any(header_line.startswith(h) or header_line == h.strip() for h in VALID_MERMAID_HEADERS)
+    if not has_valid_header:
+        return False, f"Missing or malformed Mermaid diagram header: '{lines[0]}'"
+
+    if len(lines) < 2:
+        return False, "Empty diagram body: no nodes or transitions defined"
+
+    # Check dangerous / crash tags (XSS & injection defense)
+    for pat in DANGEROUS_PATTERNS:
+        if re.search(pat, code, re.IGNORECASE):
+            return False, "Security violation: Forbidden script tag or injection pattern detected"
+
+    # Check delimiter balance: [ ], ( ), { }
+    pairs = {'[': ']', '(': ')', '{': '}'}
+    stack = []
+    in_quote = False
+    escaped = False
+
+    for ch in code:
+        if ch == '\n':
+            in_quote = False
+            escaped = False
+            continue
+        if escaped:
+            escaped = False
+            continue
+        if ch == '\\':
+            escaped = True
+            continue
+        if ch == '"':
+            in_quote = not in_quote
+            continue
+        if in_quote:
+            continue
+        
+        if ch in pairs:
+            stack.append(ch)
+        elif ch in pairs.values():
+            if not stack:
+                return False, f"Unmatched closing delimiter '{ch}'"
+            top = stack.pop()
+            if pairs[top] != ch:
+                return False, f"Mismatched delimiters: expected '{pairs[top]}' but found '{ch}'"
+
+    if stack:
+        unmatched = [pairs[ch] for ch in stack]
+        return False, f"Unclosed opening delimiter(s): expected '{', '.join(unmatched)}'"
+
+    # Check dangling arrows or broken relationship operators
+    for line in lines[1:]:
+        if line.rstrip().endswith(("-->", "->>", "-->>", "==>", "-.->")):
+            return False, f"Malformed syntax: dangling arrow without destination in line: '{line}'"
+
+    return True, None
 
 
 class GenerationNodes:
@@ -144,15 +257,16 @@ class GenerationNodes:
 
         for spec in specs:
             code = spec.code.strip()
-            # Basic mermaid validation
-            is_valid = ("graph " in code or "sequenceDiagram" in code or "classDiagram" in code or "flowchart " in code or "stateDiagram" in code)
+            # Normalize component diagram header to standard flowchart TD
+            code = re.sub(r'^(component diagram|component TD|component LR|component\s*(\n|$))\b', 'flowchart TD\n', code, flags=re.IGNORECASE).strip()
+            is_valid, syntax_error = validate_mermaid_code(spec.diagram_type, code)
             val = ValidatedDiagram(
                 diagram_id=spec.diagram_id,
                 diagram_type=spec.diagram_type,
                 code=code,
                 caption=spec.caption,
                 is_valid=is_valid,
-                syntax_error=None if is_valid else "Mermaid diagram header missing"
+                syntax_error=syntax_error
             )
             validated.append(val)
             manifest.append({
@@ -160,7 +274,8 @@ class GenerationNodes:
                 "title": spec.title,
                 "type": spec.diagram_type,
                 "caption": spec.caption,
-                "is_valid": is_valid
+                "is_valid": is_valid,
+                "syntax_error": syntax_error
             })
 
         return {"validated_diagrams": validated, "diagram_manifest": manifest}
