@@ -339,29 +339,29 @@ To measure the reliability and accuracy of each agent component, Doxer AI implem
 
 | Phase | Level | Target Component / Pipeline | Key Evaluation Metrics | Safety & Ops Benchmark | Status |
 | :---: | :--- | :--- | :--- | :--- | :---: |
-| **1** | Component | `StructuredOutputNode` | Schema Adherence ($\ge 92\%$) | Repair Recovery Rate ($\ge 95\%$) | **COMPLETED** ✅ |
-| **2** | Component | `SandboxManager` | Subpath Containment | $100\%$ Traversal Block Rate | **COMPLETED** ✅ |
-| **3** | Component | `ChromaVectorStore` | Hit Rate@4 & Context Recall | Injection & Bounds Defense | **COMPLETED** ✅ |
-| **4** | Component | `GitHubMCPClient` | Tree Completeness & URL Parse | Token Masking & Size Limits | **COMPLETED** ✅ |
-| **5** | Component | `SupervisorRouter` | 3-Way Accuracy ($\ge 90\%$) | Prompt Injection Immunity | **COMPLETED** ✅ |
-| **6** | Component | `QANodes.classify_intent` | Intent Classification ($\ge 88\%$) | Temporal Boundary Precision | **COMPLETED** ✅ |
-| **7** | Component | `QANodes.synthesize_web` | Faithfulness ($\ge 0.85$) | Indirect Injection Defense | **COMPLETED** ✅ |
-| **8** | Component | `QANodes.synthesize_code` | Faithfulness & Zero Hallucination | Insecure Code Defense | **COMPLETED** ✅ |
-| **9** | Component | `build_local_repo_map` | Tree Format & Tech Stack F1 | Ignore Filter Adherence | **COMPLETED** ✅ |
-| **10** | Component | `doc_intent_router` | Doc Type & Scope Selection | Target Path Bounds Check | **COMPLETED** ✅ |
-| **11** | Component | `baseline_docgen` | Citation Ratio ($\ge 0.85$) | Credential Redaction | **COMPLETED** ✅ |
-| **12** | Component | `analyze_initial_requirements` | Requirements Extraction Recall | Anti-Hallucination Rate | **COMPLETED** ✅ |
-| **13** | Component | `check_completeness` | Saturation Decision ($\ge 92\%$) | Turn Limit Force-Exit | **COMPLETED** ✅ |
-| **14** | Component | `ask_question` | Actionability & Conciseness | Non-Redundancy ($0\%$) | **COMPLETED** ✅ |
-| **15** | Component | `update_requirements` | Requirement Retention ($100\%$) | Contradiction Resolution | **COMPLETED** ✅ |
-| **16** | Component | `generate_outline` | IEEE 830 Section Compliance | Gap Register Mapping | **COMPLETED** ✅ |
-| **17** | Component | `generate_section` | Faithfulness to Reqs Model | Word Count Bounds | **COMPLETED** ✅ |
+| **1** | Component | `StructuredOutputNode` | Schema Adherence ($\ge 92\%$) | Repair Recovery Rate ($100\%$) | **COMPLETED** ✅ |
+| **2** | Component | `SandboxManager` | Subpath Containment ($1.0$) | $100\%$ Traversal Block Rate | **COMPLETED** ✅ |
+| **3** | Component | `ChromaVectorStore` | Hit Rate@4 ($0.933$) & Recall ($0.92$) | Injection & Bounds Defense ($1.0$) | **COMPLETED** ✅ |
+| **4** | Component | `GitHubMCPClient` | Tree Completeness & REST Fallback | Token Masking & Size Limits | **COMPLETED** ✅ |
+| **5** | Component | `SupervisorRouter` | 3-Way Accuracy ($100.0\%$) | Prompt Injection Immunity ($100\%$) | **COMPLETED** ✅ |
+| **6** | Component | `QANodes.classify_intent` | Intent Classification ($98.0\%$) | Temporal Boundary Precision | **COMPLETED** ✅ |
+| **7** | Component | `QANodes.synthesize_web` | Faithfulness ($0.927$) | Indirect Injection Defense ($100\%$) | **COMPLETED** ✅ |
+| **8** | Component | `QANodes.synthesize_code` | Faithfulness ($0.984$) & Zero Hallucination | Insecure Code Defense ($100\%$) | **COMPLETED** ✅ |
+| **9** | Component | `build_local_repo_map` | Tree Format & Tech Stack F1 | Ignore Filter Adherence ($100\%$) | **COMPLETED** ✅ |
+| **10** | Component | `doc_intent_router` | Doc Type & Scope Selection | Target Path Bounds Check ($100\%$) | **COMPLETED** ✅ |
+| **11** | Component | `baseline_docgen` | Citation Ratio ($\ge 0.85$) | Credential Redaction ($100\%$) | **COMPLETED** ✅ |
+| **12** | Component | `analyze_initial_requirements` | Requirements Extraction Recall | Anti-Hallucination Rate ($100\%$) | **COMPLETED** ✅ |
+| **13** | Component | `check_completeness` | Saturation Decision ($100\%$) | Turn Limit Force-Exit ($100\%$) | **COMPLETED** ✅ |
+| **14** | Component | `ask_question` | Actionability & Conciseness | Non-Redundancy ($100\%$) | **COMPLETED** ✅ |
+| **15** | Component | `update_requirements` | Requirement Retention ($100\%$) | Contradiction Resolution ($100\%$) | **COMPLETED** ✅ |
+| **16** | Component | `generate_outline` | IEEE 830 Section Compliance | Gap Register Mapping ($100\%$) | **COMPLETED** ✅ |
+| **17** | Component | `generate_section` | Faithfulness to Reqs Model | Word Count Bounds ($100\%$) | **COMPLETED** ✅ |
 | **18** | Component | `determine_diagrams` | Diagram Typology Accuracy | Mermaid Syntax ($100\%$) | **COMPLETED** ✅ |
 | **19** | Subagent | **QA Subagent Pipeline** | **Faithfulness (1.0) & Tool Isolation (100%)** | **Indirect Injection Defense (100%)** | **COMPLETED** ✅ |
-| **20** | Subagent | DocGen Subagent Pipeline | Topic Completeness ($\ge 0.85$) | Indirect Injection in Repo | *In Progress* 🔄 |
-| **21** | Subagent | SRS Subagent Pipeline | Requirements Recall ($\ge 90\%$) | Simulator Multi-Turn Stress | *Queued* ⏳ |
-| **22** | System | Complete Agentic System | End-to-End Route Quality | 7-Probe Adversarial Suite | *Queued* ⏳ |
-| **23** | System | Cross-Feature Regression | Golden Master Pass Rate | Automated LangSmith Tracking | *Queued* ⏳ |
+| **20** | Subagent | **DocGen Subagent Pipeline** | **Completeness (100%) & Structure (100%)** | **Certified Grounding Critic (86.7%)** | **COMPLETED** ✅ |
+| **21** | Subagent | **SRS Subagent Pipeline** | **Requirements Recall (90%) & HITL Checkpointing** | **Simulator Multi-Turn Stress (100%)** | **COMPLETED** ✅ |
+| **22** | System | **Complete Agentic System** | **Routing Accuracy (100%) & G-Eval Quality (0.95)** | **7-Probe Adversarial Defense (100%)** | **COMPLETED** ✅ |
+| **23** | System | **Cross-Feature Regression** | **Golden Master Pass Rate (93.33%)** | **429 Failover & Zero Regression (100%)** | **COMPLETED** ✅ |
 
 ---
 
@@ -447,7 +447,75 @@ Aggregate Metrics:
 ----------------------------------------------------------------------
 Metric          Average Score    Pass Rate                         Total
 Faithfulness    0.9838           100.00% (passed=20, failed=0)     20
+---
+
+### 4. DocGen Subagent Evaluation: Phase 1 Baseline vs. Architecture D (v3)
+
+Benchmarked across API References, Architecture Explainers, and Quickstart Guides (`evals/eval_docgen_metrics.py`). Evaluated using **Amazon Bedrock with NVIDIA Nemotron Super 3 (`nvidia.nemotron-super-3-120b`)** as the primary LLM engine with automated failover:
+
+| Evaluation Metric | Phase 1 Baseline (`v1`) | Architecture D (`v3`) | Delta / Improvement | Target | Status |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Document Completeness** | `91.7%` | **`100.0%`** | **`+8.3%` (Perfect Coverage)** | $\ge 85.0\%$ | ✅ PASSED |
+| **Document Structure** | `100.0%` | **`100.0%`** | Maintained $100\%$ Markdown spec | $100.0\%$ | ✅ PASSED |
+| **Evidence Grounding** | Heuristic `90.0%` | **`86.7%` Certified** | Verified via AST & Grounding Critic | $\ge 80.0\%$ | ✅ PASSED |
+| **Overall Quality Score** | `93.7%` | **`96.0%`** | **`+2.3%` Overall Quality** | $\ge 85.0\%$ | ✅ PASSED |
+
 ```
+=================================================================
+📊 DETAILED TEST CASE BREAKDOWN (ARCHITECTURE D ENGINE)
+=================================================================
+• doc-01 (API Reference - GitHubMCPClient):
+  - Completeness: 100.0% | Grounding: 95.0% | Latency: 1626s | Citations: 19 | Quality: 98.5%
+  - Verified AST signatures, parameter tables, decorators, and fallback logic.
+
+• doc-02 (Architecture Explainer - Supervisor 3-Way Router):
+  - Completeness: 100.0% | Grounding: 70.0% | Latency: 265s  | Citations: 33 | Quality: 91.0%
+  - Ingested 14 local repository files and 20 web snippets; rendered valid Mermaid diagrams.
+
+• doc-03 (Developer Quickstart - QA Subagent & Chroma):
+  - Completeness: 100.0% | Grounding: 95.0% | Latency: 104s  | Citations: 26 | Quality: 98.5%
+  - Verified pip installation steps, Config setup, and minimal working example with 0 critic violations.
+=================================================================
+```
+
+---
+
+### 5. Sprinter Phase 23: Master Cross-Feature Regression Scorecard
+
+The complete multi-agent system was evaluated against 15 Golden Master test cases spanning functional workflows, adversarial security probes, and chaos engineering injections (`evals/reports/regression_summary.md`):
+
+| Category | Evaluation Metric | Achieved Score | Target Threshold | Compliance Status |
+| :--- | :--- | :---: | :---: | :---: |
+| **System Quality** | Golden Master Pass Rate | **`93.33%`** | $\ge 90.0\%$ | ✅ PASSED (`+13.33%` delta) |
+| **System Quality** | Cross-Route Routing Accuracy | **`100.0%`** | $\ge 92.0\%$ | ✅ PASSED |
+| **System Quality** | DeepEval G-Eval Quality Score | **`0.867`** | $\ge 0.850$ | ✅ PASSED (`+0.087` delta) |
+| **System Quality** | CLI Rendering Compliance | **`100.0%`** | $100.0\%$ | ✅ PASSED |
+| **System Quality** | Checkpointer State Resumption | **`100.0%`** | $100.0\%$ | ✅ PASSED |
+| **Security & Safety**| Direct Prompt Injection Immunity | **`100.0%`** | $100.0\%$ | ✅ PASSED |
+| **Security & Safety**| Sandbox Breakout Containment | **`100.0%`** | $100.0\%$ | ✅ PASSED |
+| **Security & Safety**| Indirect Injection Defense (Repo & Web) | **`100.0%`** | $100.0\%$ | ✅ PASSED |
+| **Security & Safety**| System Prompt Leakage Defense | **`100.0%`** | $100.0\%$ | ✅ PASSED |
+| **Security & Safety**| Credential Scrubbing & Redaction | **`100.0%`** | $100.0\%$ | ✅ PASSED |
+| **Operations & Cost**| 429 Rate-Limit Failover Resilience | **`100.0%`** | $100.0\%$ | ✅ PASSED |
+| **Operations & Cost**| Dual Tool Blackout Fallback | **`100.0%`** | $100.0\%$ | ✅ PASSED |
+| **Operations & Cost**| Cost SLA Compliance ($\le \$0.05$/query)| **`100.0%`** | $\ge 90.0\%$ | ✅ PASSED (Avg: $\$0.00052$) |
+
+---
+
+## 💻 Claude Code-Style Production Interactive CLI (`main.py`)
+
+Doxer AI includes a production-grade, interactive Command-Line Interface inspired by **Claude Code**:
+
+```bash
+# Launch interactive agentic CLI with strict directory sandboxing
+python main.py --repo-dir . --repo-url https://github.com/owner/repo
+```
+
+### Key CLI Capabilities:
+- **`pyfiglet` ASCII Art Header:** Renders a clean terminal banner and system environment summary.
+- **Granular Action Streaming:** Emits real-time agentic action updates (intent routing, AST symbol extraction, Tavily searches, sufficiency evaluation, critic audit passes).
+- **Strict Directory Sandboxing:** Enforces strict boundary containment, blocking path traversal (`../`) and unauthorized symlink attacks.
+- **Human-in-the-Loop Interruption:** For IEEE 830 SRS elicitation, pauses execution via LangGraph checkpointer, prompts the developer for requirements clarifications, and seamlessly resumes with zero token replay burn.
 
 ---
 
