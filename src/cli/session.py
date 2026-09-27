@@ -54,7 +54,7 @@ class CLISessionContext:
         self,
         allowed_dir: Optional[str] = None,
         repo_id: Optional[str] = None,
-        docgen_version: str = "v1",
+        docgen_version: str = "v3",
         assistant: Optional[SprinterAssistant] = None
     ):
         # 1. Resolve allowed directory

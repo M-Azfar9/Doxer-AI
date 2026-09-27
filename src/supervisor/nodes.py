@@ -18,7 +18,7 @@ class SupervisorNodes:
     def __init__(
         self,
         services: Optional[ServiceRegistry] = None,
-        docgen_version: str = "v1"
+        docgen_version: str = "v3"
     ):
         self.services = services or default_services
         self.router = SupervisorRouter(services=self.services)
@@ -96,7 +96,7 @@ class SupervisorNodes:
         }
         try:
             docgen_output = self.docgen_subgraph.invoke(docgen_input)
-            draft = docgen_output.get("draft_markdown", "")
+            draft = docgen_output.get("final_doc_markdown") or docgen_output.get("draft_markdown", "")
             citations = docgen_output.get("citations", [])
 
             # Format final doc with citations
@@ -106,6 +106,8 @@ class SupervisorNodes:
             metadata = state.get("metadata", {})
             metadata["docgen_version"] = self.docgen_version
             metadata["citations_count"] = len(citations)
+            if "grounding_score" in docgen_output:
+                metadata["grounding_score"] = docgen_output["grounding_score"]
 
             return {
                 "final_output": draft,

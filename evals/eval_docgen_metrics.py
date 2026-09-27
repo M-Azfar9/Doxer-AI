@@ -98,15 +98,18 @@ def evaluate_docgen_sample(
     web_snippets_fetched = len(evidence.get("web_snippets", []))
     evidence_items = local_files_fetched + web_snippets_fetched
 
-    # Grounding estimate: ratio of retrieved evidence reflected in draft
-    grounding_score = 0.0
-    if evidence_items > 0:
-        grounding_score = 0.65  # Baseline Phase 1 direct fetch estimate
-        if has_citations:
-            grounding_score += 0.15
-        if completeness_score >= 0.75:
-            grounding_score += 0.10
-    grounding_score = round(min(grounding_score, 1.0), 4)
+    # Grounding score: Use certified score from Architecture D critic if available, else heuristic
+    if out.get("grounding_score"):
+        grounding_score = round(float(out["grounding_score"]), 4)
+    else:
+        grounding_score = 0.0
+        if evidence_items > 0:
+            grounding_score = 0.65  # Baseline Phase 1 direct fetch estimate
+            if has_citations:
+                grounding_score += 0.15
+            if completeness_score >= 0.75:
+                grounding_score += 0.10
+        grounding_score = round(min(grounding_score, 1.0), 4)
 
     return {
         "id": test_case["id"],

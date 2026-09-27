@@ -69,7 +69,7 @@ def parse_arguments() -> argparse.Namespace:
         "-v", "--docgen-version",
         dest="docgen_version",
         type=str,
-        default="v1",
+        default="v3",
         choices=["v1", "v2", "v3"],
         help="DocGen subgraph implementation version"
     )

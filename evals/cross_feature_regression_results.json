@@ -1,8 +1,8 @@
 {
   "suite_name": "Phase 10 Cross-Feature Regression Suite",
-  "timestamp": "2026-09-21 19:32:36",
+  "timestamp": "2026-09-27 17:10:29",
   "overall_status": "PASSED",
-  "total_duration_seconds": 168.83,
+  "total_duration_seconds": 78.18,
   "tests": {
     "test_1_routing": {
       "status": "PASSED",
@@ -13,15 +13,15 @@
     "test_2_qa": {
       "status": "PASSED",
       "route": "qa",
-      "latency_seconds": 100.61,
-      "output_chars": 1726,
+      "latency_seconds": 8.11,
+      "output_chars": 3285,
       "error": null
     },
     "test_3_docgen": {
       "status": "PASSED",
       "route": "doc_gen",
-      "latency_seconds": 27.75,
-      "output_chars": 9714,
+      "latency_seconds": 21.34,
+      "output_chars": 3811,
       "citations_count": 7,
       "error": null
     },
@@ -29,8 +29,8 @@
       "status": "PASSED",
       "final_status": "waiting_human_input",
       "route": "srs",
-      "latency_seconds": 40.4,
-      "output_chars": 307,
+      "latency_seconds": 48.65,
+      "output_chars": 257,
       "error": null
     }
   }

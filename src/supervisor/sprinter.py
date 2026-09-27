@@ -23,7 +23,7 @@ class SprinterAssistant:
     def __init__(
         self,
         services: Optional[ServiceRegistry] = None,
-        docgen_version: str = "v1"
+        docgen_version: str = "v3"
     ):
         self.services = services or default_services
         self.docgen_version = docgen_version
